@@ -3,7 +3,8 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     container: {
       marginTop: 48,
-      flex: 1
+      flex: 1,
+      bordertRadius: 20,
     },
     headerStyle: {
       fontSize: 36,
@@ -12,9 +13,9 @@ export default StyleSheet.create({
       marginBottom: 24
     },
     elementsContainer: {
-      backgroundColor: '#ecf5fd',
       marginLeft: 24,
       marginRight: 24,
-      marginBottom: 24
-    }
+      marginBottom: 24,
+      bordertRadius: 20,
+    },
 });
