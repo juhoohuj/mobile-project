@@ -6,6 +6,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { HomeScreen } from './components/HomeScreen';
 import { AddScreen } from './components/AddScreen';
 import { ProfileScreen } from './components/ProfileScreen';
+import React from 'react';
 
 
 const Tab = createBottomTabNavigator();
