@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState, useEffect } from "react";
 import { Button } from "react-native";
 import { TextInput } from "react-native";
+import { Header } from "@react-navigation/elements";
 
 
 
@@ -39,14 +40,22 @@ import { TextInput } from "react-native";
 
     return (
         <View>
-            <Text>MORO</Text>
-            <TextInput
-                style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-                onChangeText={text => setValue(text)}
-                value={value}
-            />
-            <Button title="Save" onPress={() => {buttonPressed()}}/>
-            <Text>{text}</Text>
+            <View>
+                <Text>MORO</Text>
+                <TextInput
+                    style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+                    onChangeText={text => setValue(text)}
+                    value={value}
+                />
+                <Button title="Save" onPress={() => {buttonPressed()}}/>
+                <Text>{text}</Text>
+            </View>
+            <View>
+                <Text>ADD EXERCISE</Text>
+                <TextInput/>
+                <TextInput/>
+                <TextInput/>
+            </View>
         </View>
     )
  }
