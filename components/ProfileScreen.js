@@ -1,9 +1,12 @@
-import { View, Text } from "react-native";
-
+import React from "react";
+import { StyleSheet, Text, View, Dimensions, TextInput, Button, ScrollView} from "react-native";
+import WeightGraph from "./WeightGraph";
+import ScrollableGraph from "./ScrollableGraph";
  const ProfileScreen = () => {
     return (
         <View>
-            <Text>MORO</Text>
+            {/* <WeightGraph /> */}
+            <ScrollableGraph />
         </View>
     )
  }
