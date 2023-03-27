@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     container: {
       flex: 1,
-      bordertRadius: 20,
+      borderRadius: 20,
       backgroundColor: "#d3e8f2",
     },
     headerStyle: {
@@ -17,5 +17,12 @@ export default StyleSheet.create({
       marginRight: 24,
       marginBottom: 24,
       bordertRadius: 20,
+    },
+    imageStyle: {
+      height: 'cover',
+      width: 'cover',
+      flex: 1,
+      justifyContent: 'center',
+      overflow: 'hidden',
     },
 });
