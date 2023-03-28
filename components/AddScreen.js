@@ -13,8 +13,10 @@ import { Header } from "@react-navigation/elements";
     const saveData = async (value) => {
         try {
             await AsyncStorage.setItem("test", JSON.stringify(value));
+            alert("Data successfully saved")
           } catch (error) {
             console.log(error);
+            alert("Something went wrong")
           }
         };
 
@@ -52,9 +54,9 @@ import { Header } from "@react-navigation/elements";
             </View>
             <View>
                 <Text>ADD EXERCISE</Text>
-                <TextInput/>
-                <TextInput/>
-                <TextInput/>
+                <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}/>
+                <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}/>
+                <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}/>
             </View>
         </View>
     )
