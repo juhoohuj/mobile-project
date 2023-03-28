@@ -3,14 +3,14 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     container: {
       flex: 1,
-      borderRadius: 20,
-      backgroundColor: "#d3e8f2",
+      backgroundColor: "#191D32",
     },
     headerStyle: {
       fontSize: 36,
       textAlign: 'center',
       fontWeight: '100',
-      marginBottom: 24
+      marginBottom: 24,
+      color: "#ffff",
     },
     elementsContainer: {
       marginLeft: 24,
@@ -24,5 +24,7 @@ export default StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       overflow: 'hidden',
+      borderRadius: 25,
     },
+    
 });
