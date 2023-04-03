@@ -6,6 +6,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { HomeScreen } from './components/HomeScreen';
 import { AddScreen } from './components/AddScreen';
 import { ProfileScreen } from './components/ProfileScreen';
+import React from 'react';
 
 
 const Tab = createBottomTabNavigator();
@@ -13,7 +14,7 @@ const Tab = createBottomTabNavigator();
 const Nav = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator screenOptions={{ headerShown: false }}>
         <Tab.Screen name="Home" component={HomeScreen} options={{tabBarIcon: ()=> <AntDesign name="home" size={24} color="black" />}} />
         <Tab.Screen name="Add" component={AddScreen} options={{tabBarIcon: ()=> <AntDesign name="plus" size={24} color="black" />}} />
         <Tab.Screen name="Profile" component={ProfileScreen} options={{tabBarIcon: ()=> <AntDesign name="areachart" size={24} color="black" />}}  />
