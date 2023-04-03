@@ -2,7 +2,6 @@ import { View, Text, Image } from "react-native";
 import React, { Component } from 'react';
 import styles from '../styles/Styles';
 
- const HomeScreen = () => {
 
 
  const HomeScreen = () => {
