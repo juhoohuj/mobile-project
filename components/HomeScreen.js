@@ -29,7 +29,8 @@ import styles from '../styles/Styles';
                         style={styles.imageStyle} 
                         resizeMode='cover'
                         borderRadius={40} /> 
-                </View>            </View>
+                </View>
+            </View>
       </View>
     );
  }
