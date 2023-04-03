@@ -4,34 +4,32 @@ import AsyncStorage from "@react-native-async-storage/async-storage/lib/commonjs
 import { TextInput } from "react-native";
 import { Button } from "react-native";
 
-const STORAGE_KEY = '@todo-Key';
+const STORAGE_KEY = '@exe-Key';
 
-const HomeScreen = (navigation, route) => {
+const HomeScreen = () => {
+    const [exes, setExes] = useState([]);
+    //const [value, setValue] = useState("");
     
-    const [todos, setTodos] = useState([]);
-    
+    const [text, setText] = useState("");
     /*const [todos, setTodos] = useState(
         Array(20).fill('').map((_,i) => (`Test ${i}`))
     );*/
     
-    const getMyStringValue = async () => {
-        try {
-          return await AsyncStorage.getItem('@key')
-        } catch(e) {
-            console.log(e)
-        }
-      
-        console.log('Done.')
-      }
 
       const storeData = async (value) => {
         try {
             const jsonValue = JSON.stringify(value);
-            await AsyncStorage.setItem(STORAGE_KEY,jsonValue);
+            await AsyncStorage.setItem(STORAGE_KEY, jsonValue);
+            //await AsyncStorage.setItem('key',JSON.stringify(value));
         } catch (e){
             console.log(e);
         }
       }
+
+            //****getData vanhoja juttuja****
+            //const savedValue = await AsyncStorage.getItem('key');
+            //const curValue = JSON.parse(savedValue);
+            //setText(curValue);
 
     const getData = async() => {
         try {
@@ -41,7 +39,7 @@ const HomeScreen = (navigation, route) => {
                 if (json === null) {
                     json = [];
                 }
-                setTodos(json);
+                setExes(json);
             })
             .catch (error => console.log(error));
         } catch (e) {
@@ -50,28 +48,40 @@ const HomeScreen = (navigation, route) => {
     }
 
     useEffect(() => {
-        if (route.params?.todo) {
-            const newKey = todos.length + 1;
-            const newTodo = {key: newKey.toString(), description: route.params.todo};
-            const newTodos = [...todos,newTodo];
-            storeData(newTodos);
+        if (text) {
+            const newKey = exes.lenght + 1;
+            const newExe = {key: newKey.toString(), description: text};
+            const newExes = [...exes, newExe];
+
+            storeData(newExes);
         }
         getData();
-    }, [route.params?.todo])
+    }, [text])
+
+    function buttonPressed() {
+        storeData(text);
+        getData();  
+        setText("");
+    }
 
 
     return (
         <View>
+            <Text>Test</Text>
 
-            <TextInput onChangeText={text => storeData(text)} ></TextInput>
+            <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1 }} onChangeText={text => setText(text)}
+            />
+
+            <Button title="Test" onPress={() => {buttonPressed()}}/>
             
             {
-                todos.map((todo) => (
-                    <View key={todo.key}>
-                        <Text>{todo.description}</Text>
+                exes.map((text) => (
+                    <View key={text.key}>
+                        <Text>{text.description}</Text>
                     </View>
                 ))
             }
+            
         </View>
     )
 }
