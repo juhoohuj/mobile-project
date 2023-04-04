@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, Button, TextInput } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState, useEffect } from "react";
+import styles from "../styles/Styles";
 
 
 
@@ -39,23 +40,22 @@ import { useState, useEffect } from "react";
     
 
     return (
-        <View>
+        <View style={styles.AddScreenContainer}>
+             <Text style={styles.headerStyle}>ADD EXERCISE</Text>
             <View>
-                <Text>MORO</Text>
                 <TextInput
-                    style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+                    style={styles.TextInput} textAlign={'center'} placeholder="#"  
                     onChangeText={text => setValue(text)}
                     value={value}
                 />
+                <TextInput style={styles.TextInput} textAlign={'center'} placeholder="#"  />
+                <TextInput style={styles.TextInput} textAlign={'center'} placeholder="#"  />
+                <TextInput style={styles.TextInput} textAlign={'center'} placeholder="#"  />
+                
                 <Button title="Save" onPress={() => {buttonPressed()}}/>
-                <Text>{text}</Text>
+                <Text style={styles.savedText}>{text}</Text>
             </View>
-            <View>
-                <Text>ADD EXERCISE</Text>
-                <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}/>
-                <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}/>
-                <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}/>
-            </View>
+
         </View>
     )
  }
