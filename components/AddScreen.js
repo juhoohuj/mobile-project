@@ -1,9 +1,10 @@
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState, useEffect } from "react";
 import { Button } from "react-native";
 import { TextInput } from "react-native";
 import { Header } from "@react-navigation/elements";
+import {SafeAreaProvider, useSafeAreaInsets,} from 'react-native-safe-area-context';
 
 
 
@@ -38,10 +39,11 @@ import { Header } from "@react-navigation/elements";
     }
 
 
-    
+    const insets = useSafeAreaInsets();
 
     return (
-        <View>
+    
+        <ScrollView style={{paddingTop: insets.top,}}>
             <View>
                 <Text>MORO</Text>
                 <TextInput
@@ -54,11 +56,13 @@ import { Header } from "@react-navigation/elements";
             </View>
             <View>
                 <Text>ADD EXERCISE</Text>
-                <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}/>
-                <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}/>
-                <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}/>
+                <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 10 }}/>
+                <Text>ADD EXERCISE</Text>
+                <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 10 }}/>
+                <Text>ADD EXERCISE</Text>
+                <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 10 }}/>
             </View>
-        </View>
+        </ScrollView>
     )
  }
 
