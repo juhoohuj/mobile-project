@@ -3,8 +3,28 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState, useEffect } from "react";
 import { Button } from "react-native";
 import { TextInput } from "react-native";
-import { Header } from "@react-navigation/elements";
-import {SafeAreaProvider, useSafeAreaInsets,} from 'react-native-safe-area-context';
+import { useSafeAreaInsets,} from 'react-native-safe-area-context';
+import WorkoutForm from "./WorkoutForm";
+
+const AddScreenTheme = {
+    //color:'#ffffff',
+    //borderColor:"#ffffff"
+};
+
+
+const getWorkouts = async () => {
+    try {
+      const workouts = await AsyncStorage.getItem('workouts');
+      if (workouts !== null) {
+        const parsed = JSON.parse(workouts)
+        console.log(workouts)
+        return JSON.parse(workouts);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+    return [];
+  };
 
 
 
@@ -37,17 +57,14 @@ import {SafeAreaProvider, useSafeAreaInsets,} from 'react-native-safe-area-conte
         saveData(value);
         getData();  
     }
-
-
     const insets = useSafeAreaInsets();
-
     return (
     
-        <ScrollView style={{paddingTop: insets.top,}}>
-            <View>
-                <Text>MORO</Text>
+        <ScrollView style={{paddingTop: insets.top, }}>
+            <View  >
+                <Text style={AddScreenTheme} >MORO</Text>
                 <TextInput
-                    style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+                    style={{ height: 40, borderColor: 'gray', borderWidth: 1,}}
                     onChangeText={text => setValue(text)}
                     value={value}
                 />
@@ -55,15 +72,16 @@ import {SafeAreaProvider, useSafeAreaInsets,} from 'react-native-safe-area-conte
                 <Text>{text}</Text>
             </View>
             <View>
-                <Text>ADD EXERCISE</Text>
-                <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 10 }}/>
-                <Text>ADD EXERCISE</Text>
-                <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 10 }}/>
-                <Text>ADD EXERCISE</Text>
-                <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1, marginBottom: 10 }}/>
+                <WorkoutForm/>
+            </View>
+            <View>
+                <Button title="GET WORKOUTS BOII" onPress={getWorkouts}/>
+                
             </View>
         </ScrollView>
     )
+
+    
  }
 
 
