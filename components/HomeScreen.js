@@ -8,7 +8,7 @@ const STORAGE_KEY = '@exe-Key';
 
 const HomeScreen = () => {
     const [exes, setExes] = useState([]);
-    //const [value, setValue] = useState("");
+    const [value, setValue] = useState("");
     
     const [text, setText] = useState("");
     /*const [todos, setTodos] = useState(
@@ -17,51 +17,69 @@ const HomeScreen = () => {
     
 
       const storeData = async (value) => {
+        console.log(value, "valueeeeee");
         try {
             const jsonValue = JSON.stringify(value);
             await AsyncStorage.setItem(STORAGE_KEY, jsonValue);
             //await AsyncStorage.setItem('key',JSON.stringify(value));
         } catch (e){
-            console.log(e);
+            console.log("store", e);
         }
       }
-
+        /*return AsyncStorage.getItem(STORAGE_KEY)
+                    .then (req => JSON.parse(req))
+                    .then (json => {
+                        console.log(req);
+                        if (json === null) {
+                            json = [];
+                            
+                        }
+                        setExes(json);
+                    })
+                    .catch (error => console.log("get1",error));*/
             //****getData vanhoja juttuja****
             //const savedValue = await AsyncStorage.getItem('key');
             //const curValue = JSON.parse(savedValue);
             //setText(curValue);
 
     const getData = async() => {
+        
         try {
-            return AsyncStorage.getItem(STORAGE_KEY)
-            .then (req => JSON.parse(req))
-            .then (json => {
-                if (json === null) {
-                    json = [];
-                }
-                setExes(json);
-            })
-            .catch (error => console.log(error));
+            const savedValue = await AsyncStorage.getItem(STORAGE_KEY);
+            const curValue = JSON.parse(savedValue);
+            setValue(curValue);
         } catch (e) {
-            console.log(e);
+            console.log("get", e);
         }
     }
 
     useEffect(() => {
-        if (text) {
+        console.log(text);
+        
+        /*if (text === "") {
+            console.log("ifi sisäl");
             const newKey = exes.lenght + 1;
             const newExe = {key: newKey.toString(), description: text};
             const newExes = [...exes, newExe];
 
             storeData(newExes);
-        }
-        getData();
-    }, [text])
+        }*/
+        
+    })
 
     function buttonPressed() {
+
+        
+        console.log("ifi sisäl");
+        /*const newKey = exes.lenght + 1;
+        const newExe = {key: newKey.toString(), description: text};
+        const newExes = [...exes, newExe];*/
+
+        console.log("ene storee");
         storeData(text);
-        getData();  
-        setText("");
+        console.log("jälkee storee");
+
+        getData();
     }
 
 
@@ -69,18 +87,12 @@ const HomeScreen = () => {
         <View>
             <Text>Test</Text>
 
-            <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1 }} onChangeText={text => setText(text)}
+            <TextInput style={{ height: 40, borderColor: 'black', borderWidth: 1 }} onChangeText={setText} value={text}
             />
 
             <Button title="Test" onPress={() => {buttonPressed()}}/>
             
-            {
-                exes.map((text) => (
-                    <View key={text.key}>
-                        <Text>{text.description}</Text>
-                    </View>
-                ))
-            }
+            <Text>{value}</Text>
             
         </View>
     )
