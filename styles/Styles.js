@@ -5,6 +5,13 @@ export default StyleSheet.create({
       flex: 1,
       backgroundColor: "#191D32",
     },
+    AddScreenContainer: {
+      flex: 1,
+      backgroundColor: "#191D32",
+      alignItems: 'center',
+      marginRight: '20',
+      marginLeft: '20',
+    },
     headerStyle: {
       fontSize: 36,
       textAlign: 'center',
@@ -26,5 +33,19 @@ export default StyleSheet.create({
       overflow: 'hidden',
       borderRadius: 25,
     },
+    TextInput:{
+      height: 50, 
+      width: '100',
+      borderColor: 'gray', 
+      borderWidth: 1,
+      fontWeight: 'bold',
+      color: '#020887',
+      textAlign:'center',
+      backgroundColor:'#FFFFFF',
+      marginBottom: 5,
+    },
+    savedText:{
+      color:'#FFFFFF'
+    }
     
 });
