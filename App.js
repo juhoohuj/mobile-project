@@ -1,19 +1,28 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
 import { HomeScreen } from './components/HomeScreen';
 import { AddScreen } from './components/AddScreen';
 import { ProfileScreen } from './components/ProfileScreen';
 
 
+const MyTheme = {
+    ...DefaultTheme,
+    //colors: {
+    //  ...DefaultTheme.colors,
+    //  background:'#647AA3'
+    //},
+  };
+
+
 const Tab = createBottomTabNavigator();
 
 const Nav = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator>
+    <NavigationContainer theme={MyTheme}>
+      <Tab.Navigator screenOptions={{ headerShown: false }}>
         <Tab.Screen name="Home" component={HomeScreen} options={{tabBarIcon: ()=> <AntDesign name="home" size={24} color="black" />}} />
         <Tab.Screen name="Add" component={AddScreen} options={{tabBarIcon: ()=> <AntDesign name="plus" size={24} color="black" />}} />
         <Tab.Screen name="Profile" component={ProfileScreen} options={{tabBarIcon: ()=> <AntDesign name="areachart" size={24} color="black" />}}  />
