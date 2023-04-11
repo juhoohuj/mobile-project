@@ -8,12 +8,30 @@ const STORAGE_KEY = '@exe-Key';
 
 const HomeScreen = () => {
     const [exes, setExes] = useState([]);
-    
+    const [moves, setMoves] = useState([]);
     const [text, setText] = useState("");
    
 
             
     const getWorkouts = async () => {
+        try {
+            return AsyncStorage.getItem('workouts')
+            .then (req => JSON.parse(req))
+            .then (json => {
+                if (json === null) {
+                    json = [];
+                }
+                console.log(json);
+                setExes(json);
+            })
+            .catch (error => console.log(error));
+
+            } catch (e) {
+                console.error(e);
+            }
+    };
+
+    const getWorkoutMoves = async () => {
         try {
             return AsyncStorage.getItem('workouts')
             .then (req => JSON.parse(req))
@@ -56,10 +74,16 @@ const HomeScreen = () => {
             <Button title="Test" onPress={() => {buttonPressed()}}/>
 
         {
-            exes.map((exe) => (
+            exes.map(({exe, moves}) => (
+                
                 <View>
-                    <Text>{exe.name} </Text>
+                    <Text>{exe.name}</Text>
+                    {moves.map((move) => (
+                        <Text>{move.name}</Text>
+                    ))}
+                    
                 </View>
+                
             ))
         }            
             
