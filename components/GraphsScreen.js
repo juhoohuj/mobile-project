@@ -4,19 +4,13 @@ import ScrollGraphProps from "../components/ScrollGraphProps"
 
 const GraphsScreen = () => {
 
-
-// let filledArray2 = new Array(400).fill(70);
-
 const n = 71;
-let filledArray = new Array(n).fill("30.3.2023");
-const arrayN = Array(n).fill('n').map((v,i)=>i+1);
-console.log(arrayN)
+// let filledArray = new Array(n).fill("30.3.2023");
 
-
-console.log(arrayN.length)
-console.log(filledArray.length)
-// console.log(filledArray)
-// console.log(filledArray2)
+// const arrayN = Array(n).fill('n').map((v,i)=>i+1);
+let arrayN = [60.0, 61.0, 61.2, 61.2, 63.0, 64.2, 60.0, 61.0, 61.2]
+// filledArray contains dates for each data point in arrayN
+let filledArray = ["1.1.2023", "2.1.2023", "3.1.2023","4.1.2023", "5.1.2023", "6.1.2023", "7.1.2023", "8.1.2023", "9.1.2023", ]
     return (
         <ScrollView>
             <ScrollGraphProps GraphName={"Weight"} DataUnitsType="kg" dataPointDates={filledArray} mainDataPoints={arrayN}/>

@@ -53,7 +53,16 @@ export default StyleSheet.create({
       marginTop: 10,
     },
     graphButton: {
-      marginBottom: 40
+      fontSize: 18,
+      color: "black",
+      textAlign: "center",
+      backgroundColor: "#f3f3f3",
+      padding: 6,
+      paddingBottom: 0,
+      paddingTop: 0,
+      borderRadius: 25,
+      minWidth: 50,
+      // marginBottom: 40
     }
     
 });
