@@ -1,8 +1,10 @@
 import { View, Text, ScrollView } from "react-native";
 import React, { useState, useEffect } from 'react';
-import AsyncStorage from "@react-native-async-storage/async-storage/lib/commonjs/AsyncStorage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TextInput } from "react-native";
 import { Button } from "react-native";
+import { object } from "prop-types";
+
 
 const STORAGE_KEY = '@exe-Key';
 
@@ -15,34 +17,36 @@ const HomeScreen = () => {
             
     const getWorkouts = async () => {
         try {
-            return AsyncStorage.getItem('workouts')
-            .then (req => JSON.parse(req))
-            .then (json => {
-                if (json === null) {
-                    json = [];
-                }
-                console.log(json);
-                setExes(json);
-            })
-            .catch (error => console.log(error));
+            const workouts = await AsyncStorage.getItem('workouts');
+            if (workouts !== null) {
+                const parsed = JSON.parse(workouts);
+                console.log("lalallalal", parsed[0].moves);
+                //console.log(Array.isArray(parsed));
+                //object.values(parsed[0]).map(x=>console.log(x));
+                
+                
+                setExes(parsed[0].moves);
+            }
 
             } catch (e) {
-                console.error(e);
+                console.error("obj",e);
             }
     };
 
     const getWorkoutMoves = async () => {
         try {
-            return AsyncStorage.getItem('workouts')
-            .then (req => JSON.parse(req))
-            .then (json => {
-                if (json === null) {
-                    json = [];
-                }
-                console.log(json);
-                setExes(json);
-            })
-            .catch (error => console.log(error));
+            const workouts = await AsyncStorage.getItem('workouts');
+            if (workouts !== null) {
+                const parsed = JSON.parse(workouts, (key,value) => {
+                    console.log(parsed);
+                    if(typeof value === 'string') {
+                        setMoves[value];
+                        console.log(value);
+                    }
+                })
+                console.log(workouts)
+                
+            }
 
             } catch (e) {
                 console.error(e);
@@ -52,7 +56,7 @@ const HomeScreen = () => {
     useEffect(() => {
         
         console.log(exes);
-       
+        console.log("movet" );
     })
 
     function buttonPressed() {
@@ -61,8 +65,8 @@ const HomeScreen = () => {
         const newExe = {key: newKey.toString(), description: text};
         const newExes = [...exes, newExe];*/
 
-
         getWorkouts();
+        
     }
 
 
@@ -74,13 +78,10 @@ const HomeScreen = () => {
             <Button title="Test" onPress={() => {buttonPressed()}}/>
 
         {
-            exes.map(({exe, moves}) => (
+            exes.map((exe, i) => (
                 
-                <View>
+                <View key={i}>
                     <Text>{exe.name}</Text>
-                    {moves.map((move) => (
-                        <Text>{move.name}</Text>
-                    ))}
                     
                 </View>
                 
@@ -93,3 +94,7 @@ const HomeScreen = () => {
 }
 
  export {HomeScreen}
+
+ /*{moves.map((move) => (
+    <Text>{move.name}</Text>
+))}*/
