@@ -16,7 +16,6 @@ const getWorkouts = async () => {
     try {
       const workouts = await AsyncStorage.getItem('workouts');
       if (workouts !== null) {
-        const parsed = JSON.parse(workouts)
         console.log(workouts)
         return JSON.parse(workouts);
       }
@@ -26,6 +25,9 @@ const getWorkouts = async () => {
     return [];
   };
 
+const clearWorkouts = async() => {
+    AsyncStorage.clear();
+}
 
 
  const AddScreen = () => {
@@ -47,7 +49,6 @@ const getWorkouts = async () => {
             const currentData = JSON.parse(savedData);
             console.log(currentData);
             setText(currentData);
-
         } catch (error) {
             console.log(error);
         }
@@ -59,7 +60,6 @@ const getWorkouts = async () => {
     }
     const insets = useSafeAreaInsets();
     return (
-    
         <ScrollView style={{paddingTop: insets.top, }}>
             <View  >
                 <Text style={AddScreenTheme} >MORO</Text>
@@ -75,8 +75,8 @@ const getWorkouts = async () => {
                 <WorkoutForm/>
             </View>
             <View>
-                <Button title="GET WORKOUTS BOII" onPress={getWorkouts}/>
-                
+                <Button title="GET WORKOUTS BOII" onPress={getWorkouts}/>  
+                <Button title="Clear" onPress={clearWorkouts} />
             </View>
         </ScrollView>
     )
