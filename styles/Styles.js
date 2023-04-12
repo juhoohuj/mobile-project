@@ -12,6 +12,22 @@ export default StyleSheet.create({
       marginRight: '20',
       marginLeft: '20',
     },
+    ProfileContainer: {
+      backgroundColor: "#7CA1B4",
+      flex: 1,
+      flexDirection:'row',
+      flexWrap: "wrap",
+    },
+    square: {
+      flex: 2,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderWidth: 2,
+      borderRadius: 5,
+      backgroundColor: '#647AA3',
+      margin: 10,
+      height: 100,
+    },
     headerStyle: {
       fontSize: 36,
       textAlign: 'center',
