@@ -25,9 +25,13 @@ import { useState } from "react";
                 setSelectedValue={setflexDirection}
                 style={{ flexDirection: 'row', flexWrap: 'wrap' }}
                 >
-                <View style={[styles.square]}> Calendar</View>
-                <View style={[styles.square]}> Calendar</View>
-            </View>
+                <View style={[styles.square, {fontFamily:'RobotoCondensed-Bold'}]}> 
+                    <Text>GRAPHS</Text> 
+                </View>
+                <View style={[styles.square, {fontFamily:'RobotoCondensed-Bold'}]}> 
+                    <Text> CALENDAR </Text> 
+                </View>           
+                </View>
             <View
                 label="flexDirection"
                 values={['row']}
@@ -35,9 +39,12 @@ import { useState } from "react";
                 setSelectedValue={setflexDirection}
                 style={{ flexDirection: 'row', flexWrap: 'wrap' }}
                 >
-                <View style={[styles.square]}> Calendar</View>
-                <View style={[styles.square]}> Calendar</View>
-            </View>
+                <View style={[styles.square, {fontFamily:'RobotoCondensed-Bold'}]}> 
+                    <Text>STATISTIC</Text> 
+                </View>                
+                <View style={[styles.square, {fontFamily:'RobotoCondensed-BoldItalic'}]}> 
+                    <Text>HISTORY</Text> 
+                </View>            </View>
      </View>
     );
  }

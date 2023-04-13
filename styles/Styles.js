@@ -1,4 +1,6 @@
 import { StyleSheet } from 'react-native';
+import { Text, Platform} from 'react-native';
+
 
 export default StyleSheet.create({
     container: {
@@ -65,3 +67,4 @@ export default StyleSheet.create({
     }
     
 });
+
