@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, Button, TextInput } from "react-native";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+/* import AsyncStorage from '@react-native-async-storage/async-storage'; */
 import { useState, useEffect } from "react";
-
+/* 
 
 
  const AddScreen = () => {
@@ -16,8 +16,8 @@ import { useState, useEffect } from "react";
             console.log(error);
             alert("Something went wrong")
           }
-        };
-
+        }; */
+/* 
     const getData = async () => {
         try {
             const savedData = await AsyncStorage.getItem("test");
@@ -28,14 +28,14 @@ import { useState, useEffect } from "react";
         } catch (error) {
             console.log(error);
         }
-        };
-
+        }; */
+/* 
     function buttonPressed() {
         saveData(value);
         getData();  
     }
 
-
+ *//* 
     
 
     return (
@@ -57,8 +57,6 @@ import { useState, useEffect } from "react";
                 <TextInput style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}/>
             </View>
         </View>
-    )
- }
-
-
- export {AddScreen}
+    );
+ */
+/*  export {AddScreen} */
