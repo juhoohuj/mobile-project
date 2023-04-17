@@ -12,20 +12,29 @@ const HomeScreen = () => {
     const [exes, setExes] = useState([]);
     const [moves, setMoves] = useState([]);
     const [text, setText] = useState("");
-   
+    const [num, setNum] = useState(0);
 
             
     const getWorkouts = async () => {
+        
         try {
             const workouts = await AsyncStorage.getItem('workouts');
             if (workouts !== null) {
                 const parsed = JSON.parse(workouts);
-                console.log("lalallalal", parsed[0].moves);
+                console.log("lenght", Object.keys(parsed).length);
+                for (let i = 0; i < Object.keys(parsed).length; i++) {
+                    console.log("lalallalal", parsed[i].moves);
+                    setMoves(parsed[i].moves);
+                }
+                
+                
                 //console.log(Array.isArray(parsed));
                 //object.values(parsed[0]).map(x=>console.log(x));
                 
+                setExes(parsed);
                 
-                setExes(parsed[0].moves);
+                setNum(num + 1);
+
             }
 
             } catch (e) {
@@ -82,7 +91,11 @@ const HomeScreen = () => {
                 
                 <View key={i}>
                     <Text>{exe.name}</Text>
-                    
+                    {moves.map((mov, j) => (
+                        <View key={j}>
+                            <Text>{mov.name}</Text>
+                        </View>
+                    ))}
                 </View>
                 
             ))
