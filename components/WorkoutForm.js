@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Alert } from 'react-native';
+import { View, TextInput, Button, Alert, StyleSheet, ScrollView, Text  } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const WorkoutForm = () => {
   const [name, setName] = useState('');
   const [moves, setMoves] = useState([]);
-  const [moveName, setMoveName] = useState('');
-  const [moveSets, setMoveSets] = useState('');
 
   const handleAddMove = () => {
-    const newMove = { name: moveName, sets: moveSets };
+    const newMove = { name: '', sets: [{ weight: '', reps: '' }] };
     setMoves([...moves, newMove]);
-    setMoveName('');
-    setMoveSets('');
+  };
+
+  const handleAddSet = (moveIndex) => {
+    const newSet = { weight: '', reps: '' };
+    const newMoves = [...moves];
+    newMoves[moveIndex].sets.push(newSet);
+    setMoves(newMoves);
   };
 
   const handleSaveWorkout = async () => {
@@ -25,8 +28,6 @@ const WorkoutForm = () => {
       Alert.alert('Workout saved successfully!');
       setName('');
       setMoves([]);
-      setMoveName('');
-      setMoveSets('');
     } catch (error) {
       console.error(error);
       Alert.alert('An error occurred while saving the workout.');
@@ -34,52 +35,86 @@ const WorkoutForm = () => {
   };
 
   return (
-    <View>
+    <ScrollView style={styles.container}>
+      <Text>Workout Name</Text>
       <TextInput
+        style={styles.input}
         placeholder="Workout Name"
         value={name}
         onChangeText={text => setName(text)}
       />
-      {moves.map((move, index) => (
-        <View key={index}>
+      <Text>Moves</Text>
+      {moves.map((move, moveIndex) => (
+        <View key={moveIndex} style={styles.moveContainer}>
           <TextInput
+            style={styles.moveInput}
             placeholder="Move Name"
             value={move.name}
             onChangeText={text => {
               const newMoves = [...moves];
-              newMoves[index].name = text;
+              newMoves[moveIndex].name = text;
               setMoves(newMoves);
             }}
           />
-          <TextInput
-            placeholder="Number of Sets"
-            keyboardType="numeric"
-            value={move.sets}
-            onChangeText={text => {
-              const newMoves = [...moves];
-              newMoves[index].sets = text;
-              setMoves(newMoves);
-            }}
-          />
+          {move.sets.map((set, setIndex) => (
+            <View key={setIndex} style={styles.setContainer}>
+              <TextInput
+                style={styles.setInput}
+                placeholder="Weight"
+                keyboardType="numeric"
+                value={set.weight}
+                onChangeText={text => {
+                  const newMoves = [...moves];
+                  newMoves[moveIndex].sets[setIndex].weight = text;
+                  setMoves(newMoves);
+                }}
+              />
+              <TextInput
+                style={styles.setInput}
+                placeholder="Reps"
+                keyboardType="numeric"
+                value={set.reps}
+                onChangeText={text => {
+                  const newMoves = [...moves];
+                  newMoves[moveIndex].sets[setIndex].reps = text;
+                  setMoves(newMoves);
+                }}
+              />
+            </View>
+          ))}
+          <Button title="Add Set" onPress={() => handleAddSet(moveIndex)} />
         </View>
       ))}
-      <View>
-        <TextInput
-          placeholder="Move Name"
-          value={moveName}
-          onChangeText={text => setMoveName(text)}
-        />
-        <TextInput
-          placeholder="Number of Sets"
-          keyboardType="numeric"
-          value={moveSets}
-          onChangeText={text => setMoveSets(text)}
-        />
+      <View style={styles.buttonContainer}>
         <Button title="Add Move" onPress={handleAddMove} />
+        <Button title="Save Workout" onPress={handleSaveWorkout} />
       </View>
-      <Button title="Save Workout" onPress={handleSaveWorkout} />
-    </View>
+    </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 16,
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 16,
+    paddingHorizontal: 8,
+  },
+  moveContainer: {
+    marginBottom: 16,
+  },
+  moveInput: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 8,
+    paddingHorizontal: 8,
+  },
+});
+
 
 export default WorkoutForm;
