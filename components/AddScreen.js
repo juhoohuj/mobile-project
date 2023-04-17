@@ -29,48 +29,10 @@ const clearWorkouts = async() => {
     AsyncStorage.clear();
 }
 
-
- const AddScreen = () => {
-    const [value, setValue] = useState("");
-    const [text, setText] = useState("");
-    const saveData = async (value) => {
-        try {
-            await AsyncStorage.setItem("test", JSON.stringify(value));
-            alert("Data successfully saved")
-          } catch (error) {
-            console.log(error);
-            alert("Something went wrong")
-          }
-        };
-
-    const getData = async () => {
-        try {
-            const savedData = await AsyncStorage.getItem("test");
-            const currentData = JSON.parse(savedData);
-            console.log(currentData);
-            setText(currentData);
-        } catch (error) {
-            console.log(error);
-        }
-        };
-
-    function buttonPressed() {
-        saveData(value);
-        getData();  
-    }
+const AddScreen = () => {
     const insets = useSafeAreaInsets();
     return (
         <ScrollView style={{paddingTop: insets.top, }}>
-            <View  >
-                <Text style={AddScreenTheme} >MORO</Text>
-                <TextInput
-                    style={{ height: 40, borderColor: 'gray', borderWidth: 1,}}
-                    onChangeText={text => setValue(text)}
-                    value={value}
-                />
-                <Button title="Save" onPress={() => {buttonPressed()}}/>
-                <Text>{text}</Text>
-            </View>
             <View>
                 <WorkoutForm/>
             </View>
