@@ -16,24 +16,38 @@ const HomeScreen = () => {
 
             
     const getWorkouts = async () => {
-        
+        setExes([]);
+        setMoves([]);
         try {
             const workouts = await AsyncStorage.getItem('workouts');
             if (workouts !== null) {
                 const parsed = JSON.parse(workouts);
-                console.log("lenght", Object.keys(parsed).length);
+
                 for (let i = 0; i < Object.keys(parsed).length; i++) {
-                    console.log("lalallalal", parsed[i].moves);
-                    setMoves(parsed[i].moves);
+                    exes.push(parsed[i].name);
+                    console.log("testi", Object.keys(parsed[i].moves).length);
+
+                    for (let j = 0; j < Object.keys(parsed[i].moves).length; j++) {
+                        console.log(j);
+                        console.log("mitääää" , parsed[i].moves[j].name);
+                        moves.push(parsed[i].moves[j].name);
+                    }
+
+
+                    
+                    //console.log(parsed[i].moves[i]);
+                    //console.log(Object.keys("pituus", parsed[i].moves).length);
+                    //console.log("lalallalal", parsed[i].name, parsed[i].moves[1].name);
+                    
+                   
                 }
                 
-                
+                console.log("Toimiiks", exes, moves);
                 //console.log(Array.isArray(parsed));
                 //object.values(parsed[0]).map(x=>console.log(x));
                 
-                setExes(parsed);
                 
-                setNum(num + 1);
+                
 
             }
 
@@ -64,8 +78,8 @@ const HomeScreen = () => {
 
     useEffect(() => {
         
-        console.log(exes);
-        console.log("movet" );
+        //console.log(exes);
+        
     })
 
     function buttonPressed() {
@@ -91,17 +105,13 @@ const HomeScreen = () => {
                 
                 <View key={i}>
                     <Text>{exe.name}</Text>
-                    {moves.map((mov, j) => (
-                        <View key={j}>
-                            <Text>{mov.name}</Text>
-                        </View>
-                    ))}
+                    
                 </View>
                 
             ))
         }            
             
-            
+            <Text>{exes}</Text>
         </View>
     )
 }
@@ -110,4 +120,8 @@ const HomeScreen = () => {
 
  /*{moves.map((move) => (
     <Text>{move.name}</Text>
-))}*/
+))}{moves.map((mov, j) => (
+                        <View key={j}>
+                            <Text>{mov.name}</Text>
+                        </View>
+                    ))}*/
