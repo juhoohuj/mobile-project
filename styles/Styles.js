@@ -7,6 +7,14 @@ export default StyleSheet.create({
       flex: 1,
       backgroundColor: "#191D32",
     },
+    bottomNav: {
+      backgroundColor: "#334195",
+    },
+    backgroundImage: {
+      width: "100%",
+      height: "100%",
+      resizeMode: "cover",
+    },
     AddScreenContainer: {
       flex: 1,
       backgroundColor: "#191D32",
@@ -15,7 +23,7 @@ export default StyleSheet.create({
       marginLeft: '20',
     },
     ProfileContainer: {
-      backgroundColor: "#7CA1B4",
+      backgroundColor: "#191D32",
       flex: 1,
       flexDirection:'row',
       flexWrap: "wrap",
@@ -26,7 +34,8 @@ export default StyleSheet.create({
       alignItems: 'center',
       borderWidth: 2,
       borderRadius: 5,
-      backgroundColor: '#647AA3',
+      borderColor: '#334195',
+      backgroundColor: '#191D32',
       margin: 10,
       height: 100,
     },
@@ -36,12 +45,13 @@ export default StyleSheet.create({
       fontWeight: '100',
       marginBottom: 24,
       color: "#ffff",
+      fontFamily: 'RobotoCondensed-Bold',
     },
     elementsContainer: {
       marginLeft: 24,
       marginRight: 24,
-      marginBottom: 24,
-      bordertRadius: 20,
+      marginBottom: 50,
+      bordertRadius: 30,
     },
     imageStyle: {
       height: 'cover',
@@ -50,6 +60,17 @@ export default StyleSheet.create({
       justifyContent: 'center',
       overflow: 'hidden',
       borderRadius: 25,
+      opacity: '95%',
+      backgroundColor:'#191D32',
+      borderWidth: 3,
+      borderRadius: 5,
+      borderColor: '#334195',
+    },
+    imageText: {
+      position: 'absolute', 
+      top: 60, 
+      left:180,
+      fontSize: 80,
     },
     TextInput:{
       height: 50, 

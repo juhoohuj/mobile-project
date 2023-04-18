@@ -1,8 +1,10 @@
 import React from "react";
-import { View, Text, Button, TextInput } from "react-native";
+import {ImageBackground, View, Text, Button, TextInput } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState, useEffect } from "react";
 import styles from "../styles/Styles";
+import backgroundImage from '../assets/background.jpg';
+
 
 
 
@@ -41,6 +43,8 @@ import styles from "../styles/Styles";
 
     return (
         <View style={styles.AddScreenContainer}>
+        <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
+
              <Text style={styles.headerStyle}>ADD EXERCISE</Text>
             <View>
                 <TextInput
@@ -55,7 +59,7 @@ import styles from "../styles/Styles";
                 <Button title="Save" onPress={() => {buttonPressed()}}/>
                 <Text style={styles.savedText}>{text}</Text>
             </View>
-
+        </ImageBackground>
         </View>
     )
  }

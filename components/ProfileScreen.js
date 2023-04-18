@@ -1,9 +1,11 @@
 import React from "react";
-import { StyleSheet, Text, View, Dimensions, TextInput, Button, ScrollView, } from "react-native";
+import { ImageBackground, StyleSheet, Text, View, Dimensions, TextInput, Button, ScrollView, } from "react-native";
 import WeightGraph from "./WeightGraph";
 import ScrollableGraph from "./ScrollableGraph";
 import styles from '../styles/Styles';
 import { useState } from "react";
+import backgroundImage from '../assets/background.jpg';
+
 
 
  const ProfileScreen = () => {
@@ -13,6 +15,7 @@ import { useState } from "react";
     return (
         
         <View style={styles.container}>
+        <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
          <Text style={styles.headerStyle}>PROFILE</Text>
             <View>
             {/* <WeightGraph /> */}
@@ -44,7 +47,9 @@ import { useState } from "react";
                 </View>                
                 <View style={[styles.square, {fontFamily:'RobotoCondensed-BoldItalic'}]}> 
                     <Text>HISTORY</Text> 
-                </View>            </View>
+                </View>            
+            </View>
+    </ImageBackground>
      </View>
     );
  }
