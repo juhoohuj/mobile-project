@@ -11,38 +11,47 @@ const STORAGE_KEY = '@exe-Key';
 const HomeScreen = () => {
     const [exes, setExes] = useState([]);
     const [moves, setMoves] = useState([]);
+    const [work, setWork] = useState([]);
     const [text, setText] = useState("");
     const [num, setNum] = useState(0);
 
             
     const getWorkouts = async () => {
-        setExes([]);
-        setMoves([]);
+        work.splice(0, work.length);
         try {
             const workouts = await AsyncStorage.getItem('workouts');
             if (workouts !== null) {
                 const parsed = JSON.parse(workouts);
+                console.log(parsed[0]);
+                setExes(parsed);
 
-                for (let i = 0; i < Object.keys(parsed).length; i++) {
+              /* for (let i = 0; i < Object.keys(parsed).length; i++) {
                     exes.push(parsed[i].name);
-                    console.log("testi", Object.keys(parsed[i].moves).length);
 
                     for (let j = 0; j < Object.keys(parsed[i].moves).length; j++) {
-                        console.log(j);
                         console.log("mitääää" , parsed[i].moves[j].name);
                         moves.push(parsed[i].moves[j].name);
                     }
-
-
+                    
+                    //work.push(exes, moves);
+                    //console.log("heeooo", work);
                     
                     //console.log(parsed[i].moves[i]);
                     //console.log(Object.keys("pituus", parsed[i].moves).length);
                     //console.log("lalallalal", parsed[i].name, parsed[i].moves[1].name);
                     
+
+                    work.push(exes, moves);
+                    console.log(work);
+
+                    exes.pop();
+                    moves.splice(0, moves.length);
+                    console.log("exes", exes, moves);
+
                    
-                }
+                } */
                 
-                console.log("Toimiiks", exes, moves);
+                //console.log("Toimiiks", exes, moves);
                 //console.log(Array.isArray(parsed));
                 //object.values(parsed[0]).map(x=>console.log(x));
                 
@@ -53,26 +62,6 @@ const HomeScreen = () => {
 
             } catch (e) {
                 console.error("obj",e);
-            }
-    };
-
-    const getWorkoutMoves = async () => {
-        try {
-            const workouts = await AsyncStorage.getItem('workouts');
-            if (workouts !== null) {
-                const parsed = JSON.parse(workouts, (key,value) => {
-                    console.log(parsed);
-                    if(typeof value === 'string') {
-                        setMoves[value];
-                        console.log(value);
-                    }
-                })
-                console.log(workouts)
-                
-            }
-
-            } catch (e) {
-                console.error(e);
             }
     };
 
@@ -100,6 +89,7 @@ const HomeScreen = () => {
 
             <Button title="Test" onPress={() => {buttonPressed()}}/>
 
+
         {
             exes.map((exe, i) => (
                 
@@ -111,7 +101,7 @@ const HomeScreen = () => {
             ))
         }            
             
-            <Text>{exes}</Text>
+            <Text>{work}</Text>
         </View>
     )
 }
