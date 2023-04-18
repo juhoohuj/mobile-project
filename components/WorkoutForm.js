@@ -2,15 +2,18 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, Alert, StyleSheet, ScrollView, Text  } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+//Workoutin lisäämisen komponenttti
 const WorkoutForm = () => {
   const [name, setName] = useState('');
   const [moves, setMoves] = useState([]);
 
+  //Uuden liikkeen lisääminen workouttiin
   const handleAddMove = () => {
     const newMove = { name: '', sets: [{ weight: '', reps: '' }] };
     setMoves([...moves, newMove]);
   };
 
+  //Uuden sarjan lisääminen liikkeeseen
   const handleAddSet = (moveIndex) => {
     const newSet = { weight: '', reps: '' };
     const newMoves = [...moves];
@@ -18,6 +21,7 @@ const WorkoutForm = () => {
     setMoves(newMoves);
   };
 
+  //Uuden workoutin tallennus AsyncStorageen
   const handleSaveWorkout = async () => {
     try {
       const workout = { name, moves };

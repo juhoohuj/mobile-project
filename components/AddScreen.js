@@ -37,7 +37,7 @@ const AddScreen = () => {
                 <WorkoutForm/>
             </View>
             <View>
-                <Button title="GET WORKOUTS BOII" onPress={getWorkouts}/>  
+                <Button title="GET WORKOUTS" onPress={getWorkouts}/>  
                 <Button title="Clear" onPress={clearWorkouts} />
             </View>
         </ScrollView>
