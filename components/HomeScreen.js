@@ -1,8 +1,15 @@
+import { View, Text, ScrollView } from "react-native";
+import React, { useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { TextInput } from "react-native";
+import { Button } from "react-native";
+import { object } from "prop-types";
 import { View, Text, Image } from "react-native";
 import React, { Component } from 'react';
 import styles from '../styles/Styles';
 
 
+const STORAGE_KEY = '@exe-Key';
 
  const HomeScreen = () => {
     return (
@@ -36,3 +43,11 @@ import styles from '../styles/Styles';
  }
 
  export {HomeScreen}
+
+ /*{moves.map((move) => (
+    <Text>{move.name}</Text>
+))}{moves.map((mov, j) => (
+                        <View key={j}>
+                            <Text>{mov.name}</Text>
+                        </View>
+                    ))}*/
