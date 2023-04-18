@@ -1,12 +1,18 @@
-import { View, Text } from "react-native";
+import React from "react";
+import { Text, View } from "react-native";
+import styles from "../styles/Styles";
+import Card from "../components/Card";
 
- const ProfileScreen = () => {
+
+const ProfileScreen = ({ navigation }) => {
     return (
-        <View>
-            <Text>MORO</Text>
+        <View style={styles.container}>
+          <Text style={styles.headerStyle}>Profile</Text>  
+            <View style={{flexDirection: "row", justifyContent: "space-around", padding: 2, flexWrap: "wrap", rowGap: 5}}>
+              <Card navigation={navigation} cardText={"Graphs"} icon={"line-graph"}  destination={'Graphs'} />
+              <Card navigation={navigation} cardText={"Other"} icon={"code"}  destination={'Home'}/>
+            </View>
         </View>
     )
  }
-
-
- export {ProfileScreen}
+export {ProfileScreen}
