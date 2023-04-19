@@ -63,8 +63,8 @@ export default StyleSheet.create({
       opacity: '95%',
       backgroundColor:'#191D32',
       borderWidth: 3,
-      borderRadius: 5,
-      borderColor: '#334195',
+      borderRadius: 2,
+      borderColor: '#191D32',
     },
     imageText: {
       position: 'right',
