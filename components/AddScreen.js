@@ -11,12 +11,24 @@ const AddScreenTheme = {
     //borderColor:"#ffffff"
 };
 
+const deleteWorkouts = async () => {
+    try {
+        await AsyncStorage.removeItem('workouts');
+        alert("Data successfully deleted")
+    } catch (error) {
+        console.log(error);
+        alert("Something went wrong")
+    }
+};
+
+
 
 const getWorkouts = async () => {
     try {
       const workouts = await AsyncStorage.getItem('workouts');
       if (workouts !== null) {
-        console.log(workouts);
+        const parsed = JSON.parse(workouts)
+        console.log(workouts)
         return JSON.parse(workouts);
       }
     } catch (error) {
@@ -25,20 +37,58 @@ const getWorkouts = async () => {
     return [];
   };
 
-const clearWorkouts = async() => {
-    AsyncStorage.clear();
-}
 
-const AddScreen = () => {
+
+ const AddScreen = () => {
+    const [value, setValue] = useState("");
+    const [text, setText] = useState("");
+    const saveData = async (value) => {
+        try {
+            await AsyncStorage.setItem("test", JSON.stringify(value));
+            alert("Data successfully saved")
+          } catch (error) {
+            console.log(error);
+            alert("Something went wrong")
+          }
+        };
+
+    const getData = async () => {
+        try {
+            const savedData = await AsyncStorage.getItem("test");
+            const currentData = JSON.parse(savedData);
+            console.log(currentData);
+            setText(currentData);
+
+        } catch (error) {
+            console.log(error);
+        }
+        };
+
+    function buttonPressed() {
+        saveData(value);
+        getData();  
+    }
     const insets = useSafeAreaInsets();
     return (
+    
         <ScrollView style={{paddingTop: insets.top, }}>
+            <View  >
+                <Text style={AddScreenTheme} >MORO</Text>
+                <TextInput
+                    style={{ height: 40, borderColor: 'gray', borderWidth: 1,}}
+                    onChangeText={text => setValue(text)}
+                    value={value}
+                />
+                <Button title="Save" onPress={() => {buttonPressed()}}/>
+                <Text>{text}</Text>
+            </View>
             <View>
                 <WorkoutForm/>
             </View>
             <View>
-                <Button title="GET WORKOUTS" onPress={getWorkouts}/>  
-                <Button title="Clear" onPress={clearWorkouts} />
+                <Button title="GET WORKOUTS BOII" onPress={getWorkouts}/>
+                {/* <Button title="delete workouts" onPress={deleteWorkouts}/> */}
+                
             </View>
         </ScrollView>
     )
