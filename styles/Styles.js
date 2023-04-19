@@ -46,6 +46,9 @@ export default StyleSheet.create({
       marginBottom: 24,
       color: "#ffff",
       fontFamily: 'RobotoCondensed-Light',
+      textShadowColor: 'rgba(0, 0, 0, 0.75)',
+         textShadowOffset: {width: -1, height: 1},
+         textShadowRadius: 10
     },
     elementsContainer: {
       marginLeft: 24,
