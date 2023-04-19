@@ -57,15 +57,13 @@ export default StyleSheet.create({
       bordertRadius: 30,
     },
     imageStyle: {
-      height: 'cover',
-      width: 'cover',
       flex: 1,
       justifyContent: 'center',
       overflow: 'hidden',
       opacity: '95%',
       backgroundColor:'#191D32',
       borderWidth: 3,
-      borderRadius: 5,
+      borderRadius: 30,
       borderColor: '#191D32',
     },
     imageText: {
