@@ -62,11 +62,10 @@ export default StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       overflow: 'hidden',
-      borderRadius: 25,
       opacity: '95%',
       backgroundColor:'#191D32',
       borderWidth: 3,
-      borderRadius: 2,
+      borderRadius: 5,
       borderColor: '#191D32',
     },
     imageText: {
