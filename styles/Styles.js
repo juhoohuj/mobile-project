@@ -67,12 +67,11 @@ export default StyleSheet.create({
       borderColor: '#334195',
     },
     imageText: {
-      position: 'absolute', 
-      top: 60, 
-      left:180,
-      fontSize: 80,
-      fontFamily: 'RobotoCondensed-Light',
-
+      position: 'right',
+      marginLeft: 50,
+      fontSize: 40,
+      fontFamily: 'RobotoCondensed-Regular',
+      color:'white',
     },
     TextInput:{
       height: 50, 
