@@ -46,7 +46,7 @@ export default StyleSheet.create({
       marginBottom: 24,
       color: "#ffff",
       fontFamily: 'RobotoCondensed-Light',
-      textShadowColor: 'rgba(0, 0, 0, 0.75)',
+      textShadowColor: 'rgba(0, 0, 0, 1)',
          textShadowOffset: {width: -1, height: 1},
          textShadowRadius: 10
     },
@@ -75,7 +75,7 @@ export default StyleSheet.create({
       fontSize: 40,
       fontFamily: 'RobotoCondensed-Regular',
       color:'white',
-      textShadowColor: 'rgba(0, 0, 0, 0.75)',
+      textShadowColor: 'rgba(0, 0, 0, 1)',
         textShadowOffset: {width: -1, height: 1},
         textShadowRadius: 10
     },
