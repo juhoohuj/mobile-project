@@ -16,7 +16,7 @@ const getWorkouts = async () => {
     try {
       const workouts = await AsyncStorage.getItem('workouts');
       if (workouts !== null) {
-        console.log(workouts)
+        console.log(workouts);
         return JSON.parse(workouts);
       }
     } catch (error) {

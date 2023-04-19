@@ -21,7 +21,6 @@ const HomeScreen = () => {
         try {
             const workouts = await AsyncStorage.getItem('workouts');
             if (workouts !== null) {
-                console.log("****", workouts)
                 const parsed = JSON.parse(workouts);
                 console.log(parsed);
                 setExes(parsed);
