@@ -6,10 +6,11 @@ import { LineChart } from "react-native-chart-kit";
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const STORAGE_KEY = "@savedGraphData"
 
 
 export default function ScrollGraphProps({dataPointDates, DataUnitsType, mainDataPoints, GraphName}){
+const STORAGE_KEY = "@savedGraphData" + GraphName
+console.log(STORAGE_KEY)
 const [SelectedDataPoint, setSelectedDataPoint] = useState("--")
 const [SelctedDataPointDate, setSelctedDataPointDate] = useState("--.--.----")
 
@@ -32,7 +33,7 @@ const [currentIndex, setCurrentIndex] = useState(0);
 const [DataPointDate, setDataPointDate] = useState([]);
 const [mainDataPoint, setMainDataPoint] = useState([]);
 
-const [inputWeight, setInputWeight] = useState(12)
+const [inputWeight, setInputWeight] = useState(70)
 
 
 useEffect(() => {
@@ -41,8 +42,8 @@ useEffect(() => {
 
 
 
-      const dataPointDateValue = await AsyncStorage.getItem('@dataPointDate');
-      const mainDataPointValue = await AsyncStorage.getItem('@mainDataPoint');
+      const dataPointDateValue = await AsyncStorage.getItem(STORAGE_KEY+'Dates');
+      const mainDataPointValue = await AsyncStorage.getItem(STORAGE_KEY+'Values');
       let dataPointDateValueParsed = JSON.parse(dataPointDateValue)
       let mainDataPointValueParsed = JSON.parse(mainDataPointValue)
       // console.log("dataPointDateValueParsed ", dataPointDateValueParsed)
@@ -103,8 +104,8 @@ useEffect(() => {
 useEffect(() => {
   async function setData() {
     try {
-      await AsyncStorage.setItem('@dataPointDate', JSON.stringify(DataPointDate));
-      await AsyncStorage.setItem('@mainDataPoint', JSON.stringify(mainDataPoint));
+      await AsyncStorage.setItem(STORAGE_KEY+'Dates', JSON.stringify(DataPointDate));
+      await AsyncStorage.setItem(STORAGE_KEY+'Values', JSON.stringify(mainDataPoint));
     } catch (e) {
       console.error(e);
     }
@@ -303,7 +304,14 @@ function handleInputButtonChange(inputValue) {
   if (mainDataPoint.length == 0){
     return (
       <View style={styles.graphContainer}>
-        <Text style={styles.graphName}>No data</Text>
+        <Text style={styles.graphName}>{GraphName}</Text>
+            <View style={{flexDirection: "row", width: Dimensions.get("window").width - 30, justifyContent: "space-between", alignItems: "flex-start"}}>
+                <Text style={styles.graphInfoText}>{SelectedDataPoint}</Text>
+                <Text style={styles.graphInfoText}>{SelctedDataPointDate}</Text>
+            </View>
+        <View style={styles.graphSkeleton}>
+          <Text style={{color: "#000"}}>No data</Text>
+        </View>
         <TextInput
           style={styles.graphInput}
           value={inputWeight.toString()}

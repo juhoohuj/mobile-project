@@ -11,6 +11,17 @@ const AddScreenTheme = {
     //borderColor:"#ffffff"
 };
 
+const deleteWorkouts = async () => {
+    try {
+        await AsyncStorage.removeItem('workouts');
+        alert("Data successfully deleted")
+    } catch (error) {
+        console.log(error);
+        alert("Something went wrong")
+    }
+};
+
+
 
 const getWorkouts = async () => {
     try {
@@ -76,6 +87,7 @@ const getWorkouts = async () => {
             </View>
             <View>
                 <Button title="GET WORKOUTS BOII" onPress={getWorkouts}/>
+                {/* <Button title="delete workouts" onPress={deleteWorkouts}/> */}
                 
             </View>
         </ScrollView>
