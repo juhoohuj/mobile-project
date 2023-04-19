@@ -72,6 +72,9 @@ export default StyleSheet.create({
       fontSize: 40,
       fontFamily: 'RobotoCondensed-Regular',
       color:'white',
+      textShadowColor: 'rgba(0, 0, 0, 0.75)',
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius: 10
     },
     TextInput:{
       height: 50, 
