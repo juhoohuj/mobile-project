@@ -23,12 +23,17 @@ const Nav = () => {
     </NavigationContainer>
   );
 }
+
+
 export default function App() {
-  const [loaded] = useFonts({
-    RobotoCondensed: require('./assets/Fonts/RobotoCondensed-Bold.ttf'),
+  const [fontsLoaded] = useFonts({
+    'RobotoCondensed-Bold': require('./assets/Fonts/RobotoCondensed-BoldItalic.ttf'),
+    'RobotoCondensed-Regular' : require('./assets/Fonts/RobotoCondensed-Regular.ttf'),
+    'RobotoCondensed-BoldItalic' : require('./assets/Fonts/RobotoCondensed-BoldItalic.ttf'),
+    'RobotoCondensed-Light' : require('./assets/Fonts/RobotoCondensed-Light.ttf')
   });
 
-  if (!loaded) {
+  if (!fontsLoaded) {
     return null;
   }
 

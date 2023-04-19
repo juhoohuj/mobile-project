@@ -8,7 +8,7 @@ import backgroundImage from '../assets/background.jpg';
     return (
         <View style={styles.container}>
          <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-            <Text style={styles.headerStyle}>Hi user</Text>
+            <Text style={styles.headerStyle}>Gym app</Text>
                 <View style={[{flex: 1}, styles.elementsContainer]}>
                     <View style={{flex: 2, backgroundColor: '#647AA3', borderRadius: 25, marginBottom:15 }}>
                         <Image 

@@ -45,7 +45,7 @@ export default StyleSheet.create({
       fontWeight: '100',
       marginBottom: 24,
       color: "#ffff",
-      fontFamily: 'RobotoCondensed-Bold',
+      fontFamily: 'RobotoCondensed-Light',
     },
     elementsContainer: {
       marginLeft: 24,
@@ -71,6 +71,8 @@ export default StyleSheet.create({
       top: 60, 
       left:180,
       fontSize: 80,
+      fontFamily: 'RobotoCondensed-Light',
+
     },
     TextInput:{
       height: 50, 
