@@ -1,26 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState  } from 'react';
 import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Styles from '../styles/Styles';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useIsFocused } from "@react-navigation/native";
 
 const HomeScreenWorkouts = () => {
+  const isFocused = useIsFocused();
+
   const [data, setData] = useState([]);
 
   useEffect(() => {
+    const getData = async () => {
+        console.log("useEffect")
+        try {
+          const jsonValue = await AsyncStorage.getItem('workouts');
+          if (jsonValue != null) {
+            setData(JSON.parse(jsonValue));
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      };
     getData();
-  }, []);
+  }, [isFocused]);
 
-  const getData = async () => {
-    try {
-      const jsonValue = await AsyncStorage.getItem('workouts');
-      if (jsonValue != null) {
-        setData(JSON.parse(jsonValue));
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  };
+
+
+//   const getData = async () => {
+//     try {
+//       const jsonValue = await AsyncStorage.getItem('workouts');
+//       if (jsonValue != null) {
+//         setData(JSON.parse(jsonValue));
+//       }
+//     } catch (e) {
+//       console.error(e);
+//     }
+//   };
 
   const [expandedIds, setExpandedIds] = useState([]);
 
