@@ -12,24 +12,29 @@ const AddScreenTheme = {
 };
 
 
-const getWorkouts = async () => {
-    try {
-      const workouts = await AsyncStorage.getItem('workouts');
-      if (workouts !== null) {
-        console.log(workouts)
-        return JSON.parse(workouts);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-    return [];
-  };
-
-const clearWorkouts = async() => {
-    AsyncStorage.clear();
-}
 
 const AddScreen = () => {
+    const [parsed, setParsed] = useState([]);
+
+    const getWorkouts = async () => {
+        try {
+          const workouts = await AsyncStorage.getItem('workouts');
+          if (workouts !== null) {
+            let parsed  = JSON.parse(workouts);
+            console.log(parsed)
+            setParsed(parsed);
+            return JSON.parse(workouts);
+          }
+        } catch (error) {
+          console.error(error);
+        }
+        return [];
+      };
+    
+    const clearWorkouts = async() => {
+        AsyncStorage.clear();
+    }
+
     const insets = useSafeAreaInsets();
     return (
         <ScrollView style={{paddingTop: insets.top, }}>
@@ -39,6 +44,11 @@ const AddScreen = () => {
             <View>
                 <Button title="GET WORKOUTS" onPress={getWorkouts}/>  
                 <Button title="Clear" onPress={clearWorkouts} />
+            </View>
+            <View>
+                {parsed.map( i =>  
+                     <Text>{i.moves}</Text>
+                )}
             </View>
         </ScrollView>
     )

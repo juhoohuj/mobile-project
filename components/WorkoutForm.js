@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Alert, StyleSheet, ScrollView, Text  } from 'react-native';
+import { View, TextInput, Alert, StyleSheet, ScrollView, Text  } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AntDesign } from '@expo/vector-icons';
+import { Button } from '@rneui/base';
 
 //Workoutin lisäämisen komponenttti
 const WorkoutForm = () => {
@@ -13,11 +15,23 @@ const WorkoutForm = () => {
     setMoves([...moves, newMove]);
   };
 
+  const handleDeleteMove = (moveIndex) => {
+    const newMoves = [...moves];
+    newMoves.splice(moveIndex, 1);
+    setMoves(newMoves);
+  };
+
   //Uuden sarjan lisääminen liikkeeseen
   const handleAddSet = (moveIndex) => {
     const newSet = { weight: '', reps: '' };
     const newMoves = [...moves];
     newMoves[moveIndex].sets.push(newSet);
+    setMoves(newMoves);
+  };
+
+  const handleDeleteSet = (moveIndex, setIndex) => {
+    const newMoves = [...moves];
+    newMoves[moveIndex].sets.splice(setIndex, 1);
     setMoves(newMoves);
   };
 
@@ -50,6 +64,7 @@ const WorkoutForm = () => {
       <Text>Moves</Text>
       {moves.map((move, moveIndex) => (
         <View key={moveIndex} style={styles.moveContainer}>
+          <View style={styles.inputContainer}>
           <TextInput
             style={styles.moveInput}
             placeholder="Move Name"
@@ -60,8 +75,17 @@ const WorkoutForm = () => {
               setMoves(newMoves);
             }}
           />
+            <Button
+              onPress={() => handleDeleteMove(moveIndex)}
+              type="clear"
+              icon={
+                <AntDesign name="minuscircleo" size={24} color="black" />
+              }
+            />
+          </View>
           {move.sets.map((set, setIndex) => (
             <View key={setIndex} style={styles.setContainer}>
+              <Text style={{alignSelf:'center', justifyContent:'space-between', marginHorizontal:10,}}>Set {setIndex + 1}</Text>
               <TextInput
                 style={styles.setInput}
                 placeholder="Weight"
@@ -84,14 +108,22 @@ const WorkoutForm = () => {
                   setMoves(newMoves);
                 }}
               />
+              <Button
+                icon={
+                  <AntDesign name="delete" size={24} color="black" />
+                }
+                onPress={() => handleDeleteSet(moveIndex, setIndex)}
+                type="clear"
+              />
             </View>
           ))}
-          <Button title="Add Set" onPress={() => handleAddSet(moveIndex)} />
+          <Button title="Add Set" type='clear' onPress={() => handleAddSet(moveIndex)} />
         </View>
       ))}
       <View style={styles.buttonContainer}>
-        <Button title="Add Move" onPress={handleAddMove} />
-        <Button title="Save Workout" onPress={handleSaveWorkout} />
+        <Button title="Add Move" type='clear' onPress={handleAddMove} />
+        <Button title="Save Workout" type='clear' onPress={handleSaveWorkout} />
+        
       </View>
     </ScrollView>
   );
@@ -110,13 +142,33 @@ const styles = StyleSheet.create({
   },
   moveContainer: {
     marginBottom: 16,
+    borderBottomWidth: 1,
   },
   moveInput: {
     height: 40,
     borderColor: 'gray',
-    borderWidth: 1,
+    borderBottomWidth: 1,
     marginBottom: 8,
     paddingHorizontal: 8,
+  },
+  setInput: {
+    height: 40,
+    width: 100,
+    borderColor: 'gray',
+    borderWidth: 1,
+    padding:8,
+    marginRight: 8,
+    marginBottom: 8,
+  },
+  setContainer: {
+    flexDirection: 'row', 
+  },
+
+  inputContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 });
 
