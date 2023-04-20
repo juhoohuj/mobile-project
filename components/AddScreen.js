@@ -1,10 +1,14 @@
 import { View, Text, ScrollView } from "react-native";
+import React from "react";
+import {ImageBackground, View, Text, Button, TextInput } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState, useEffect } from "react";
 import { Button } from "react-native";
 import { TextInput } from "react-native";
 import { useSafeAreaInsets,} from 'react-native-safe-area-context';
 import WorkoutForm from "./WorkoutForm";
+import styles from "../styles/Styles";
+import backgroundImage from '../assets/background.jpg';
 
 const AddScreenTheme = {
     //color:'#ffffff',
@@ -12,6 +16,19 @@ const AddScreenTheme = {
 };
 
 
+
+ const AddScreen = () => {
+    const [value, setValue] = useState("");
+    const [text, setText] = useState("");
+    const saveData = async (value) => {
+        try {
+            await AsyncStorage.setItem("test", JSON.stringify(value));
+            alert("Data successfully saved")
+          } catch (error) {
+            console.log(error);
+            alert("Something went wrong")
+          }
+        };
 
 const AddScreen = () => {
     const [parsed, setParsed] = useState([]);
@@ -37,20 +54,25 @@ const AddScreen = () => {
 
     const insets = useSafeAreaInsets();
     return (
-        <ScrollView style={{paddingTop: insets.top, }}>
+        <View style={styles.AddScreenContainer}>
+        <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
+
+             <Text style={styles.headerStyle}>ADD EXERCISE</Text>
             <View>
-                <WorkoutForm/>
+                <TextInput
+                    style={styles.TextInput} textAlign={'center'} placeholder="#"  
+                    onChangeText={text => setValue(text)}
+                    value={value}
+                />
+                <TextInput style={styles.TextInput} textAlign={'center'} placeholder="#"  />
+                <TextInput style={styles.TextInput} textAlign={'center'} placeholder="#"  />
+                <TextInput style={styles.TextInput} textAlign={'center'} placeholder="#"  />
+                
+                <Button title="Save" onPress={() => {buttonPressed()}}/>
+                <Text style={styles.savedText}>{text}</Text>
             </View>
-            <View>
-                <Button title="GET WORKOUTS" onPress={getWorkouts}/>  
-                <Button title="Clear" onPress={clearWorkouts} />
-            </View>
-            <View>
-                {parsed.map( i =>  
-                     <Text>{i.moves}</Text>
-                )}
-            </View>
-        </ScrollView>
+        </ImageBackground>
+        </View>
     )
 
     

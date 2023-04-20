@@ -1,18 +1,56 @@
 import React from "react";
-import { Text, View } from "react-native";
-import styles from "../styles/Styles";
-import Card from "../components/Card";
+import { ImageBackground, StyleSheet, Text, View, Dimensions, TextInput, Button, ScrollView, } from "react-native";
+import WeightGraph from "./WeightGraph";
+import ScrollableGraph from "./ScrollableGraph";
+import styles from '../styles/Styles';
+import { useState } from "react";
+import backgroundImage from '../assets/background.jpg';
 
 
-const ProfileScreen = ({ navigation }) => {
+
+ const ProfileScreen = () => {
+    const [flexDirection, setflexDirection] = useState('column');
+
+
     return (
+        
         <View style={styles.container}>
-          <Text style={styles.headerStyle}>Profile</Text>  
-            <View style={{flexDirection: "row", justifyContent: "space-around", padding: 2, flexWrap: "wrap", rowGap: 5}}>
-              <Card navigation={navigation} cardText={"Graphs"} icon={"line-graph"}  destination={'Graphs'} />
-              <Card navigation={navigation} cardText={"Other"} icon={"code"}  destination={'Home'}/>
+        <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
+         <Text style={styles.headerStyle}>PROFILE</Text>
+            <View>
+            {/* <WeightGraph /> */}
+            <ScrollableGraph />
             </View>
-        </View>
-    )
+            <View
+                label="flexDirection"
+                values={['row']}
+                selectedValue={flexDirection}
+                setSelectedValue={setflexDirection}
+                style={{ flexDirection: 'row', flexWrap: 'wrap' }}
+                >
+                <View style={[styles.square, {fontFamily:'RobotoCondensed-Bold'}]}> 
+                    <Text>GRAPHS</Text> 
+                </View>
+                <View style={[styles.square, {fontFamily:'RobotoCondensed-Bold'}]}> 
+                    <Text> CALENDAR </Text> 
+                </View>           
+                </View>
+            <View
+                label="flexDirection"
+                values={['row']}
+                selectedValue={flexDirection}
+                setSelectedValue={setflexDirection}
+                style={{ flexDirection: 'row', flexWrap: 'wrap' }}
+                >
+                <View style={[styles.square, {fontFamily:'RobotoCondensed-Bold'}]}> 
+                    <Text>STATISTIC</Text> 
+                </View>                
+                <View style={[styles.square, {fontFamily:'RobotoCondensed-BoldItalic'}]}> 
+                    <Text>HISTORY</Text> 
+                </View>            
+            </View>
+    </ImageBackground>
+     </View>
+    );
  }
 export {ProfileScreen}
