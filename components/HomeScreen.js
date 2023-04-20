@@ -6,8 +6,9 @@ import { Button } from "react-native";
 import { object } from "prop-types";
 // import backgroundImage from '../assets/background.jpg';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Styles from "../styles/Styles";
+import styles from "../styles/Styles";
 import HomeScreenWorkouts from "./HomeScreenWorkouts";
+import Styles from "../styles/Styles";
 
 const STORAGE_KEY = '@exe-Key';
 
@@ -172,25 +173,44 @@ const HomeScreen = () => {
 
 
     return (
-        <View style={[Styles.container, {paddingTop: insets.top}]}>
-            <HomeScreenWorkouts />
-        </View>
+      <View style={Styles.container}>
+        <ImageBackground source={backgroundImage} style={Styles.backgroundImage}>
+          <Text style={Styles.headerStyle}>GYM APP</Text>
 
-    //     <View>
-    //         <Text>Test</Text>
-    //         <Button title="Test" onPress={() => {buttonPressed()}}/>
-
-    //         <FlatList
-    //             data={data}
-    //             renderItem={({ item }) => (
-    //     <RenderItem name={item.name} sets={item.moves[0].sets} />
-    //   )}
-    // />
-
-    //     </View>
-    )
-}
-
+          <View style={[{flex: 1}, Styles.elementsContainer]}>
+            <View style={{flex: 2, backgroundColor: '#191D32', borderRadius: 30, marginBottom:15 }}>
+              <View style={{position: 'absolute', zIndex: 1, top: 90, left: 50}}>
+                <Text style={Styles.imageText}>Tähän kalenteri</Text>
+              </View>
+            </View>
+            <View style={{flex: 2, backgroundColor: '#334195', borderRadius: 30, marginBottom:15}}>
+              <Image 
+                source={require('../assets/boxikuva1.jpg')}
+                style={styles.imageStyle} 
+                resizeMode='cover'
+                borderRadius={40} 
+              />
+              <View style={{position: 'absolute', zIndex: 1, top: 90, left: 110}}>
+                <Text style={styles.imageText}>HISTORY</Text>
+              </View> 
+            </View>
+            <View style={{flex: 2, backgroundColor: '#334195', borderRadius: 30}}>
+              <Image 
+                source={require('../assets/boxikuva2.jpg')}
+                style={Styles.imageStyle} 
+                resizeMode='cover'
+                borderRadius={40}
+              /> 
+              <View style={{position: 'absolute', zIndex: 1, top: 90, left: 50}}>
+                <Text style={Styles.imageText}> Tähän jotain?</Text>
+              </View>
+            </View>            
+          </View>
+        </ImageBackground>
+      </View>
+    );
+  }
+  
  export {HomeScreen}
 
  /*{moves.map((move) => (
