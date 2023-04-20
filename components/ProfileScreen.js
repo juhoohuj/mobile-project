@@ -20,7 +20,7 @@ import backgroundImage from '../assets/background.jpg';
          <Text style={styles.headerStyle}>PROFILE</Text>
             <View>
             {/* <WeightGraph /> */}
-            <ScrollableGraph />
+            {/* <ScrollableGraph /> */}
             </View>
             <View
                 label="flexDirection"
@@ -36,20 +36,7 @@ import backgroundImage from '../assets/background.jpg';
                     <Text> CALENDAR </Text> 
                 </View>           
                 </View>
-            <View
-                label="flexDirection"
-                values={['row']}
-                selectedValue={flexDirection}
-                setSelectedValue={setflexDirection}
-                style={{ flexDirection: 'row', flexWrap: 'wrap' }}
-                >
-                <View style={[styles.square, {fontFamily:'RobotoCondensed-Bold'}]}> 
-                    <Text>STATISTIC</Text> 
-                </View>                
-                <View style={[styles.square, {fontFamily:'RobotoCondensed-BoldItalic'}]}> 
-                    <Text>HISTORY</Text> 
-                </View>            
-            </View>
+       
     </ImageBackground>
      </View>
     );
