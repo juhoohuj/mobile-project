@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Dimensions, TextInput, Button, ScrollView } from "react-native";
 import { useState } from 'react';
-
+import currentDate from "../components/Calendar";
 import {
   LineChart
 } from "react-native-chart-kit";

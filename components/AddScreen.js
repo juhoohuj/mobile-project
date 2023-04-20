@@ -1,14 +1,12 @@
-import { View, Text, ScrollView } from "react-native";
+import { ScrollView } from "react-native";
 import React from "react";
 import {ImageBackground, View, Text, Button, TextInput } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState, useEffect } from "react";
-import { Button } from "react-native";
-import { TextInput } from "react-native";
 import { useSafeAreaInsets,} from 'react-native-safe-area-context';
 import WorkoutForm from "./WorkoutForm";
 import styles from "../styles/Styles";
-import backgroundImage from '../assets/background.jpg';
+// import backgroundImage from '../assets/background.jpg';
 
 const AddScreenTheme = {
     //color:'#ffffff',
@@ -74,10 +72,11 @@ const getWorkouts = async () => {
     }
     const insets = useSafeAreaInsets();
     return (
-                <Button title="GET WORKOUTS" onPress={getWorkouts}/>
+                <View><Button title="GET WORKOUTS" onPress={getWorkouts}/>
                 <WorkoutForm/>
         <ScrollView style={{paddingTop: insets.top, }}>
         </ScrollView>
+        </View>
     )
 
     

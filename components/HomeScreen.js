@@ -1,16 +1,13 @@
 import { ImageBackground, View, Text, Image } from "react-native";
-import { View, Text, ScrollView } from "react-native";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,Component } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TextInput } from "react-native";
 import { Button } from "react-native";
 import { object } from "prop-types";
-import { View, Text, Image } from "react-native";
-import React, { Component } from 'react';
-import backgroundImage from '../assets/background.jpg';
+// import backgroundImage from '../assets/background.jpg';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Styles from "../styles/Styles";
-import { View, Text, ScrollView, FlatList } from "react-native";
+import HomeScreenWorkouts from "./HomeScreenWorkouts";
 
 const STORAGE_KEY = '@exe-Key';
 
@@ -128,7 +125,7 @@ const HomeScreen = () => {
 
     // function buttonPressed() {
 
-    //     /*const newKey = exes.lenght + 1;
+    //     /*const newKey = exes.length + 1;
     //     const newExe = {key: newKey.toString(), description: text};
     //     const newExes = [...exes, newExe];*/
 

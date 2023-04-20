@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
+import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 
 const App = () => {
   const [selected, setSelected] = useState('');
-  import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
   return (
     <Calendar
       onDayPress={day => {
