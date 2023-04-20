@@ -5,9 +5,11 @@ import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
 import { HomeScreen } from './components/HomeScreen';
 import { AddScreen } from './components/AddScreen';
+import { ProfileStack } from './components/ProfileStack';
 import { ProfileScreen } from './components/ProfileScreen';
 import styles from './styles/Styles';
 import { useFonts } from 'expo-font';
+import React from 'react';
 
 
 const MyTheme = {

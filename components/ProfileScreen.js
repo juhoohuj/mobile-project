@@ -1,3 +1,4 @@
+import Card from "../components/Card";
 import React from "react";
 import { ImageBackground, StyleSheet, Text, View, Dimensions, TextInput, Button, ScrollView, } from "react-native";
 import WeightGraph from "./WeightGraph";

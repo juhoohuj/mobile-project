@@ -15,6 +15,32 @@ const AddScreenTheme = {
     //borderColor:"#ffffff"
 };
 
+const deleteWorkouts = async () => {
+    try {
+        await AsyncStorage.removeItem('workouts');
+        alert("Data successfully deleted")
+    } catch (error) {
+        console.log(error);
+        alert("Something went wrong")
+    }
+};
+
+
+
+const getWorkouts = async () => {
+    try {
+      const workouts = await AsyncStorage.getItem('workouts');
+      if (workouts !== null) {
+        const parsed = JSON.parse(workouts)
+        console.log(workouts)
+        return JSON.parse(workouts);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+    return [];
+  };
+
 
 
  const AddScreen = () => {
@@ -30,49 +56,28 @@ const AddScreenTheme = {
           }
         };
 
-const AddScreen = () => {
-    const [parsed, setParsed] = useState([]);
-
-    const getWorkouts = async () => {
+    const getData = async () => {
         try {
-          const workouts = await AsyncStorage.getItem('workouts');
-          if (workouts !== null) {
-            let parsed  = JSON.parse(workouts);
-            console.log(parsed)
-            setParsed(parsed);
-            return JSON.parse(workouts);
-          }
-        } catch (error) {
-          console.error(error);
-        }
-        return [];
-      };
-    
-    const clearWorkouts = async() => {
-        AsyncStorage.clear();
-    }
+            const savedData = await AsyncStorage.getItem("test");
+            const currentData = JSON.parse(savedData);
+            console.log(currentData);
+            setText(currentData);
 
+        } catch (error) {
+            console.log(error);
+        }
+        };
+
+    function buttonPressed() {
+        saveData(value);
+        getData();  
+    }
     const insets = useSafeAreaInsets();
     return (
-        <View style={styles.AddScreenContainer}>
-        <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-
-             <Text style={styles.headerStyle}>ADD EXERCISE</Text>
-            <View>
-                <TextInput
-                    style={styles.TextInput} textAlign={'center'} placeholder="#"  
-                    onChangeText={text => setValue(text)}
-                    value={value}
-                />
-                <TextInput style={styles.TextInput} textAlign={'center'} placeholder="#"  />
-                <TextInput style={styles.TextInput} textAlign={'center'} placeholder="#"  />
-                <TextInput style={styles.TextInput} textAlign={'center'} placeholder="#"  />
-                
-                <Button title="Save" onPress={() => {buttonPressed()}}/>
-                <Text style={styles.savedText}>{text}</Text>
-            </View>
-        </ImageBackground>
-        </View>
+                <Button title="GET WORKOUTS" onPress={getWorkouts}/>
+                <WorkoutForm/>
+        <ScrollView style={{paddingTop: insets.top, }}>
+        </ScrollView>
     )
 
     
