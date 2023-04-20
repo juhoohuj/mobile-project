@@ -57,37 +57,7 @@ const HomeScreen = () => {
                 console.log("Weight: ", parsed[0].moves[0].sets[0].weight);
 
                 console.log("")
-                // setdata(JSON.stringify(parsed, null, 2))
-
-                // console.log(JSON.stringify(parsed, null, 2));
-                // Set the state 
-
-
-                // setExes(parsed[0].name);
-
-
-                // for (let i = 0; i < Object.keys(parsed).length; i++) {
-                //     exes.push(parsed[i].name);
-                //     // console.log("testi", Object.keys(parsed[i].moves).length);
-
-                //     for (let j = 0; j < Object.keys(parsed[i].moves).length; j++) {
-                //         // console.log(j);
-                //         // console.log("mitääää" , parsed[i].moves[j].name);
-                //         moves.push(parsed[i].moves[j].name);
-                //     }
-
-
-                    
-                //     //console.log(parsed[i].moves[i]);
-                //     //console.log(Object.keys("pituus", parsed[i].moves).length);
-                //     //console.log("lalallalal", parsed[i].name, parsed[i].moves[1].name);
-                    
-                   
-                // }
-                
-                // console.log("Toimiiks", exes, moves);
-                //console.log(Array.isArray(parsed));
-                //object.values(parsed[0]).map(x=>console.log(x));
+               
                 
                 
                 
@@ -99,64 +69,7 @@ const HomeScreen = () => {
             }
     };
 
-    const getWorkoutMoves = async () => {
-        try {
-            const workouts = await AsyncStorage.getItem('workouts');
-            if (workouts !== null) {
-                const parsed = JSON.parse(workouts, (key,value) => {
-                    // console.log(parsed);
-                    if(typeof value === 'string') {
-                        setMoves[value];
-                        // console.log(value);
-                    }
-                })
-                // console.log(workouts)
-                
-            }
 
-            } catch (e) {
-                console.error(e);
-            }
-    };
-
-    useEffect(() => {
-        
-        //console.log(exes);
-        
-    })
-
-    function buttonPressed() {
-
-        /*const newKey = exes.lenght + 1;
-        const newExe = {key: newKey.toString(), description: text};
-        const newExes = [...exes, newExe];*/
-
-        getData();
-        
-    }
-
-
-    // return (
-    //     <View>
-    //         <Text>Test</Text>
-
-
-    //         <Button title="Test" onPress={() => {buttonPressed()}}/>
-
-    //     {
-    //         exes.map((exe, i) => (
-                
-    //             <View key={i}>
-    //                 <Text>{exe.name}</Text>
-                    
-    //             </View>
-                
-    //         ))
-    //     }            
-            
-    //         <Text>{exes}</Text>
-    //     </View>
-    // )
 
     const RenderItem = ({ name, sets }) => (
         <View>
@@ -170,35 +83,12 @@ const HomeScreen = () => {
         </View>
       );
 
-
-
-
     return (
         <View style={[Styles.container, {paddingTop: insets.top}]}>
             <HomeScreenWorkouts />
         </View>
 
-    //     <View>
-    //         <Text>Test</Text>
-    //         <Button title="Test" onPress={() => {buttonPressed()}}/>
-
-    //         <FlatList
-    //             data={data}
-    //             renderItem={({ item }) => (
-    //     <RenderItem name={item.name} sets={item.moves[0].sets} />
-    //   )}
-    // />
-
-    //     </View>
     )
 }
 
  export {HomeScreen}
-
- /*{moves.map((move) => (
-    <Text>{move.name}</Text>
-))}{moves.map((mov, j) => (
-                        <View key={j}>
-                            <Text>{mov.name}</Text>
-                        </View>
-                    ))}*/
