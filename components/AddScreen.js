@@ -73,13 +73,6 @@ const getWorkouts = async () => {
     
         <ScrollView style={{paddingTop: insets.top, }}>
             <View  >
-                <Text style={AddScreenTheme} >MORO</Text>
-                <TextInput
-                    style={{ height: 40, borderColor: 'gray', borderWidth: 1,}}
-                    onChangeText={text => setValue(text)}
-                    value={value}
-                />
-                <Button title="Save" onPress={() => {buttonPressed()}}/>
                 <Text>{text}</Text>
             </View>
             <View>
