@@ -1,22 +1,21 @@
 import React from "react";
 import { StyleSheet, Text, View, Dimensions, TextInput, Button, ScrollView } from "react-native";
 import { useState } from 'react';
-import currentDate from "../components/Calendar";
 import {
   LineChart
 } from "react-native-chart-kit";
 
 export default function ScrollableGraph(){
 
-const [inputWeight, setInputWeight] = useState(0)
+const [inputWeight, setInputWeight] = useState("")
 
-const [WeightDates, setWeightDates] = useState([])
-const [WeightData, setWeightData] = useState([])
+const [WeightDates, setWeightDates] = useState([0])
+const [WeightData, setWeightData] = useState([0])
 const [graphWidth, setGraphWidth] = useState(Dimensions.get("window").width - 20)
 
 
 function handleAddWeight(){
-    currentDate = new Date()
+    let currentDate = new Date()
     setWeightDates([...WeightDates, currentDate.toLocaleDateString()])
 
     setWeightData([...WeightData, parseFloat(inputWeight)])
