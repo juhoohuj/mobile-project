@@ -84,7 +84,6 @@ const getWorkouts = async () => {
     )
 
     
- }
-
+ };
 
  export {AddScreen}

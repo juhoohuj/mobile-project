@@ -40,7 +40,7 @@ const HomeScreenWorkouts = () => {
 
   const [expandedIds, setExpandedIds] = useState([]);
 
-  const toggleExpanded = (id) => {
+/*   const toggleExpanded = (id) => {
     console.log(id)
     if (expandedIds.includes(id)) {
       setExpandedIds(expandedIds.filter((item) => item !== id));
@@ -48,7 +48,7 @@ const HomeScreenWorkouts = () => {
       setExpandedIds([...expandedIds, id]);
     }
   };
-
+ */
 console.log(expandedIds)
 
 const addToWorkoutHistory = async (workout) => {
@@ -133,3 +133,7 @@ const deleteWorkoutHistory = async () => {
 };
 
 export default HomeScreenWorkouts;
+
+function toggleExpanded(index) {
+  throw new Error('Function not implemented.');
+}

@@ -40,23 +40,8 @@ export default StyleSheet.create({
       margin: 10,
       height: 100,
     },
-    ProfileContainer: {
-      backgroundColor: "#191D32",
-      flex: 1,
-      flexDirection:'row',
-      flexWrap: "wrap",
-    },
-    square: {
-      flex: 2,
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderWidth: 2,
-      borderRadius: 5,
-      borderColor: '#334195',
-      backgroundColor: '#191D32',
-      margin: 10,
-      height: 100,
-    },
+    
+ 
     headerStyle: {
       fontSize: 36,
       textAlign: 'center',
