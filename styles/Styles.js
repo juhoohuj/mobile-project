@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { Text, Platform} from 'react-native';
+import { Dimensions } from 'react-native';
 
 
 export default StyleSheet.create({
@@ -19,8 +20,25 @@ export default StyleSheet.create({
       flex: 1,
       backgroundColor: "#191D32",
       alignItems: 'center',
-      marginRight: '20',
-      marginLeft: '20',
+      // marginRight: '20',
+      // marginLeft: '20',
+    },
+    ProfileContainer: {
+      backgroundColor: "#191D32",
+      flex: 1,
+      flexDirection:'row',
+      flexWrap: "wrap",
+    },
+    square: {
+      flex: 2,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderWidth: 2,
+      borderRadius: 5,
+      borderColor: '#334195',
+      backgroundColor: '#191D32',
+      margin: 10,
+      height: 100,
     },
     ProfileContainer: {
       backgroundColor: "#191D32",
@@ -60,15 +78,15 @@ export default StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       overflow: 'hidden',
-      opacity: '95%',
+      opacity: 0.95,
       backgroundColor:'#191D32',
       borderWidth: 3,
       borderRadius: 30,
       borderColor: '#191D32',
     },
     imageText: {
-      position: 'right',
-      marginLeft: 50,
+      // position: 'right',
+      // marginLeft: 50,
       fontSize: 40,
       fontFamily: 'RobotoCondensed-Regular',
       color:'white',
@@ -78,7 +96,7 @@ export default StyleSheet.create({
     },
     TextInput:{
       height: 50, 
-      width: '100',
+      width: 100,
       borderColor: 'gray', 
       borderWidth: 1,
       fontWeight: 'bold',
@@ -89,6 +107,57 @@ export default StyleSheet.create({
     },
     savedText:{
       color:'#FFFFFF'
+    },
+    graphContainer: {
+      backgroundColor: "#191D32",
+      alignItems: 'center',
+    },
+    graphSkeleton: {
+      backgroundColor: "#334195",
+      // backgroundColor: "#020887",
+      // backgroundColor: "#222222",
+
+      // backgroundColor: "#fff",
+      alignItems: 'center',
+      justifyContent: 'center',
+      width: Dimensions.get("window").width - 20,
+      height: 220,
+      borderRadius: 25,
+    },
+    graphScrollContainer: {
+      marginLeft: 10,
+      marginRight: 10
+    },
+    graphName: {
+      fontSize: 24,
+      color: "white"
+    },
+    graphInfoText: {
+      fontSize: 24,
+      color: "white"
+    },
+    graphInput: {
+      fontSize: 24,
+      color: "white",
+      textAlign: "center",
+      backgroundColor: "#3f3f3f",
+      width: 80,
+      borderRadius: 25,
+      marginBottom: 15,
+      marginTop: 10,
+    },
+    graphButton: {
+      fontSize: 18,
+      color: "black",
+      textAlign: "center",
+      backgroundColor: "#f3f3f3",
+      padding: 6,
+      paddingBottom: 0,
+      paddingTop: 0,
+      borderRadius: 25,
+      minWidth: 50,
+      marginBottom: 20,
     }
     
 });
+

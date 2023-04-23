@@ -1,5 +1,5 @@
 import React, { useEffect, useState  } from 'react';
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, Text, TouchableOpacity, View, Button } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Styles from '../styles/Styles';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -51,9 +51,37 @@ const HomeScreenWorkouts = () => {
 
 console.log(expandedIds)
 
+const addToWorkoutHistory = async (workout) => {
+  const workoutWithDate = { ...workout, date: new Date().toISOString() };
+  try {
+    const jsonValue = await AsyncStorage.getItem('@WorkoutHistory');
+    let workoutHistory = [];
+    if (jsonValue != null) {
+      workoutHistory = JSON.parse(jsonValue);
+    }
+    workoutHistory.push(workoutWithDate);
+    await AsyncStorage.setItem('@WorkoutHistory', JSON.stringify(workoutHistory));
+    console.log("Workout added to history")
+    console.log(JSON.stringify(workoutHistory))
+  } catch (e) {
+    console.error(e);
+  }
+  
+};
+
+// function to delete workoutHistory
+const deleteWorkoutHistory = async () => {
+  try {
+    await AsyncStorage.removeItem('@WorkoutHistory');
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+
   const RenderItem = ({ index, id, name, moves }) => (
     <View style={{
-        borderBottomColor: "#fff", 
+        borderBottomColor: "#fff",
         borderBottomWidth: 2,
         marginBottom: 6,
         }}>
@@ -73,6 +101,16 @@ console.log(expandedIds)
             ))}
           </View>
         ))}
+        <View style={{ alignItems: 'center' }}>
+          <TouchableOpacity onPress={() => addToWorkoutHistory({ name, moves })}>
+            <MaterialIcons name="add-circle" size={54} color="white" />
+          </TouchableOpacity>
+        </View>
+                {/* <Button
+                title="Add to Workout History"
+                onPress={() => addToWorkoutHistory({ name, moves })}
+              /> */}
+              
     </View>
   );
 
@@ -82,7 +120,16 @@ console.log(expandedIds)
 
   const keyExtractor = (item, index) => item.id?.toString() || index.toString();
 
-  return <FlatList data={data} renderItem={renderItem} keyExtractor={keyExtractor} />;
+  return (
+    <>
+  <FlatList data={data} renderItem={renderItem} keyExtractor={keyExtractor} /> 
+
+      <Button
+      title="Delete"
+      onPress={() => deleteWorkoutHistory()}
+    />
+</>
+  );
 };
 
 export default HomeScreenWorkouts;

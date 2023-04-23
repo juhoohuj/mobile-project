@@ -6,9 +6,10 @@ import { AntDesign } from '@expo/vector-icons';
 import { HomeScreen } from './components/HomeScreen';
 import { AddScreen } from './components/AddScreen';
 import { ProfileStack } from './components/ProfileStack';
+import { HomeStack } from './components/HomeStack';
 import { ProfileScreen } from './components/ProfileScreen';
-import styles from './styles/Styles';
 import { useFonts } from 'expo-font';
+import styles from './styles/Styles';
 import React from 'react';
 
 
@@ -25,24 +26,15 @@ const Tab = createBottomTabNavigator();
 
 const Nav = () => {
   return (
-    <NavigationContainer style={styles.bottomNav}>
-       <Tab.Navigator
-         screenOptions={{ headerShown: false }}
-         tabBarOptions={{
-           activeTintColor: 'blue',
-           inactiveTintColor: 'gray',
-           style: { backgroundColor: '#191D32' },
-         }}
-       >
-        <Tab.Screen name="Home" component={HomeScreen} options={{tabBarIcon: ()=> <AntDesign name="home" size={24} color="#191D32" />}} />
-        <Tab.Screen name="Add" component={AddScreen} options={{tabBarIcon: ()=> <AntDesign name="plus" size={24} color="#191D32" />}} />
-        <Tab.Screen name="Profile" component={ProfileScreen} options={{tabBarIcon: ()=> <AntDesign name="areachart" size={24} color="#191D32" />}}  />
+    <NavigationContainer>
+      <Tab.Navigator screenOptions={{ headerShown: false }}>
+        <Tab.Screen name="Home" component={HomeStack} options={{tabBarIcon: ()=> <AntDesign name="home" size={24} color="black" />}} />
+        <Tab.Screen name="Add" component={AddScreen} options={{tabBarIcon: ()=> <AntDesign name="plus" size={24} color="black" />}} />
+        <Tab.Screen name="Profile" component={ProfileStack} options={{tabBarIcon: ()=> <AntDesign name="areachart" size={24} color="black" />}}  />
       </Tab.Navigator>
     </NavigationContainer>
   );
 }
-
-
 
 export default function App() {
   const [fontsLoaded] = useFonts({

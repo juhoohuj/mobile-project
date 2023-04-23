@@ -74,7 +74,11 @@ const getWorkouts = async () => {
     return (
                 <View><Button title="GET WORKOUTS" onPress={getWorkouts}/>
                 <WorkoutForm/>
-        <ScrollView style={{paddingTop: insets.top, }}>
+            </View>
+            <View>
+                {/* <Button title="delete workouts" onPress={deleteWorkouts}/> */}
+                
+            </View>
         </ScrollView>
         </View>
     )
