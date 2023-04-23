@@ -72,7 +72,7 @@ export default StyleSheet.create({
       marginLeft: 24,
       marginRight: 24,
       marginBottom: 50,
-      bordertRadius: 30,
+      borderRadius: 30,
     },
     imageStyle: {
       flex: 1,
