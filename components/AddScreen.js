@@ -47,7 +47,7 @@ const AddScreen = () => {
             </View>
             <View>
                 {parsed.map( i =>  
-                     <Text>{i.moves}</Text>
+                     <Text>{i.name}</Text>
                 )}
             </View>
         </ScrollView>
