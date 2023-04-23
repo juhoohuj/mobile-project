@@ -79,7 +79,6 @@ const getWorkouts = async () => {
                 <WorkoutForm/>
             </View>
             <View>
-                <Button title="GET WORKOUTS" onPress={getWorkouts}/>
                 {/* <Button title="delete workouts" onPress={deleteWorkouts}/> */}
                 
             </View>
