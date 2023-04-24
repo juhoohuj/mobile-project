@@ -52,7 +52,7 @@ export default StyleSheet.create({
       fontSize: 36,
       textAlign: 'center',
       fontWeight: '100',
-      marginBottom: 24,
+      // marginBottom: 24,
       color: "#ffff",
       fontFamily: 'RobotoCondensed-Light',
       textShadowColor: 'rgba(0, 0, 0, 1)',
@@ -98,6 +98,16 @@ export default StyleSheet.create({
     },
     savedText:{
       color:'#FFFFFF'
+    },
+    profileText:{
+      color:'#FFFFFF',
+      fontSize: 20,
+      fontFamily: 'RobotoCondensed-Regular',
+      textAlign: 'center',
+      textShadowColor: 'rgba(0, 0, 0, 1)',
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius: 10
+
     },
     graphContainer: {
       backgroundColor: "#191D32",
