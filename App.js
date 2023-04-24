@@ -18,10 +18,16 @@ const Tab = createBottomTabNavigator();
 const Nav = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator screenOptions={{ headerShown: false }}>
-        <Tab.Screen name="Home" component={HomeStack} options={{tabBarIcon: ()=> <AntDesign name="home" size={24} color="black" />}} />
-        <Tab.Screen name="Add" component={AddScreen} options={{tabBarIcon: ()=> <AntDesign name="plus" size={24} color="black" />}} />
-        <Tab.Screen name="Profile" component={ProfileStack} options={{tabBarIcon: ()=> <AntDesign name="areachart" size={24} color="black" />}}  />
+      <Tab.Navigator screenOptions={{ 
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: '#191D32',
+          borderTopWidth: 0
+        }
+      }}>
+        <Tab.Screen name="Home" component={HomeStack} options={{tabBarIcon: ()=> <AntDesign name="home" size={24} color="#f3f3f3" />}} />
+        <Tab.Screen name="Add" component={AddScreen} options={{tabBarIcon: ()=> <AntDesign name="plus" size={24} color="#f3f3f3" />}} />
+        <Tab.Screen name="Profile" component={ProfileStack} options={{tabBarIcon: ()=> <AntDesign name="areachart" size={24} color="#f3f3f3" />}}  />
       </Tab.Navigator>
     </NavigationContainer>
   );
