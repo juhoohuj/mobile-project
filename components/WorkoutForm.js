@@ -3,9 +3,10 @@ import { View, TextInput, Alert, StyleSheet, ScrollView, Text  } from 'react-nat
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AntDesign } from '@expo/vector-icons';
 import { Button } from '@rneui/base';
+import { useNavigation } from '@react-navigation/native';
 
 //Workoutin lisäämisen komponenttti
-const WorkoutForm = () => {
+const WorkoutForm = ({navigation}) => {
   const [name, setName] = useState('');
   const [moves, setMoves] = useState([]);
 
@@ -51,6 +52,8 @@ const WorkoutForm = () => {
       Alert.alert('An error occurred while saving the workout.');
     }
   };
+
+
 
   return (
     <ScrollView style={styles.container}>
@@ -123,7 +126,10 @@ const WorkoutForm = () => {
       <View style={styles.buttonContainer}>
         <Button title="Add Move" type='clear' onPress={handleAddMove} />
         <Button title="Save Workout" type='clear' onPress={handleSaveWorkout} />
-        
+      </View>
+
+      <View>
+      <Button title="Templates" onPress={() => navigation.navigate("WorkoutTemplates")}/>
       </View>
     </ScrollView>
   );
@@ -173,4 +179,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default WorkoutForm;
+export {WorkoutForm};

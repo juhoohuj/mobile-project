@@ -5,43 +5,48 @@ import { Button } from "react-native";
 import { TextInput } from "react-native";
 import { useSafeAreaInsets,} from 'react-native-safe-area-context';
 import WorkoutForm from "./WorkoutForm";
+import { useNavigation } from "@react-navigation/native";
+import WorkoutTemplates from "./WorkoutTemplates";
 
 const AddScreenTheme = {
     //color:'#ffffff',
     //borderColor:"#ffffff"
 };
 
-const deleteWorkouts = async () => {
-    try {
-        await AsyncStorage.removeItem('workouts');
-        alert("Data successfully deleted")
-    } catch (error) {
-        console.log(error);
-        alert("Something went wrong")
-    }
-};
 
-
-
-const getWorkouts = async () => {
-    try {
-      const workouts = await AsyncStorage.getItem('workouts');
-      if (workouts !== null) {
-        const parsed = JSON.parse(workouts)
-        console.log(workouts)
-        return JSON.parse(workouts);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-    return [];
-  };
 
 
 
  const AddScreen = () => {
     const [value, setValue] = useState("");
     const [text, setText] = useState("");
+    const navigation = useNavigation();
+    const deleteWorkouts = async () => {
+        try {
+            await AsyncStorage.removeItem('workouts');
+            alert("Data successfully deleted")
+        } catch (error) {
+            console.log(error);
+            alert("Something went wrong")
+        }
+    };
+    
+    
+    
+    const getWorkouts = async () => {
+        try {
+          const workouts = await AsyncStorage.getItem('workouts');
+          if (workouts !== null) {
+            const parsed = JSON.parse(workouts)
+            console.log(workouts)
+            return JSON.parse(workouts);
+          }
+        } catch (error) {
+          console.error(error);
+        }
+        return [];
+      };
+
     const saveData = async (value) => {
         try {
             await AsyncStorage.setItem("test", JSON.stringify(value));
@@ -68,15 +73,16 @@ const getWorkouts = async () => {
         saveData(value);
         getData();  
     }
+
+    
     const insets = useSafeAreaInsets();
     return (
-    
         <ScrollView style={{paddingTop: insets.top, }}>
             <View  >
                 <Text>{text}</Text>
             </View>
             <View>
-                <WorkoutForm/>
+                <Button title="Create new" onPress={() => navigation.navigate("WorkoutForm")}/>
             </View>
             <View>
                 <Button title="GET WORKOUTS" onPress={getWorkouts}/>

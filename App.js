@@ -8,6 +8,7 @@ import { AddScreen } from './components/AddScreen';
 import { ProfileStack } from './components/ProfileStack';
 import { HomeStack } from './components/HomeStack';
 import { ProfileScreen } from './components/ProfileScreen';
+import { AddStack } from './components/AddStack';
 import { useFonts } from 'expo-font';
 import styles from './styles/Styles';
 import React from 'react';
@@ -26,7 +27,7 @@ const Nav = () => {
         }
       }}>
         <Tab.Screen name="Home" component={HomeStack} options={{tabBarIcon: ()=> <AntDesign name="home" size={24} color="#f3f3f3" />}} />
-        <Tab.Screen name="Add" component={AddScreen} options={{tabBarIcon: ()=> <AntDesign name="plus" size={24} color="#f3f3f3" />}} />
+        <Tab.Screen name="Add" component={AddStack} options={{tabBarIcon: ()=> <AntDesign name="plus" size={24} color="#f3f3f3" />}} />
         <Tab.Screen name="Profile" component={ProfileStack} options={{tabBarIcon: ()=> <AntDesign name="areachart" size={24} color="#f3f3f3" />}}  />
       </Tab.Navigator>
     </NavigationContainer>
