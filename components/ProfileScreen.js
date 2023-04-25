@@ -16,17 +16,41 @@ const ProfileScreen = ({ navigation }) => {
 
   const isFocused = useIsFocused();
 
+  getAllKeys = async () => {
+    let keys = []
+    try {
+      keys = await AsyncStorage.getAllKeys()
+    } catch(e) {
+      // read key error
+    }
+  
+    console.log(keys)
+    // example console.log result:
+    // ['@MyApp_user', '@MyApp_key']
+  }
+getAllKeys()
+
+// clearAll = async () => {
+//   try {
+//     await AsyncStorage.clear()
+//   } catch(e) {
+//     // clear error
+//   }
+
+//   console.log('Done.')
+// }
+// clearAll()
 
   useEffect(() => {
     async function getData() {
       try {
-        const latestWeight = await AsyncStorage.getItem("@savedGraphDataWeightValues");
-
+        const weightHistory = await AsyncStorage.getItem("@savedGraphDataWeight");
         if (latestWeight !== null) {
-          setLatestWeight(JSON.parse(latestWeight).slice(-1)[0])
+          const { mainDataPoint } = JSON.parse(weightHistory);
+          setLatestWeight(mainDataPoint[mainDataPoint.length - 1])
   
         } else {
-         setLatestWeight("No weight data")
+        //  setLatestWeight("No weight data")
         }
       } catch (e) {
         console.error(e);
@@ -65,7 +89,7 @@ const ProfileScreen = ({ navigation }) => {
             setTotalWorkoutsDone(workoutsParsed.length)
           }
         } else {
-          console.log("No workout history")
+          // console.log("No workout history")
         }
       } catch (e) {
         console.error(e);
