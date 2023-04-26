@@ -3,12 +3,16 @@ import { View, TextInput, Alert, StyleSheet, ScrollView, Text  } from 'react-nat
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AntDesign } from '@expo/vector-icons';
 import { Button } from '@rneui/base';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { WorkoutList } from './WorkoutTemplates';
 
 //Workoutin lisäämisen komponenttti
-const WorkoutForm = ({navigation}) => {
-  const [name, setName] = useState('');
-  const [moves, setMoves] = useState([]);
+const WorkoutForm = () => {
+  const navigation = useNavigation();
+  const route = useRoute();
+  const { workout } = route.params || {};
+  const [name, setName] = useState(workout?.name || '');
+  const [moves, setMoves] = useState(workout?.moves || []);
 
   //Uuden liikkeen lisääminen workouttiin
   const handleAddMove = () => {
@@ -130,6 +134,7 @@ const WorkoutForm = ({navigation}) => {
 
       <View>
       <Button title="Templates" onPress={() => navigation.navigate("WorkoutTemplates")}/>
+      <Text></Text>
       </View>
     </ScrollView>
   );
