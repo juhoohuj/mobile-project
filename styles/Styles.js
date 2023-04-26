@@ -163,26 +163,28 @@ export default StyleSheet.create({
     },
     calendarTheme: {
       //Päivien boxin väri
-      calendarBackground: '#191D32',
+      calendarBackground: '#334195 ',
       textSectionTitleColor: '#ffffff',
       selectedDayBackgroundColor: '#c2bfee',
       selectedDayTextColor: '#000000',
       todayTextColor: '#00adf5',
       textMonthFontFamily : 'RobotoCondensed-Light',
+      textDayFontFamily: 'RobotoCondensed-Light',
       monthTextColor: 'white',
       textMonthFontSize: 30,
-      textDayFontFamily: 'RobotoCondensed-Light',
+      textDayHeaderFontFamily: 'RobotoCondensed-Regular',
+      textDayHeaderFontSize: 17,
       // dayTextColor: '#2d4150',
-      textDisabledColor: '#grey',
+      textDisabledColor: 'black',
       dotColor: '#002222',
-      indicatorColor: 'blue',
-
+      indicatorColor: '#020887',
+      dayTextColor: 'white',
     },
     calendarBackground: {
       //Tausta boxin väri  
-      backgroundColor: '#111111',
+      backgroundColor: '#19D32',
       borderColor: 'white',
-      borderWidth: 1,
+      borderWidth: 2,
       borderRadius: 10,
     }
 
