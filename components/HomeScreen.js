@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import styles from '../styles/Styles';
 import backgroundImage from '../assets/background.jpg';
 import { useSafeAreaInsets,} from 'react-native-safe-area-context';
+import { CalendarScreen } from "./CalendarScreen";
 // import HomeScreenWorkouts from "./HomeScreenWorkouts";
 
 const HomeScreen = ({navigation}) => {
@@ -16,15 +17,16 @@ return (
 
 
 
-        <View style={{marginRight: 20, marginLeft: 20, marginBottom: 10}}>
-        <TouchableOpacity onPress={() => navigation.navigate('CalendarScreen')}
+        <View style={{marginRight: 20, marginLeft: 20, marginBottom: 10,  }}>
+        <CalendarScreen></CalendarScreen>
+       {/*  <TouchableOpacity onPress={() => navigation.navigate('CalendarScreen')}
         >
-                <ImageBackground style={{borderRadius: 20, overflow: "hidden"}} source={require('../assets/boxikuva1.jpg')}>
+           <ImageBackground style={{borderRadius: 20, overflow: "hidden"}} source={require('../assets/boxikuva1.jpg')}>
                     <View style={{height: 180, alignItems: "center", justifyContent: "center"}}>
                         <Text style={styles.imageText}>Kalenteri?</Text>
                     </View>
                 </ImageBackground>
-            </TouchableOpacity>
+            </TouchableOpacity>  */}
         </View>
 
         <View style={{marginRight: 20, marginLeft: 20, marginBottom: 10}}>

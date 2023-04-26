@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView } from 'react-native';
-import { Calendar } from 'react-native-calendars';
+import { Agenda, Calendar } from 'react-native-calendars';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const WorkoutCalendar = () => {
   const [markedDates, setMarkedDates] = useState({});
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState("");
   const [selectedWorkout, setSelectedWorkout] = useState(null);
+  const workout = {key: 'workout', color: 'green'};
 
   useEffect(() => {
     async function getWorkoutHistory() {
@@ -46,8 +48,33 @@ const WorkoutCalendar = () => {
   };
 
   return (
-    <ScrollView>
+    <ScrollView >
       <Calendar
+
+
+      style={{
+      //Tausta boxin väri  
+      backgroundColor: '#111111',
+      borderColor: 'white',
+      borderWidth: 1,
+      borderRadius: 20,
+      
+    }}
+        theme={{
+        
+          //Päivien boxin väri
+        calendarBackground: '#555555',
+        textSectionTitleColor: '#222222',
+        selectedDayBackgroundColor: '#c2bfee',
+        selectedDayTextColor: '#000000',
+        todayTextColor: '#00adf5',
+        // dayTextColor: '#2d4150',
+        textDisabledColor: '#d9e1e8',
+        dotColor: '#002222',
+        indicatorColor: 'blue',
+
+        
+}}
         markedDates={markedDates}
         onDayPress={handleDayPress}
       />

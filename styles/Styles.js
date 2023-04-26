@@ -7,6 +7,8 @@ export default StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: "#191D32",
+      borderRadius: 20,
+
     },
     bottomNav: {
       backgroundColor: "#334195",
@@ -22,6 +24,7 @@ export default StyleSheet.create({
       alignItems: 'center',
       // marginRight: '20',
       // marginLeft: '20',
+      
     },
     homeScreenItem: {
       flex: 1,
@@ -63,7 +66,7 @@ export default StyleSheet.create({
       marginLeft: 24,
       marginRight: 24,
       marginBottom: 50,
-      bordertRadius: 30,
+      borderRadius: 30,
     },
     imageStyle: {
       flex: 1,
@@ -158,7 +161,7 @@ export default StyleSheet.create({
       borderRadius: 25,
       minWidth: 50,
       marginBottom: 20,
-    }
-    
+    },
+
 });
 
