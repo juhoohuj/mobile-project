@@ -10,8 +10,8 @@ function AddStack() {
     return (
         <Stack.Navigator>
             <Stack.Screen name="AddScreen" component={AddScreen} options={{headerShown: false}}/>
-            <Stack.Screen name="Create" component={WorkoutForm} options={{headerShown: false}}/>
-            <Stack.Screen name="Templates" component={WorkoutTemplates} />
+            <Stack.Screen name="WorkoutForm" component={WorkoutForm} options={{headerShown: false}}/>
+            <Stack.Screen name="WorkoutTemplates" component={WorkoutTemplates} />
         </Stack.Navigator>
     );
   }
