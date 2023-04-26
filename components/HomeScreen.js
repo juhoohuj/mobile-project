@@ -17,7 +17,7 @@ return (
 
 
 
-        <View style={{marginRight: 20, marginLeft: 20, marginBottom: 10,  }}>
+        <View style={{marginRight: 20, marginLeft: 20, marginBottom: 10 }}>
         <CalendarScreen></CalendarScreen>
        {/*  <TouchableOpacity onPress={() => navigation.navigate('CalendarScreen')}
         >

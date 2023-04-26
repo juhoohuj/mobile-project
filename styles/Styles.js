@@ -7,8 +7,7 @@ export default StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: "#191D32",
-      borderRadius: 20,
-
+      borderRadius: 10,
     },
     bottomNav: {
       backgroundColor: "#334195",
@@ -162,6 +161,30 @@ export default StyleSheet.create({
       minWidth: 50,
       marginBottom: 20,
     },
+    calendarTheme: {
+      //Päivien boxin väri
+      calendarBackground: '#191D32',
+      textSectionTitleColor: '#ffffff',
+      selectedDayBackgroundColor: '#c2bfee',
+      selectedDayTextColor: '#000000',
+      todayTextColor: '#00adf5',
+      textMonthFontFamily : 'RobotoCondensed-Light',
+      monthTextColor: 'white',
+      textMonthFontSize: 30,
+      textDayFontFamily: 'RobotoCondensed-Light',
+      // dayTextColor: '#2d4150',
+      textDisabledColor: '#grey',
+      dotColor: '#002222',
+      indicatorColor: 'blue',
+
+    },
+    calendarBackground: {
+      //Tausta boxin väri  
+      backgroundColor: '#111111',
+      borderColor: 'white',
+      borderWidth: 1,
+      borderRadius: 10,
+    }
 
 });
 

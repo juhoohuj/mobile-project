@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { Agenda, Calendar } from 'react-native-calendars';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import styles from '../styles/Styles';
+
 
 
 const WorkoutCalendar = () => {
@@ -52,29 +54,8 @@ const WorkoutCalendar = () => {
       <Calendar
 
 
-      style={{
-      //Tausta boxin väri  
-      backgroundColor: '#111111',
-      borderColor: 'white',
-      borderWidth: 1,
-      borderRadius: 20,
-      
-    }}
-        theme={{
-        
-          //Päivien boxin väri
-        calendarBackground: '#555555',
-        textSectionTitleColor: '#222222',
-        selectedDayBackgroundColor: '#c2bfee',
-        selectedDayTextColor: '#000000',
-        todayTextColor: '#00adf5',
-        // dayTextColor: '#2d4150',
-        textDisabledColor: '#d9e1e8',
-        dotColor: '#002222',
-        indicatorColor: 'blue',
-
-        
-}}
+      style={styles.calendarBackground}
+        theme={styles.calendarTheme}
         markedDates={markedDates}
         onDayPress={handleDayPress}
       />
