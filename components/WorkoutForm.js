@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, TextInput, Alert, StyleSheet, ScrollView, Text  } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AntDesign } from '@expo/vector-icons';
@@ -13,6 +13,19 @@ const WorkoutForm = () => {
   const { workout } = route.params || {};
   const [name, setName] = useState(workout?.name || '');
   const [moves, setMoves] = useState(workout?.moves || []);
+
+
+  useEffect(() => {
+    if (route.params?.workout) {
+      setName(workout.name)
+      setMoves(workout.moves);
+    }
+  }, [route.params?.workout]);
+
+  const clearInputs = () => {
+    setName('');
+    setMoves([]);
+  };
 
   //Uuden liikkeen lisääminen workouttiin
   const handleAddMove = () => {
@@ -133,6 +146,7 @@ const WorkoutForm = () => {
       </View>
 
       <View>
+        <Button title="Clear" onPress={clearInputs} />
       <Button title="Templates" onPress={() => navigation.navigate("WorkoutTemplates")}/>
       <Text></Text>
       </View>
