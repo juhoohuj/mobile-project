@@ -7,8 +7,20 @@ import styles from "../styles/Styles";
 
 
 
-export default function ScrollGraphProps({dataPointDates, DataUnitsType, mainDataPoints, GraphName}){
-const STORAGE_KEY = "@savedGraphData" + GraphName
+export default function ScrollGraphProps({ data, graphIndex }){
+
+  console.log("Whole data:", graphIndex, data)
+  
+  if (!data) {
+    return null;
+  }
+
+console.log(graphIndex)
+
+const graphName = data[graphIndex].graphName
+const graphUnits = data[graphIndex].graphUnits
+
+const STORAGE_KEY = "@savedGraphData" + graphName
 // console.log(STORAGE_KEY)
 const [DataPointDate, setDataPointDate] = useState([]);
 const [mainDataPoint, setMainDataPoint] = useState([]);
@@ -28,7 +40,7 @@ useEffect(() => {
 
       if (data !== null) {
         const { DataPointDate, mainDataPoint } = JSON.parse(data);
-        console.log(data)
+        //console.log(data)
         setDataPointDate(DataPointDate);
         setMainDataPoint(mainDataPoint);
         setCurrentIndex(
@@ -43,7 +55,9 @@ useEffect(() => {
       console.error(e);
     }
   }
-  getData();
+  if(data !== null) {
+    getData();
+  }
 }, []);
 
 // Use effect to save data to local storage
@@ -143,7 +157,7 @@ function handleInputButtonChange(inputValue) {
   if (mainDataPoint.length == 0){
     return (
       <View style={styles.graphContainer}>
-        <Text style={styles.graphName}>{GraphName}</Text>
+        <Text style={styles.graphName}>{graphName}</Text>
             <View style={{flexDirection: "row", width: Dimensions.get("window").width - 30, justifyContent: "space-between", alignItems: "flex-start"}}>
                 <Text style={styles.graphInfoText}>{SelectedDataPoint}</Text>
                 <Text style={styles.graphInfoText}>{SelctedDataPointDate}</Text>
@@ -166,7 +180,7 @@ function handleInputButtonChange(inputValue) {
 
     return (
         <View style={styles.graphContainer}>
-            <Text style={styles.graphName}>{GraphName}</Text>
+            <Text style={styles.graphName}>{graphName}</Text>
             <View style={{flexDirection: "row", width: Dimensions.get("window").width - 30, justifyContent: "space-between", alignItems: "flex-start"}}>
                 <Text style={styles.graphInfoText}>{SelectedDataPoint}</Text>
                 <Text style={styles.graphInfoText}>{SelctedDataPointDate}</Text>
@@ -200,7 +214,7 @@ function handleInputButtonChange(inputValue) {
                     width={Dimensions.get("window").width - 20}
                     height={220}
                     yAxisLabel=""
-                    yAxisSuffix={DataUnitsType}
+                    yAxisSuffix={graphUnits}
                     yAxisInterval={1}
                     chartConfig={{
                     backgroundColor: "#020887",
@@ -235,7 +249,7 @@ function handleInputButtonChange(inputValue) {
                     }}
                     
                     onDataPointClick={({value, index}) => {
-                    setSelectedDataPoint(value + DataUnitsType)
+                    setSelectedDataPoint(value + graphUnits)
                     console.log(displayedItems2)
                     setSelctedDataPointDate(displayedItems2[index])
                     }}

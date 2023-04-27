@@ -28,7 +28,7 @@ const ProfileScreen = ({ navigation }) => {
     // example console.log result:
     // ['@MyApp_user', '@MyApp_key']
   }
-getAllKeys()
+// getAllKeys()
 
 // clearAll = async () => {
 //   try {
@@ -125,7 +125,7 @@ getAllKeys()
           </View>
             <View style={{flexDirection: "row", justifyContent: "space-around", padding: 2, flexWrap: "wrap", rowGap: 5}}>
               <Card navigation={navigation} cardText={"Graphs"} icon={"line-graph"}  destination={'Graphs'} />
-              <Card navigation={navigation} cardText={"Other"} icon={"code"}  destination={'Home'}/>
+              <Card navigation={navigation} cardText={"Other"} icon={"code"}  destination={'CreateGraphs'}/>
             </View>
         </View>
     )
