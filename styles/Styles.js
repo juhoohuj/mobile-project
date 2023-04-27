@@ -7,6 +7,7 @@ export default StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: "#191D32",
+      borderRadius: 10,
     },
     bottomNav: {
       backgroundColor: "#334195",
@@ -22,6 +23,7 @@ export default StyleSheet.create({
       alignItems: 'center',
       // marginRight: '20',
       // marginLeft: '20',
+      
     },
     homeScreenItem: {
       flex: 1,
@@ -63,7 +65,7 @@ export default StyleSheet.create({
       marginLeft: 24,
       marginRight: 24,
       marginBottom: 50,
-      bordertRadius: 30,
+      borderRadius: 30,
     },
     imageStyle: {
       flex: 1,
@@ -158,7 +160,33 @@ export default StyleSheet.create({
       borderRadius: 25,
       minWidth: 50,
       marginBottom: 20,
+    },
+    calendarTheme: {
+      //Päivien boxin väri
+      calendarBackground: '#334195 ',
+      textSectionTitleColor: '#ffffff',
+      selectedDayBackgroundColor: '#c2bfee',
+      selectedDayTextColor: '#000000',
+      todayTextColor: '#00adf5',
+      textMonthFontFamily : 'RobotoCondensed-Light',
+      textDayFontFamily: 'RobotoCondensed-Light',
+      monthTextColor: 'white',
+      textMonthFontSize: 30,
+      textDayHeaderFontFamily: 'RobotoCondensed-Regular',
+      textDayHeaderFontSize: 17,
+      // dayTextColor: '#2d4150',
+      textDisabledColor: 'black',
+      dotColor: '#002222',
+      indicatorColor: '#020887',
+      dayTextColor: 'white',
+    },
+    calendarBackground: {
+      //Tausta boxin väri  
+      backgroundColor: '#19D32',
+      borderColor: 'white',
+      borderWidth: 2,
+      borderRadius: 10,
     }
-    
+
 });
 

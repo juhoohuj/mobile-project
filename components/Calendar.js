@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView } from 'react-native';
-import { Calendar } from 'react-native-calendars';
+import { Agenda, Calendar } from 'react-native-calendars';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import styles from '../styles/Styles';
+
+
 
 const WorkoutCalendar = () => {
   const [markedDates, setMarkedDates] = useState({});
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState("");
   const [selectedWorkout, setSelectedWorkout] = useState(null);
+  const workout = {key: 'workout', color: 'green'};
 
   useEffect(() => {
     async function getWorkoutHistory() {
@@ -46,8 +50,12 @@ const WorkoutCalendar = () => {
   };
 
   return (
-    <ScrollView>
+    <ScrollView >
       <Calendar
+
+
+      style={styles.calendarBackground}
+        theme={styles.calendarTheme}
         markedDates={markedDates}
         onDayPress={handleDayPress}
       />
