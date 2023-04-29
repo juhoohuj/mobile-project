@@ -1,12 +1,36 @@
 import { ImageBackground, View, Text, Image, TouchableOpacity } from "react-native";
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import styles from '../styles/Styles';
 import backgroundImage from '../assets/background.jpg';
 import { useSafeAreaInsets,} from 'react-native-safe-area-context';
 import { CalendarScreen } from "./CalendarScreen";
 // import HomeScreenWorkouts from "./HomeScreenWorkouts";
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import getWorkoutHistory from "../components/HomeScreenWorkouts"
+import { Calendar } from "react-native-calendars";
+import { ScrollView } from "react-native-web";
 const HomeScreen = ({navigation}) => {
+
+
+
+  const [workoutHistory, setWorkoutHistory] = useState([]);
+
+  useEffect(() => {
+    getWorkoutHistory();
+  }, []);
+  
+  const getWorkoutHistory = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('@WorkoutHistory');
+      console.log('Retrieved workout history data:', jsonValue);
+      const historyData = jsonValue != null ? JSON.parse(jsonValue) : [];
+      console.log('Parsed workout history data:', historyData);
+      setWorkoutHistory(historyData);
+      console.log('Updated workout history state:', workoutHistory);
+    } catch (error) {
+      console.error('Error retrieving workout history:', error);
+    }
+  };
 
 const insets = useSafeAreaInsets();
 return (
@@ -18,7 +42,7 @@ return (
 
 
         <View style={{marginRight: 20, marginLeft: 20, marginBottom: 10 }}>
-        <CalendarScreen></CalendarScreen>
+        <CalendarScreen navigation={Calendar}></CalendarScreen>
        {/*  <TouchableOpacity onPress={() => navigation.navigate('CalendarScreen')}
         >
            <ImageBackground style={{borderRadius: 20, overflow: "hidden"}} source={require('../assets/boxikuva1.jpg')}>
@@ -41,15 +65,41 @@ return (
             </TouchableOpacity>
         </View>
 
-        <View style={{marginRight: 20, marginLeft: 20}}>
+  {/*       <View style={{marginRight: 20, marginLeft: 20}}>
         <TouchableOpacity>
                 <ImageBackground style={{borderRadius: 20, overflow: "hidden"}} source={require('../assets/boxikuva3.jpg')}>
                     <View style={{height: 180, alignItems: "center", justifyContent: "center"}}>
-                        <Text style={styles.imageText}>Jotain?</Text>
+                    <Text>Workout History:</Text>
+      {workoutHistory.map((workout, index) => (
+        <ScrollView key={index}>{workout.name} - {workout.date}</ScrollView>
+
+      ))}
                     </View>
                 </ImageBackground>
             </TouchableOpacity>
         </View>
+
+ */}
+<View style={styles.workoutHistoryContainer}>
+  <ScrollView contentContainerStyle={styles.workoutHistoryContent}>
+    {workoutHistory.slice(-3).map((workout, index) => (
+      <View key={index} style={styles.workoutBox}>
+        <Text style={styles.workoutName}>{workout.name}</Text>
+        <Text style={styles.workoutDate}>{workout.date}</Text>
+        {workout.moves.map((move, moveIndex) => (
+          <View key={moveIndex} style={styles.moveContainer}>
+            <Text style={styles.moveName}>{move.name}</Text>
+            {move.sets.map((set, setIndex) => (
+              <Text key={setIndex} style={styles.setText}>
+                Exercise: {workout.moves[moveIndex]?.name} - Set {setIndex + 1}: Weight - {set.weight}, Reps - {set.reps}
+              </Text>
+            ))}
+          </View>
+        ))}
+      </View>
+    ))}
+  </ScrollView>
+</View>
 
 
 
@@ -64,5 +114,5 @@ return (
 
 )
 };
-  
- export {HomeScreen}
+
+export default HomeScreen;

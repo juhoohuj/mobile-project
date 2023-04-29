@@ -17,8 +17,9 @@ const WorkoutForm = () => {
   const [moves, setMoves] = useState(workout?.moves || []);
   const [weight, setWeight] = useState('');
   const [sets, setSets] = useState([{ weight: '', reps: '' }]);
-
   const [lastWeight, setLastWeight] = useState(null);
+
+  const [workoutHistory, setWorkoutHistory] = useState([]);
 
 
 const getLastWeight = async () => {
@@ -94,7 +95,20 @@ const getLastWeight = async () => {
   //Uuden workoutin tallennus AsyncStorageen
   const handleSaveWorkout = async () => {
     try {
-      const workout = { name, moves };
+      // const workout = { name, moves };
+      const workout = {
+        name: 'Workout Name',
+        moves: [
+          {
+            name: 'Exercise 1', // Exercise name
+            sets: [
+              { weight: '10', reps: '12' },
+              { weight: '15', reps: '10' },
+            ],
+          },
+          // Other exercises...
+        ],
+      };
       const existingWorkouts = await AsyncStorage.getItem('workouts');
       const workouts = existingWorkouts ? JSON.parse(existingWorkouts) : [];
       workouts.push(workout);
@@ -102,6 +116,8 @@ const getLastWeight = async () => {
       Alert.alert('Workout saved successfully!');
       setName('');
       setMoves([]);
+      setWorkoutHistory(prevWorkoutHistory => [...prevWorkoutHistory, workout]);
+
     } catch (error) {
       console.error(error);
       Alert.alert('An error occurred while saving the workout.');

@@ -10,6 +10,10 @@ export default StyleSheet.create({
       borderRadius: 10,
     },
     bottomNav: {
+      position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
       backgroundColor: "#334195",
     },
     backgroundImage: {
@@ -186,7 +190,40 @@ export default StyleSheet.create({
       borderColor: 'white',
       borderWidth: 2,
       borderRadius: 10,
-    }
+    },
+    workoutHistoryContainer: {
+      backgroundColor: '#334195',
+      marginHorizontal: 20,
+      flexGrow: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingVertical: 20,
+      borderRadius: 10,
+      marginBottom: 20,
+    }, 
+  workoutBox: {
+      backgroundColor: '#191D32',
+      borderRadius: 10,
+      padding: 10,
+      marginBottom: 10,
+    }, workoutName: {
+      fontSize: 18,
+      fontWeight: 'bold',
+      color: 'white',
+    },
+    workoutDate: {
+      fontSize: 14,
+      color: 'white',
+    },
+    moveName: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      color: 'white',
+    },
+    setText: {
+      fontSize: 14,
+      color: 'white',
+    },
 
 });
 
