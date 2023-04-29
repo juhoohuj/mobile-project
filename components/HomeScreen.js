@@ -80,29 +80,25 @@ return (
         </View>
 
  */}
-  <ScrollView contentContainerStyle={styles.workoutHistoryContent}>
-
-<View style={styles.workoutHistoryContainer}>
-    <View style={styles.workoutHistoryInnerContainer}>
-      {workoutHistory.slice(-3).map((workout, index) => (
-        <View key={index} style={styles.workoutBox}>
-          <Text style={styles.workoutName}>{workout.name}</Text>
-          <Text style={styles.workoutDate}>{workout.date}</Text>
-          {workout.moves.map((move, moveIndex) => (
-            <View key={moveIndex} style={styles.moveContainer}>
-              <Text style={styles.moveName}>{move.name}</Text>
-              {move.sets.map((set, setIndex) => (
-                <Text key={setIndex} style={styles.setText}>
-                  Exercise: {move.name} - Set {setIndex + 1}: Weight - {set.weight}, Reps - {set.reps}
-                </Text>
-              ))}
-            </View>
+<ScrollView contentContainerStyle={styles.workoutHistoryContainer}>
+  {workoutHistory.slice(-3).map((workout, index) => (
+    <View key={index} style={styles.workoutBox}>
+      <Text style={styles.workoutName}>{workout.name}</Text>
+      <Text style={styles.workoutDate}>{workout.date}</Text>
+      {workout.moves.map((move, moveIndex) => (
+        <View key={moveIndex} style={styles.moveContainer}>
+          <Text style={styles.moveName}>{move.name}</Text>
+          {move.sets.map((set, setIndex) => (
+            <Text key={setIndex} style={styles.setText}>
+              Exercise: {move.name} - Set {setIndex + 1}: Weight - {set.weight}, Reps - {set.reps}
+            </Text>
           ))}
         </View>
       ))}
     </View>
-</View>
+  ))}
 </ScrollView>
+
 
 
         </ImageBackground>
