@@ -22,6 +22,8 @@ const WorkoutForm = () => {
   const [workoutHistory, setWorkoutHistory] = useState([]);
 
 
+
+
 const getLastWeight = async () => {
     try {
       const lastWeight = await AsyncStorage.getItem('lastWeight');
@@ -117,6 +119,7 @@ const getLastWeight = async () => {
       setName('');
       setMoves([]);
       setWorkoutHistory(prevWorkoutHistory => [...prevWorkoutHistory, workout]);
+
 
     } catch (error) {
       console.error(error);
