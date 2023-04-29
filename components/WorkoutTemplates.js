@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AntDesign } from '@expo/vector-icons';
 import { Button } from '@rneui/base';
 import { useNavigation } from '@react-navigation/native';
-import {WorkoutForm} from './WorkoutForm';
+import {WorkoutForm, getLastWeight} from './WorkoutForm';
 
 const WorkoutList = () => {
   const [workouts, setWorkouts] = useState([]);
