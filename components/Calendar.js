@@ -15,7 +15,21 @@ const WorkoutCalendar = () => {
 
 
   useEffect(() => {
-    async function getWorkoutHistory() {
+    AsyncStorage.getItem('@WorkoutHistory').then((value) => 
+    {
+      if(value) {
+        const workoutHistory = JSON.parse(value)
+        const newMarkedDates = {};
+        workoutHistory.forEach((workout) => {
+          const date = new Date(workout.date).toISOString().split('T')[0];
+          newMarkedDates[date] = { marked: true };
+        });
+        setMarkedDates(newMarkedDates);
+      }
+    }
+    ).catch((e) => console.log(e))
+
+/*     async function getWorkoutHistory() {
       const workoutHistoryJSON = await AsyncStorage.getItem('@WorkoutHistory');
       const workoutHistory = JSON.parse(workoutHistoryJSON);
 
@@ -29,7 +43,7 @@ const WorkoutCalendar = () => {
       setMarkedDates(newMarkedDates);
     }
 
-    getWorkoutHistory();
+    getWorkoutHistory(); */
   }, []);
 
   const handleDayPress = (day) => {
