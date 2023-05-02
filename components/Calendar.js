@@ -60,23 +60,23 @@ const WorkoutCalendar = () => {
         onDayPress={handleDayPress}
       />
       {selectedWorkout && (
-        <View>
-        <Text style={{color: "#fff"}} >Workout for {new Date(selectedDate).toLocaleDateString()}</Text>
-        <Text style={{color: "#fff"}}>{selectedWorkout.name}</Text>
-        <Text style={{color: "#fff"}}>Moves:</Text>
-        {selectedWorkout.moves.map((move) => (
-          <View key={move.name}>
-            <Text style={{color: "#fff"}}>{move.name}</Text>
-            <Text style={{color: "#fff"}}>Sets:</Text>
-            {move.sets.map((set, index) => (
-              <View key={index}>
-                <Text style={{color: "#fff"}}>Set {index + 1}:</Text>
-                <Text style={{color: "#fff"}}>Weight: {set.weight} Reps: {set.reps}</Text>
-              </View>
-            ))}
-          </View>
-        ))}
-      </View>
+        <View style={[styles.container, { padding: 16 }]}>
+          <Text style={styles.title}>Workout for {new Date(selectedDate).toLocaleDateString()}</Text>
+          <Text style={styles.workoutName}>{selectedWorkout.name}</Text>
+          <Text style={styles.subTitle}>Moves:</Text>
+          {selectedWorkout.moves.map((move) => (
+            <View key={move.name}>
+              <Text style={styles.moveName}>{move.name}</Text>
+              <Text style={styles.setsTitle}>Sets:</Text>
+              {move.sets.map((set, index) => (
+                <View key={index} style={styles.setsContainer}>
+                  <Text style={styles.setNumber}>Set {index + 1}:</Text>
+                  <Text style={styles.weightAndReps}>Weight: {set.weight} Reps: {set.reps}</Text>
+                </View>
+              ))}
+            </View>
+          ))}
+        </View>
       )}
     </ScrollView>
   );

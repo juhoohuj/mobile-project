@@ -12,27 +12,22 @@ const insets = useSafeAreaInsets();
 return (
     <View style={styles.container}>
         <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-            <Text style={styles.headerStyle}>GYM APP</Text>
-
-
-
+            <Text style={styles.headerStyle}>Colossus</Text>
 
         <View style={{marginRight: 20, marginLeft: 20, marginBottom: 10 }}>
-        <CalendarScreen></CalendarScreen>
-       {/*  <TouchableOpacity onPress={() => navigation.navigate('CalendarScreen')}
-        >
+        {/* <CalendarScreen></CalendarScreen> */}
+        <TouchableOpacity onPress={() => navigation.navigate('CalendarScreen')}>
            <ImageBackground style={{borderRadius: 20, overflow: "hidden"}} source={require('../assets/boxikuva1.jpg')}>
                     <View style={{height: 180, alignItems: "center", justifyContent: "center"}}>
-                        <Text style={styles.imageText}>Kalenteri?</Text>
+                        <Text style={styles.imageText}>Calendar</Text>
                     </View>
                 </ImageBackground>
-            </TouchableOpacity>  */}
+            </TouchableOpacity> 
         </View>
 
         <View style={{marginRight: 20, marginLeft: 20, marginBottom: 10}}>
-        <TouchableOpacity
-        onPress={() => navigation.navigate('LogWorkoutScreen')}
-        >
+        <TouchableOpacity onPress={() => navigation.navigate('LogWorkoutScreen')}>
+            
                 <ImageBackground style={{borderRadius: 20, overflow: "hidden"}} source={require('../assets/boxikuva2.jpg')}>
                     <View style={{height: 180, alignItems: "center", justifyContent: "center"}}>
                         <Text style={styles.imageText}>Log workout</Text>
