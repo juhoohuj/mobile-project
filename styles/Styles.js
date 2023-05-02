@@ -227,7 +227,7 @@ export default StyleSheet.create({
     weightAndReps: {
       fontSize: 14,
       color: "#fff",
-    },,
+    },
 
     AddScreenContainer : {
       flex: 1,
