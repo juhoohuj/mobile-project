@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Button } from '@rneui/base';
 import WorkoutForm from "./WorkoutForm";
 import { useNavigation } from "@react-navigation/native";
-import WorkoutTemplates from "./WorkoutTemplates";
+import WorkoutTemplates, { WorkoutList } from "./WorkoutTemplates";
 import Styles from "../styles/Styles";
 
 const AddScreenTheme = {
@@ -72,6 +72,7 @@ const AddScreenTheme = {
             </View>
             <View>
                 <Text style={Styles.AddScreenText}>Templates</Text>
+                <WorkoutList />
             </View>
         </SafeAreaView>
     )
