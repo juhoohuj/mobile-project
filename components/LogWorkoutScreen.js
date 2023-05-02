@@ -13,9 +13,9 @@ const LogWorkoutScreen = ({ navigation }) => {
     return (
       <View style={styles.container}>
         <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-        <Text style={styles.headerStyle}>LOG WORKOUT</Text>
-        <HomeScreenWorkouts />
-        {/* <WorkoutCalendar /> */}
+          <Text style={styles.headerStyle}>LOG WORKOUT</Text>
+          <HomeScreenWorkouts />
+          {/* <WorkoutCalendar /> */}
         </ImageBackground>
       </View>
     )
