@@ -14,21 +14,46 @@ const WorkoutCalendar = () => {
   // const workout = {key: 'workout', color: 'green'};
 
 
+  // useEffect(() => {
+  //   async function getWorkoutHistory() {
+  //     const workoutHistoryJSON = await AsyncStorage.getItem('@WorkoutHistory');
+  //     const workoutHistory = JSON.parse(workoutHistoryJSON);
+
+  //     const newMarkedDates = {};
+
+  //     workoutHistory.forEach((workout) => {
+  //       const date = new Date(workout.date).toISOString().split('T')[0];
+  //       newMarkedDates[date] = { marked: true };
+  //     });
+
+  //     setMarkedDates(newMarkedDates);
+  //   }
+
+  //   getWorkoutHistory();
+  // }, []);
+
   useEffect(() => {
     async function getWorkoutHistory() {
-      const workoutHistoryJSON = await AsyncStorage.getItem('@WorkoutHistory');
-      const workoutHistory = JSON.parse(workoutHistoryJSON);
-
-      const newMarkedDates = {};
-
-      workoutHistory.forEach((workout) => {
-        const date = new Date(workout.date).toISOString().split('T')[0];
-        newMarkedDates[date] = { marked: true };
-      });
-
-      setMarkedDates(newMarkedDates);
+      try {
+        const workoutHistoryJSON = await AsyncStorage.getItem('@WorkoutHistory');
+  
+        if (workoutHistoryJSON !== null) {
+          const workoutHistory = JSON.parse(workoutHistoryJSON);
+  
+          const newMarkedDates = {};
+  
+          workoutHistory.forEach((workout) => {
+            const date = new Date(workout.date).toISOString().split('T')[0];
+            newMarkedDates[date] = { marked: true };
+          });
+  
+          setMarkedDates(newMarkedDates);
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
-
+  
     getWorkoutHistory();
   }, []);
 
