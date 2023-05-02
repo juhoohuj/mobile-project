@@ -1,5 +1,5 @@
 import React, { useEffect, useState  } from 'react';
-import { FlatList, Text, TouchableOpacity, View, Button } from 'react-native';
+import { FlatList, Text, TouchableOpacity, View, Button, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Styles from '../styles/Styles';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -61,6 +61,7 @@ const addToWorkoutHistory = async (workout) => {
     }
     workoutHistory.push(workoutWithDate);
     await AsyncStorage.setItem('@WorkoutHistory', JSON.stringify(workoutHistory));
+    Alert.alert("Workout added to history")
     console.log("Workout added to history")
     console.log(JSON.stringify(workoutHistory))
   } catch (e) {

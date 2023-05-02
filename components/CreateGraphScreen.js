@@ -108,7 +108,7 @@ const CreateGraphScreen = () => {
         title="Create Graph"
         onPress={createGraph}
       />
-      {graphs.map((graph) => {
+            {graphs && graphs.map((graph) => {
         return (
           <View style={styles.graphContainer} key={graph.graphName+graph.graphUnits}>
             <Text style={styles.graphName}>{graph.graphName}</Text>

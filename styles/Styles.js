@@ -191,14 +191,16 @@ export default StyleSheet.create({
     title: {
       fontSize: 24,
       color: "#fff",
-      marginBottom: 8,
+      // marginBottom: 8,
       alignSelf: "center",
     },
     workoutName: {
       alignSelf: "center",
       fontSize: 20,
       color: "#fff",
-      marginBottom: 8,
+      marginTop: 8,
+      borderBottomWidth: 2,
+      borderBottomColor: "gray",
     },
     subTitle: {
       fontSize: 16,
