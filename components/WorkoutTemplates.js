@@ -82,7 +82,7 @@ const WorkoutList = () => {
           ))}
         </TouchableOpacity>
       ))}
-      <Button title="Create New Workout" onPress={() => navigation.navigate("WorkoutForm")} />
+      <Button title="Create New Template" onPress={() => navigation.navigate("WorkoutForm")} />
     </ScrollView>
   );
 };
