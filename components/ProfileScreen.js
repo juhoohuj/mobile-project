@@ -1,10 +1,12 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, SafeAreaView } from "react-native";
 import styles from "../styles/Styles";
 import Card from "../components/Card";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState, useEffect } from "react";
 import { useIsFocused } from "@react-navigation/native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
 
 
 const ProfileScreen = ({ navigation }) => {
@@ -98,6 +100,7 @@ const ProfileScreen = ({ navigation }) => {
     getWorkoutHistory();
   }, [isFocused]);
 
+  const insets = useSafeAreaInsets();
 
 
   const ProfileInfoText = ({ label, value, units }) => {
@@ -111,8 +114,8 @@ const ProfileScreen = ({ navigation }) => {
 
 
     return (
-        <View style={[styles.container]}>
-          <Text style={styles.headerStyle}>Profile</Text>
+      <SafeAreaView style={[styles.container, {paddingTop: insets.top}]}>
+      <Text style={styles.headerStyle}>Profile</Text>
 
       <View style={{height: 200, backgroundColor: "#3f3f3f", margin: 10, borderRadius: 25, padding: 8}}>
             <Text style={styles.profileText}>Here are some stats for you!</Text>
@@ -127,7 +130,7 @@ const ProfileScreen = ({ navigation }) => {
               <Card navigation={navigation} cardText={"Graphs"} icon={"line-graph"}  destination={'Graphs'} />
               <Card navigation={navigation} cardText={"Other"} icon={"code"}  destination={'CreateGraphs'}/>
             </View>
-        </View>
+        </SafeAreaView>
     )
  }
 export {ProfileScreen}
