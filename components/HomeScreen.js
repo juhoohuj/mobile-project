@@ -12,7 +12,7 @@ const insets = useSafeAreaInsets();
 return (
     <View style={styles.container}>
         <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-            <Text style={styles.headerStyle}>Colossus</Text>
+            <Text style={styles.headerStyle}>COLOSSUS</Text>
 
         <View style={{marginRight: 20, marginLeft: 20, marginBottom: 10 }}>
         {/* <CalendarScreen></CalendarScreen> */}
