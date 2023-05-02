@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AntDesign } from '@expo/vector-icons';
 import { Button } from '@rneui/base';
 import { useNavigation } from '@react-navigation/native';
-import {WorkoutForm, getLastWeight} from './WorkoutForm';
+import {WorkoutForm} from './WorkoutForm';
 
 const WorkoutList = () => {
   const [workouts, setWorkouts] = useState([]);
@@ -25,6 +25,7 @@ const WorkoutList = () => {
     loadWorkouts();
   }, []);
 
+  //Navigoi WorkoutFormiin ja lähettää valitun templaten mukana
   const handleWorkoutPress = (workout) => {
     navigation.navigate('WorkoutForm', { workout });
     console.log(workout)
@@ -34,6 +35,7 @@ const WorkoutList = () => {
     setSelectedWorkout(null);
   };
 
+  //Poistaa templaten AsyncStoragestä
   const handleDeleteWorkout = async (workoutIndex) => {
     try {
       const newWorkouts = [...workouts];
