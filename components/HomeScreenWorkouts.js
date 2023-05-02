@@ -3,12 +3,12 @@ import { FlatList, Text, TouchableOpacity, View, Button, Alert } from 'react-nat
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Styles from '../styles/Styles';
 import { MaterialIcons } from '@expo/vector-icons';
-import { useIsFocused } from "@react-navigation/native";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
 
 const HomeScreenWorkouts = () => {
   const isFocused = useIsFocused();
-
   const [data, setData] = useState([]);
+  const navigation = useNavigation();
 
   useEffect(() => {
     const getData = async () => {
@@ -25,19 +25,6 @@ const HomeScreenWorkouts = () => {
     getData();
   }, [isFocused]);
 
-
-
-//   const getData = async () => {
-//     try {
-//       const jsonValue = await AsyncStorage.getItem('workouts');
-//       if (jsonValue != null) {
-//         setData(JSON.parse(jsonValue));
-//       }
-//     } catch (e) {
-//       console.error(e);
-//     }
-//   };
-
   const [expandedIds, setExpandedIds] = useState([]);
 
   const toggleExpanded = (id) => {
@@ -51,24 +38,6 @@ const HomeScreenWorkouts = () => {
 
 console.log(expandedIds)
 
-const addToWorkoutHistory = async (workout) => {
-  const workoutWithDate = { ...workout, date: new Date().toISOString() };
-  try {
-    const jsonValue = await AsyncStorage.getItem('@WorkoutHistory');
-    let workoutHistory = [];
-    if (jsonValue != null) {
-      workoutHistory = JSON.parse(jsonValue);
-    }
-    workoutHistory.push(workoutWithDate);
-    await AsyncStorage.setItem('@WorkoutHistory', JSON.stringify(workoutHistory));
-    Alert.alert("Workout added to history")
-    console.log("Workout added to history")
-    console.log(JSON.stringify(workoutHistory))
-  } catch (e) {
-    console.error(e);
-  }
-  
-};
 
 // function to delete workoutHistory
 const deleteWorkoutHistory = async () => {
@@ -82,36 +51,17 @@ const deleteWorkoutHistory = async () => {
 
   const RenderItem = ({ index, id, name, moves }) => (
     <View style={{
-        borderBottomColor: "#fff",
-        borderBottomWidth: 2,
-        marginBottom: 6,
+        borderColor: "#fff",
+        borderWidth: 2,
+        margin: 8,
+        padding: 8
         }}>
-      <TouchableOpacity onPress={() => toggleExpanded(index)} style={Styles.homeScreenItem}>
-        <Text style={{fontSize: 24, color: "#FFF"}}>{name}</Text>
-        <MaterialIcons name="expand-more" size={24} color="white" />
-      </TouchableOpacity>
-      {expandedIds.includes(index) &&
-        moves.map(({ name: moveName, sets }) => (
-          <View key={`${moveName}-${id}`}  style={{alignItems: 'center'}}>
-            <Text style={{color: "#fff", fontSize: 22, marginBottom: 6}}>{moveName}</Text>
-            {sets.map(({ weight, reps }, index) => (
-              <View key={`${weight}-${reps}-${index}`}>
-                <Text style={{color: "#fff", fontSize: 16}} >Weight: {weight}</Text>
-                <Text style={{color: "#fff", fontSize: 16, marginBottom: 6}} >Reps: {reps}</Text>
-              </View>
-            ))}
-          </View>
-        ))}
-        <View style={{ alignItems: 'center' }}>
-          <TouchableOpacity onPress={() => addToWorkoutHistory({ name, moves })}>
-            <MaterialIcons name="add-circle" size={54} color="white" />
+          <TouchableOpacity onPress={() => navigation.navigate("LogWorkoutForm", {workout: {
+            name: name, 
+            moves: moves
+          }})} >
+          <Text style={{fontSize: 24, color: "#FFF"}}>{name}</Text>
           </TouchableOpacity>
-        </View>
-                {/* <Button
-                title="Add to Workout History"
-                onPress={() => addToWorkoutHistory({ name, moves })}
-              /> */}
-              
     </View>
   );
 
@@ -123,12 +73,12 @@ const deleteWorkoutHistory = async () => {
 
   return (
     <>
-  <FlatList data={data} renderItem={renderItem} keyExtractor={keyExtractor} /> 
+      <FlatList data={data} renderItem={renderItem} keyExtractor={keyExtractor} /> 
 
-      <Button
+   {/*    <Button
       title="Delete"
       onPress={() => deleteWorkoutHistory()}
-    />
+    /> */}
 </>
   );
 };

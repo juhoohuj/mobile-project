@@ -27,7 +27,6 @@ return (
 
         <View style={{marginRight: 20, marginLeft: 20, marginBottom: 10}}>
         <TouchableOpacity onPress={() => navigation.navigate('LogWorkoutScreen')}>
-            
                 <ImageBackground style={{borderRadius: 20, overflow: "hidden"}} source={require('../assets/boxikuva2.jpg')}>
                     <View style={{height: 180, alignItems: "center", justifyContent: "center"}}>
                         <Text style={styles.imageText}>Log workout</Text>
