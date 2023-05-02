@@ -5,9 +5,6 @@ import { AntDesign } from '@expo/vector-icons';
 import { Button } from '@rneui/base';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { WorkoutList } from './WorkoutTemplates';
-
-
-
 //Workoutin lisäämisen komponenttti
 const WorkoutForm = () => {
   const navigation = useNavigation();
@@ -15,58 +12,14 @@ const WorkoutForm = () => {
   const { workout } = route.params || {};
   const [name, setName] = useState(workout?.name || '');
   const [moves, setMoves] = useState(workout?.moves || []);
-  const [weight, setWeight] = useState('');
-  const [sets, setSets] = useState([{ weight: '', reps: '' }]);
-
-  const [lastWeight, setLastWeight] = useState(null);
-
-
-const getLastWeight = async () => {
-    try {
-      const lastWeight = await AsyncStorage.getItem('lastWeight');
-      return lastWeight ? JSON.parse(lastWeight) : null;
-    } catch (error) {
-      console.log('Error retrieving last weight from AsyncStorage:', error);
-    }
-  };
-  
-  const saveLastWeight = async (weight) => {
-    try {
-      await AsyncStorage.setItem('lastWeight', JSON.stringify(weight));
-      console.log('Last weight saved successfully.');
-    } catch (error) {
-      console.log('Error saving last weight to AsyncStorage:', error);
-    }
-  };
-  
-/*  Old code : maybe delet useEffect(() => {
-    if (weight) {
-      saveLastWeight(weight);
-      setLastWeight(weight);
-    }
-  }, [weight]);
-   */
-
-  const handleSaveWeight = (weight) => {
-    // Save the weight to your workout tracking system
-  
-    // Update the last weight in local storage
-    saveLastWeight(weight);
-  
-    // Update the last weight in the component state
-    setLastWeight(weight);
-  };
-  
 
 
   useEffect(() => {
     if (route.params?.workout) {
       setName(workout.name)
-      setMoves(workout.moves)
-      saveLastWeight(weight);
-      setLastWeight(weight);;
+      setMoves(workout.moves);
     }
-  }, [route.params?.workout, weight],);
+  }, [route.params?.workout]);
 
   const clearInputs = () => {
     setName('');
@@ -78,19 +31,23 @@ const getLastWeight = async () => {
     const newMove = { name: '', sets: [{ weight: '', reps: '' }] };
     setMoves([...moves, newMove]);
   };
-
   const handleDeleteMove = (moveIndex) => {
     const newMoves = [...moves];
     newMoves.splice(moveIndex, 1);
     setMoves(newMoves);
   };
-
+  //Uuden sarjan lisääminen liikkeeseen
+  const handleAddSet = (moveIndex) => {
+    const newSet = { weight: '', reps: '' };
+    const newMoves = [...moves];
+    newMoves[moveIndex].sets.push(newSet);
+    setMoves(newMoves);
+  };
   const handleDeleteSet = (moveIndex, setIndex) => {
     const newMoves = [...moves];
     newMoves[moveIndex].sets.splice(setIndex, 1);
     setMoves(newMoves);
   };
-
   //Uuden workoutin tallennus AsyncStorageen
   const handleSaveWorkout = async () => {
     try {
@@ -107,29 +64,19 @@ const getLastWeight = async () => {
       Alert.alert('An error occurred while saving the workout.');
     }
   };
-
-  const handleAddSet = (moveIndex) => {
-    const lastSet = moves[moveIndex].sets[moves[moveIndex].sets.length - 1];
-    const newSet = { weight: lastSet.weight, reps: lastSet.reps };
-    const newMoves = [...moves];
-    newMoves[moveIndex].sets = [...newMoves[moveIndex].sets, newSet];
-    setMoves(newMoves);
-  };
-   
-return (
-  <ScrollView style={styles.container}>
-    <Text>Workout Name</Text>
-    <TextInput
-      style={styles.input}
-      placeholder="Workout Name"
-      value={name}
-      onChangeText={text => setName(text)}
-    />
-
-    <Text>Moves</Text>
-    {moves.map((move, moveIndex) => (
-      <View key={moveIndex} style={styles.moveContainer}>
-        <View style={styles.inputContainer}>
+  return (
+    <ScrollView style={styles.container}>
+      <Text>Workout Name</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Workout Name"
+        value={name}
+        onChangeText={text => setName(text)}
+      />
+      <Text>Moves</Text>
+      {moves.map((move, moveIndex) => (
+        <View key={moveIndex} style={styles.moveContainer}>
+          <View style={styles.inputContainer}>
           <TextInput
             style={styles.moveInput}
             placeholder="Move Name"
@@ -140,80 +87,64 @@ return (
               setMoves(newMoves);
             }}
           />
-          <Button
-            onPress={() => handleDeleteMove(moveIndex)}
-            type="clear"
-            icon={<AntDesign name="minuscircleo" size={24} color="black" />}
-          />
-        </View>
-
-        {move.sets.map((set, setIndex) => (
-          <View key={setIndex} style={styles.setContainer}>
-            <Text style={{ alignSelf: 'center', justifyContent: 'space-between', marginHorizontal: 10 }}>
-              Set {setIndex + 1}
-            </Text>
-            <TextInput
-              style={styles.setInput}
-              placeholder="Weight"
-              keyboardType="numeric"
-              value={set.weight}
-              onChangeText={text => {
-                const newMoves = [...moves];
-                newMoves[moveIndex].sets[setIndex].weight = text;
-                setMoves(newMoves);
-              }}
-            />
-            <TextInput
-              style={styles.setInput}
-              placeholder="Reps"
-              keyboardType="numeric"
-              value={set.reps}
-              onChangeText={text => {
-                const newMoves = [...moves];
-                newMoves[moveIndex].sets[setIndex].reps = text;
-                setMoves(newMoves);
-              }}
-            />
             <Button
-              icon={<AntDesign name="delete" size={24} color="black" />}
-              onPress={() => handleDeleteSet(moveIndex, setIndex)}
+              onPress={() => handleDeleteMove(moveIndex)}
               type="clear"
+              icon={
+                <AntDesign name="minuscircleo" size={24} color="black" />
+              }
             />
           </View>
-        ))}
-
-        <Button
-          title="Add Set"
-          type="clear"
-          onPress={() => handleAddSet(moveIndex)}
-        />
+          {move.sets.map((set, setIndex) => (
+            <View key={setIndex} style={styles.setContainer}>
+              <Text style={{alignSelf:'center', justifyContent:'space-between', marginHorizontal:10,}}>Set {setIndex + 1}</Text>
+              <TextInput
+                style={styles.setInput}
+                placeholder="Weight"
+                keyboardType="numeric"
+                value={set.weight}
+                onChangeText={text => {
+                  const newMoves = [...moves];
+                  newMoves[moveIndex].sets[setIndex].weight = text;
+                  setMoves(newMoves);
+                }}
+              />
+              <TextInput
+                style={styles.setInput}
+                placeholder="Reps"
+                keyboardType="numeric"
+                value={set.reps}
+                onChangeText={text => {
+                  const newMoves = [...moves];
+                  newMoves[moveIndex].sets[setIndex].reps = text;
+                  setMoves(newMoves);
+                }}
+              />
+              <Button
+                icon={
+                  <AntDesign name="delete" size={24} color="black" />
+                }
+                onPress={() => handleDeleteSet(moveIndex, setIndex)}
+                type="clear"
+              />
+            </View>
+          ))}
+          <Button title="Add Set" type='clear' onPress={() => handleAddSet(moveIndex)} />
+        </View>
+      ))}
+      <View style={styles.buttonContainer}>
+        <Button title="Add Move" type='clear' onPress={handleAddMove} />
+        <Button title="Save Workout" type='clear' onPress={handleSaveWorkout} />
       </View>
-    ))}
 
-    <View style={styles.buttonContainer}>
-      <Button title="Add Move" type="clear" onPress={handleAddMove} />
-      <Button
-        title="Save Workout"
-        type="clear"
-        onPress={() => {
-          handleSaveWorkout();
-          handleSaveWeight();
-        }}
-      />
-    </View>
-
-    <View>
-      <Button title="Clear" onPress={clearInputs} />
-      <Button
-        title="Templates"
-        onPress={() => navigation.navigate("WorkoutTemplates")}
-      />
+      <View>
+        <Button title="Clear" onPress={clearInputs} />
+      <Button title="Templates" onPress={() => navigation.navigate("WorkoutTemplates")}/>
       <Text></Text>
-    </View>
-  </ScrollView>
-);
-
-      };
+      </View>
+    </ScrollView>
+  );
+};
 const styles = StyleSheet.create({
   container: {
     padding: 16,
@@ -248,7 +179,6 @@ const styles = StyleSheet.create({
   setContainer: {
     flexDirection: 'row', 
   },
-
   inputContainer: {
     display: 'flex',
     flexDirection: 'row',
@@ -256,6 +186,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
-
 export {WorkoutForm};
