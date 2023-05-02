@@ -177,7 +177,7 @@ export default StyleSheet.create({
       textDayHeaderFontSize: 17,
       // dayTextColor: '#2d4150',
       textDisabledColor: 'black',
-      dotColor: '#002222',
+      dotColor: '#40c791',
       indicatorColor: '#020887',
       dayTextColor: 'white',
     },
@@ -188,6 +188,46 @@ export default StyleSheet.create({
       borderWidth: 2,
       borderRadius: 10,
     },
+    title: {
+      fontSize: 24,
+      color: "#fff",
+      marginBottom: 8,
+      alignSelf: "center",
+    },
+    workoutName: {
+      alignSelf: "center",
+      fontSize: 20,
+      color: "#fff",
+      marginBottom: 8,
+    },
+    subTitle: {
+      fontSize: 16,
+      color: "#fff",
+      marginBottom: 8,
+    },
+    moveName: {
+      fontSize: 18,
+      color: "#fff",
+      marginBottom: 8,
+    },
+    setsTitle: {
+      fontSize: 16,
+      color: "#fff",
+      marginBottom: 8,
+      marginLeft: 16,
+    },
+    setsContainer: {
+      marginLeft: 32,
+    },
+    setNumber: {
+      fontSize: 14,
+      color: "#fff",
+      marginBottom: 4,
+    },
+    weightAndReps: {
+      fontSize: 14,
+      color: "#fff",
+    },,
 
     AddScreenContainer : {
       flex: 1,

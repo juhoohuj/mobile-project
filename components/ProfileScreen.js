@@ -45,7 +45,7 @@ const ProfileScreen = ({ navigation }) => {
     async function getData() {
       try {
         const weightHistory = await AsyncStorage.getItem("@savedGraphDataWeight");
-        if (latestWeight !== null) {
+        if (weightHistory !== null) {
           const { mainDataPoint } = JSON.parse(weightHistory);
           setLatestWeight(mainDataPoint[mainDataPoint.length - 1])
   
