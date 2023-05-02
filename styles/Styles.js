@@ -269,6 +269,59 @@ export default StyleSheet.create({
       padding: 10,
     },
 
+    formContainer: {
+      flex: 1,
+      backgroundColor: "#191D32",
+    },
+    
+    formInput: {
+      height: 40,
+      borderColor: 'gray',
+      borderWidth: 1,
+      marginBottom: 16,
+      paddingHorizontal: 8,
+      color: "#ffffff",
+    },
+    moveContainer: {
+      marginBottom: 16,
+      borderBottomWidth: 1,
+    },
+    moveInput: {
+      height: 40,
+      borderColor: 'gray',
+      borderBottomWidth: 1,
+      marginBottom: 8,
+      paddingHorizontal: 8,
+      color: "#ffffff",
+    },
+    setInput: {
+      height: 40,
+      width: 100,
+      borderColor: 'gray',
+      borderWidth: 1,
+      padding:8,
+      marginRight: 8,
+      marginBottom: 8,
+      color: "#ffffff",
+    },
+    setContainer: {
+      flexDirection: 'row', 
+    },
+    inputContainer: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+    },
 
+    formText: {
+      color: "#ffffff",
+      fontSize: 20,
+      fontFamily: 'RobotoCondensed-Regular',
+      textShadowColor: 'rgba(0, 0, 0, 1)', 
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius: 10,
+      padding: 10,
+    },
 });
 
