@@ -65,7 +65,7 @@ const WorkoutList = () => {
           <View style={styles.workoutHeader}>
             <Text style={styles.workoutName}>{workout.name}</Text>
             <Button
-              icon={<AntDesign name="delete" size={24} color="black" />}
+              icon={<AntDesign name="delete" size={24} color="#ffffff" />}
               onPress={() => handleDeleteWorkout(workoutIndex)}
               type="clear"
             />
@@ -90,6 +90,8 @@ const WorkoutList = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
+    backgroundColor: "#191D32",
+    color: '#ffffff',
   },
   workoutContainer: {
     marginBottom: 16,
@@ -103,6 +105,7 @@ const styles = StyleSheet.create({
   },
   workoutName: {
     fontSize: 20,
+    color: '#ffffff',
   },
   moveContainer: {
     marginBottom: 8,
@@ -110,12 +113,14 @@ const styles = StyleSheet.create({
   moveName: {
     fontSize: 16,
     marginBottom: 4,
+    color: '#ffffff',
   },
   setContainer: {
     marginBottom: 4,
   },
   setDetails: {
     fontSize: 14,
+    color: '#ffffff',
   },
 });
 
