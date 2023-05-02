@@ -3,11 +3,12 @@ import { Text, Platform} from 'react-native';
 import { Dimensions } from 'react-native';
 
 
+
+
 export default StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: "#191D32",
-      borderRadius: 10,
     },
     bottomNav: {
       backgroundColor: "#334195",
@@ -186,7 +187,46 @@ export default StyleSheet.create({
       borderColor: 'white',
       borderWidth: 2,
       borderRadius: 10,
-    }
+    },
+
+    AddScreenContainer : {
+      flex: 1,
+      backgroundColor: "#191D32",
+    },   
+
+    AddScreenText : {
+      color: "#ffffff",
+      fontSize: 20,
+      fontFamily: 'RobotoCondensed-Regular',
+      textAlign: 'center',
+      textShadowColor: 'rgba(0, 0, 0, 1)',
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius: 10
+    },
+
+    AddScreenButton : {
+      fontSize: 18,
+      color: "#ffffff",
+      textAlign: "center",
+      backgroundColor: "#334195",
+      padding: 6,
+      borderRadius: 25,
+      minWidth: 50,
+      margin: 10,
+      fontFamily: 'RobotoCondensed-Regular',
+    },
+    
+    AddScreenText : {
+      color: "#ffffff",
+      fontSize: 30,
+      fontFamily: 'RobotoCondensed-Regular',
+      textAlign: 'center',
+      textShadowColor: 'rgba(0, 0, 0, 1)',
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius: 10,
+      padding: 10,
+    },
+
 
 });
 

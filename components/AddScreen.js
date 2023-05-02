@@ -1,12 +1,11 @@
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, SafeAreaView, TouchableOpacity } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState, useEffect } from "react";
-import { Button } from "react-native";
-import { TextInput } from "react-native";
-import { useSafeAreaInsets,} from 'react-native-safe-area-context';
+import { Button } from '@rneui/base';
 import WorkoutForm from "./WorkoutForm";
 import { useNavigation } from "@react-navigation/native";
 import WorkoutTemplates from "./WorkoutTemplates";
+import Styles from "../styles/Styles";
 
 const AddScreenTheme = {
     //color:'#ffffff',
@@ -14,25 +13,11 @@ const AddScreenTheme = {
 };
 
 
-
-
-
  const AddScreen = () => {
     const [value, setValue] = useState("");
-    const [text, setText] = useState("");
     const navigation = useNavigation();
-    const deleteWorkouts = async () => {
-        try {
-            await AsyncStorage.removeItem('workouts');
-            alert("Data successfully deleted")
-        } catch (error) {
-            console.log(error);
-            alert("Something went wrong")
-        }
-    };
     
-    
-    
+
     const getWorkouts = async () => {
         try {
           const workouts = await AsyncStorage.getItem('workouts');
@@ -74,22 +59,21 @@ const AddScreenTheme = {
         getData();  
     }
 
-    
-    const insets = useSafeAreaInsets();
+
     return (
-        <ScrollView style={{paddingTop: insets.top, }}>
-            <View  >
-                <Text>{text}</Text>
+        <SafeAreaView style={Styles.AddScreenContainer}>
+            <View>
+                <Text style={Styles.AddScreenText}>Manage workouts</Text>
             </View>
             <View>
-                <Button title="Create new" onPress={() => navigation.navigate("WorkoutForm")}/>
+                <TouchableOpacity style={Styles.AddScreenButton} onPress={() => navigation.navigate("WorkoutForm")}>
+                    <Text style={Styles.AddScreenButton}>Create new workout</Text>
+                </TouchableOpacity>
             </View>
             <View>
-                <Button title="GET WORKOUTS" onPress={getWorkouts}/>
-                {/* <Button title="delete workouts" onPress={deleteWorkouts}/> */}
-                
+                <Text style={Styles.AddScreenText}>Templates</Text>
             </View>
-        </ScrollView>
+        </SafeAreaView>
     )
 
     

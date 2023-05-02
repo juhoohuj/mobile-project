@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AntDesign } from '@expo/vector-icons';
 import { Button } from '@rneui/base';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { WorkoutList } from './WorkoutTemplates';
+
 //Workoutin lisäämisen komponenttti
 const WorkoutForm = () => {
   const navigation = useNavigation();
