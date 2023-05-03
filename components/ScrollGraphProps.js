@@ -139,19 +139,34 @@ function handleAddWeight(){
   }
 
 function handleRangeButtonPress(increment) {
-  const newIndex = currentIndex + increment;
+    newIndex = currentIndex + increment;
 
-  // Check if the new index is out of bounds
-  if (newIndex < 0) {
-      setCurrentIndex(0);
+    // console.log("")
+    // console.log("")
 
-    // Check if the new index is out of bounds
-  } else if (newIndex > mainDataPoint.length - itemsPerPage) {
-      setCurrentIndex(mainDataPoint.length - itemsPerPage);
-  } else { 
-    setCurrentIndex(newIndex); // If the new index is in bounds, set it as the current index
-  }
+    // console.log("Main data point length: " + mainDataPoint.length)
+    // console.log("New index: " + newIndex)
+    // console.log("Current index: " + currentIndex)
+
+    // console.log("")
+    // console.log("")
+
+    if (newIndex <= 0) {
+      newIndex = 0;
+      setCurrentIndex(newIndex);
+    } else if (newIndex >= mainDataPoint.length - itemsPerPage) {
+      newIndex = mainDataPoint.length - itemsPerPage;
+      
+      if (newIndex < 0){
+        setCurrentIndex(0)
+      } 
+      else {
+      setCurrentIndex(newIndex);
+      }
+    }
 };
+
+
   // const newValue = inputValue.replace(/[^0-9.]/g, '');
   
 function handleInputChange(inputValue) {
