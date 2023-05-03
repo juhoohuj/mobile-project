@@ -92,7 +92,7 @@ const LogWorkoutForm = () => {
     <ScrollView style={styles.scrollView} >
       <Text style={Styles.formText}>Workout Name</Text>
       <TextInput
-        style={styles.input}
+        style={Styles.formInput}
         placeholder="Workout Name"
         value={name}
         onChangeText={text => setName(text)}
@@ -104,7 +104,7 @@ const LogWorkoutForm = () => {
           <TextInput
             style={Styles.moveInput}
             placeholder="Move Name"
-            placeholderTextColor="gray" 
+            placeholderTextColor="#ffffff" 
 
             value={move.name}
             onChangeText={text => {
@@ -117,7 +117,7 @@ const LogWorkoutForm = () => {
               onPress={() => handleDeleteMove(moveIndex)}
               type="clear"
               icon={
-                <AntDesign name="minuscircleo" size={24} color="black" />
+                <AntDesign name="minuscircleo" size={24} color="red" />
               }
             />
           </View>
@@ -125,7 +125,7 @@ const LogWorkoutForm = () => {
             <View key={setIndex} style={styles.setContainer}>
               <Text style={{alignSelf:'center', justifyContent:'space-between', marginHorizontal:10,color:"#ffffff"}}>Set {setIndex + 1}</Text>
               <TextInput
-                style={styles.setInput}
+                style={Styles.setInput}
                 placeholder="Weight"
                 keyboardType="numeric"
                 value={set.weight}
@@ -136,7 +136,7 @@ const LogWorkoutForm = () => {
                 }}
               />
               <TextInput
-                style={styles.setInput}
+                style={Styles.setInput}
                 placeholder="Reps"
                 keyboardType="numeric"
                 value={set.reps}
