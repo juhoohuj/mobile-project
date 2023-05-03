@@ -132,42 +132,44 @@ function handleAddWeight(){
     const newIndex = currentIndex + 1;
     
     // Set current index to the last page but only if length is greater than items per page
-    if (mainDataPoint.length > itemsPerPage) {
+    if (mainDataPoint.length >= itemsPerPage) {
       setCurrentIndex(mainDataPoint.length - itemsPerPage + 1);
     }
 
   }
 
+
 function handleRangeButtonPress(increment) {
-    newIndex = currentIndex + increment;
+ // Minumum index is 0
+ // Maximum index is the length of the main data array minus the items per page value, but not less than 0
+  // If the new index is less than 0, set it to 0
+  // If the new index is greater than the maximum index, set it to the maximum index
+  // Otherwise, set the current index to the new index
+  const newIndex = currentIndex + increment;
+  const maxIndex = (mainDataPoint.length - itemsPerPage) < 0 ? 0  : mainDataPoint.length - itemsPerPage;
+  console.log("")
+  console.log("")
 
-    // console.log("")
-    // console.log("")
+  console.log("New: ", newIndex)
+  console.log("Max: ",maxIndex)
+  console.log("current: ",currentIndex)
 
-    // console.log("Main data point length: " + mainDataPoint.length)
-    // console.log("New index: " + newIndex)
-    // console.log("Current index: " + currentIndex)
+  console.log("")
+  console.log("")
 
-    // console.log("")
-    // console.log("")
+  if (newIndex < 0) {
+    setCurrentIndex(0);
+  }
+  else if (newIndex > maxIndex) {
+    setCurrentIndex(maxIndex);
+  }
+  else {
+    setCurrentIndex(newIndex);
+  }
 
-    if (newIndex <= 0) {
-      newIndex = 0;
-      setCurrentIndex(newIndex);
-    } else if (newIndex >= mainDataPoint.length - itemsPerPage) {
-      newIndex = mainDataPoint.length - itemsPerPage;
-      
-      if (newIndex < 0){
-        setCurrentIndex(0)
-      } 
-      else {
-      setCurrentIndex(newIndex);
-      }
-    }
 };
 
 
-  // const newValue = inputValue.replace(/[^0-9.]/g, '');
   
 function handleInputChange(inputValue) {
   setInputWeight(inputValue);
