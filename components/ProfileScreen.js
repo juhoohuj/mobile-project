@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, SafeAreaView } from "react-native";
+import { Text, View, SafeAreaView, ScrollView } from "react-native";
 import styles from "../styles/Styles";
 import Card from "../components/Card";
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -114,25 +114,27 @@ const ProfileScreen = ({ navigation }) => {
 
 
     return (
-      <SafeAreaView style={[styles.container, {paddingTop: insets.top}]}>
-      <Text style={styles.headerStyle}>PROFILE</Text>
+        <SafeAreaView style={[styles.container, {paddingTop: insets.top}]}>
+          <ScrollView>
+        <Text style={styles.headerStyle}>PROFILE</Text>
 
-      <View style={{height: 250, backgroundColor: "#0d2863", margin: 10, borderRadius: 25, padding: 3, borderColor: "#334195", borderWidth: 2}}>
-            <Text style={styles.profileHeader}>Here are some stats for you!</Text>
+        <View style={{height: 250, backgroundColor: "#0d2863", margin: 10, borderRadius: 25, padding: 3, borderColor: "#334195", borderWidth: 2}}>
+              <Text style={styles.profileHeader}>Here are some stats for you!</Text>
 
-        <ProfileInfoText label={"Latest weight:"} value={latestWeight} units={"kg"}/>
-        <ProfileInfoText label={"Total weight lifted:"} value={totalWeightLifted} units={"kg"}/>
-        <ProfileInfoText label={"Most weight lifted in a workout:"} value={mostWeightLifted} units={"kg"}/>
-        <ProfileInfoText label={"Total workouts completed:"} value={totalWorkoutsDone}/>
+          <ProfileInfoText label={"Latest weight:"} value={latestWeight} units={"kg"}/>
+          <ProfileInfoText label={"Total weight lifted:"} value={totalWeightLifted} units={"kg"}/>
+          <ProfileInfoText label={"Most weight lifted in a workout:"} value={mostWeightLifted} units={"kg"}/>
+          <ProfileInfoText label={"Total workouts completed:"} value={totalWorkoutsDone}/>
 
-          </View>
-            <View style={{flexDirection: "row", justifyContent: "space-around", padding: 4, marginBottom: 35, flexWrap: "wrap", rowGap: 5}}>
-              <Card navigation={navigation} cardText={"Graphs"} icon={"line-graph"}  destination={'Graphs'} />
-              <Card navigation={navigation} cardText={"Add Graphs"} icon={"plus"}  destination={'CreateGraphs'}/>
-              <Card navigation={navigation} cardText={"Add workout"} icon={"plus"}  destination={'AddScreen'}/>
-              <Card navigation={navigation} cardText={"Calendar"} icon={"calendar"}  destination={'CalendarScreen'}/>
             </View>
-        </SafeAreaView>
+              <View style={{flexDirection: "row", justifyContent: "space-around", padding: 4, marginBottom: 35, flexWrap: "wrap", rowGap: 5}}>
+                <Card navigation={navigation} cardText={"Graphs"} icon={"line-graph"}  destination={'Graphs'} />
+                <Card navigation={navigation} cardText={"Add Graphs"} icon={"plus"}  destination={'CreateGraphs'}/>
+                <Card navigation={navigation} cardText={"Add workout"} icon={"plus"}  destination={'AddScreen'}/>
+                <Card navigation={navigation} cardText={"Calendar"} icon={"calendar"}  destination={'CalendarScreen'}/>
+              </View>
+            </ScrollView>
+          </SafeAreaView>
     )
  }
 export {ProfileScreen}
