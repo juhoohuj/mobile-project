@@ -21,10 +21,15 @@ const WorkoutList = () => {
         console.error(error);
       }
     };
+  
+    const unsubscribe = navigation.addListener('focus', () => {
+      loadWorkouts();
+    });
+  
+    return unsubscribe;
+  }, [navigation]);
 
-    loadWorkouts();
-  }, [{workouts}]);
-
+  
   const handleWorkoutPress = (workoutIndex) => {
     if (selectedWorkout === workoutIndex) {
       setSelectedWorkout(null);
@@ -75,7 +80,7 @@ const WorkoutList = () => {
   
 
   return (
-    <SafeAreaView style={styles.container}>
+    <ScrollView style={styles.container}>
     {workouts.map((workout, workoutIndex) => (
       <View key={workoutIndex} style={styles.workoutContainer}>
         <TouchableOpacity
@@ -108,7 +113,7 @@ const WorkoutList = () => {
         )}
       </View>
       ))}
-    </SafeAreaView>
+      </ScrollView>
   );
 };
 
@@ -117,7 +122,6 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: "#191D32",
     color: '#ffffff',
-    margin: 16,
   },
   workoutContainer: {
     marginBottom: 16,

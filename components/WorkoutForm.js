@@ -61,6 +61,7 @@ const WorkoutForm = () => {
       Alert.alert('Workout saved successfully!');
       setName('');
       setMoves([]);
+      navigation.goBack();
     } catch (error) {
       console.error(error);
       Alert.alert('An error occurred while saving the workout.');
