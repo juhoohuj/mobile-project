@@ -34,10 +34,10 @@ const HomeScreen = ({navigation}) => {
         </View>
 
         <View style={{marginRight: 20, marginLeft: 20}}>
-          <TouchableOpacity>
-            <ImageBackground style={{borderRadius: 20, overflow: "hidden"}} source={require('../assets/boxikuva3.jpg')}>
+        <TouchableOpacity onPress={() => navigation.navigate('ProfileScreen')}>           
+         <ImageBackground style={{borderRadius: 20, overflow: "hidden"}} source={require('../assets/boxikuva3.jpg')}>
               <View style={{height: 180, alignItems: "center", justifyContent: "center"}}>
-                <Text style={styles.imageText}>Jotain?</Text>
+                <Text style={styles.imageText}>Profile</Text>
               </View>
             </ImageBackground>
           </TouchableOpacity>
