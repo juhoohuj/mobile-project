@@ -126,9 +126,11 @@ const ProfileScreen = ({ navigation }) => {
         <ProfileInfoText label={"Total workouts completed:"} value={totalWorkoutsDone}/>
 
           </View>
-            <View style={{flexDirection: "row", justifyContent: "space-around", padding: 2, flexWrap: "wrap", rowGap: 5}}>
+            <View style={{flexDirection: "row", justifyContent: "space-around", padding: 4, marginBottom: 35, flexWrap: "wrap", rowGap: 5}}>
               <Card navigation={navigation} cardText={"Graphs"} icon={"line-graph"}  destination={'Graphs'} />
-              <Card navigation={navigation} cardText={"Other"} icon={"code"}  destination={'CreateGraphs'}/>
+              <Card navigation={navigation} cardText={"Add Graphs"} icon={"plus"}  destination={'CreateGraphs'}/>
+              <Card navigation={navigation} cardText={"Add workout"} icon={"plus"}  destination={'AddScreen'}/>
+              <Card navigation={navigation} cardText={"Calendar"} icon={"calendar"}  destination={'CalendarScreen'}/>
             </View>
         </SafeAreaView>
     )
