@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TextInput, Alert, StyleSheet, SafeAreaView, ScrollView, Text  } from 'react-native';
+import { View, TextInput, Alert, StyleSheet, SafeAreaView, ScrollView, Text, TouchableOpacity  } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AntDesign } from '@expo/vector-icons';
 import { Button } from '@rneui/base';
@@ -71,8 +71,8 @@ const WorkoutForm = () => {
       <Text style={Styles.formText}>Workout Name</Text>
       <TextInput
         style={Styles.formInput}
-        placeholder="Workout Name"
-        placeholderTextColor="#ffffff" 
+        placeholder="Enter Workout Name"
+        placeholderTextColor="gray" 
         value={name}
         onChangeText={text => setName(text)}
       />
@@ -82,8 +82,8 @@ const WorkoutForm = () => {
           <View style={Styles.inputContainer}>
           <TextInput
             style={Styles.moveInput}
-            placeholder="Move Name"
-            placeholderTextColor="#ffffff" 
+            placeholder="Enter Move Name"
+            placeholderTextColor="gray" 
             value={move.name}
             onChangeText={text => {
               const newMoves = [...moves];
@@ -104,8 +104,8 @@ const WorkoutForm = () => {
               <Text style={{alignSelf:'center', justifyContent:'space-between', marginHorizontal:10, color:"#ffffff"}}>Set {setIndex + 1}</Text>
               <TextInput
                 style={Styles.setInput}
-                placeholder="Weight"
-                placeholderTextColor="#ffffff" 
+                placeholder="Weight (kg)"
+                placeholderTextColor="gray" 
                 keyboardType="numeric"
                 value={set.weight}
                 onChangeText={text => {
@@ -117,7 +117,7 @@ const WorkoutForm = () => {
               <TextInput
                 style={Styles.setInput}
                 placeholder="Reps"
-                placeholderTextColor="#ffffff" 
+                placeholderTextColor="gray" 
                 keyboardType="numeric"
                 value={set.reps}
                 onChangeText={text => {
@@ -139,9 +139,9 @@ const WorkoutForm = () => {
         </View>
       ))}
       <View style={Styles.buttonContainer}>
-        <Button title="Add Move" type='clear' titleStyle={{ color: '#ffffff' }} onPress={handleAddMove} />
-        <Button title="Save Workout" type='clear' titleStyle={{ color: '#ffffff' }} onPress={handleSaveWorkout} />
-        <Button title="Clear" type='clear' titleStyle={{ color: '#ffffff' }} onPress={clearInputs} />
+        <Button title="Add Move"buttonStyle={{backgroundColor: '#334195', borderRadius: 3, }}onPress={handleAddMove}/>
+        <Button title="Save Workout"buttonStyle={{backgroundColor: '#334195', borderRadius: 3, }}onPress={handleSaveWorkout}/>
+        <Button title="Clear fields"buttonStyle={{backgroundColor: '#334195', borderRadius: 3, }}onPress={handleAddMove}/>
       </View>
     </ScrollView>
   );

@@ -279,7 +279,7 @@ export default StyleSheet.create({
     
     formInput: {
       height: 40,
-      borderColor: 'gray',
+      borderColor: '#ffffff',
       borderWidth: 1,
       marginBottom: 16,
       paddingHorizontal: 8,
@@ -292,7 +292,7 @@ export default StyleSheet.create({
     },
     moveInput: {
       height: 40,
-      borderColor: 'gray',
+      borderColor: '#ffffff',
       borderBottomWidth: 1,
       marginBottom: 8,
       paddingHorizontal: 8,
@@ -301,7 +301,7 @@ export default StyleSheet.create({
     setInput: {
       height: 40,
       width: 100,
-      borderColor: 'gray',
+      borderColor: '#ffffff',
       borderWidth: 1,
       padding:8,
       marginRight: 8,
@@ -331,10 +331,22 @@ export default StyleSheet.create({
     buttonContainer: {
       display: 'flex',
       flexDirection: 'row',
-      justifyContent: 'space-between',
+      justifyContent: 'space-evenly',
       alignItems: 'center',
       marginBottom: 32,
 
+    },
+
+    formButton: {
+      fontSize: 20,
+      color: "#ffffff",
+      textAlign: "center",
+      backgroundColor: "#334195",
+      padding: 6,
+      borderRadius: 10,
+      minWidth: 50,
+      margin: 10,
+      fontFamily: 'RobotoCondensed-Regular',
     },
 
 });
