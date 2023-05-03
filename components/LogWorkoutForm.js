@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AntDesign } from '@expo/vector-icons';
 import { Button } from '@rneui/base';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import Styles from '../styles/Styles';
 
 //Workoutin lisäämisen komponenttti
 const LogWorkoutForm = () => {
@@ -87,22 +88,24 @@ const LogWorkoutForm = () => {
   };
   
   return (
-    <View style={styles.container}>
+    <View style={Styles.formContainer}>
     <ScrollView style={styles.scrollView} >
-      <Text>Workout Name</Text>
+      <Text style={Styles.formText}>Workout Name</Text>
       <TextInput
         style={styles.input}
         placeholder="Workout Name"
         value={name}
         onChangeText={text => setName(text)}
       />
-      <Text>Moves</Text>
+      <Text style={Styles.formText}>Moves</Text>
       {moves.map((move, moveIndex) => (
         <View key={moveIndex} style={styles.moveContainer}>
           <View style={styles.inputContainer}>
           <TextInput
-            style={styles.moveInput}
+            style={Styles.moveInput}
             placeholder="Move Name"
+            placeholderTextColor="gray" 
+
             value={move.name}
             onChangeText={text => {
               const newMoves = [...moves];
@@ -120,7 +123,7 @@ const LogWorkoutForm = () => {
           </View>
           {move.sets.map((set, setIndex) => (
             <View key={setIndex} style={styles.setContainer}>
-              <Text style={{alignSelf:'center', justifyContent:'space-between', marginHorizontal:10,}}>Set {setIndex + 1}</Text>
+              <Text style={{alignSelf:'center', justifyContent:'space-between', marginHorizontal:10,color:"#ffffff"}}>Set {setIndex + 1}</Text>
               <TextInput
                 style={styles.setInput}
                 placeholder="Weight"
@@ -143,26 +146,21 @@ const LogWorkoutForm = () => {
                   setMoves(newMoves);
                 }}
               />
-              <Button
-                icon={
-                  <AntDesign name="delete" size={24} color="black" />
-                }
+              <Button title="Add Set" type='clear' titleStyle={{ color: '#ffffff' }}
                 onPress={() => handleDeleteSet(moveIndex, setIndex)}
-                type="clear"
+           
               />
             </View>
           ))}
-          <Button title="Add Set" type='clear' onPress={() => handleAddSet(moveIndex)} />
+           <Button title="Add Set" type='clear' titleStyle={{ color: '#ffffff' }} onPress={() => handleAddSet(moveIndex)} />
+         
         </View>
       ))}
     </ScrollView>
-    <View style={styles.buttonContainer}>
-        <Button style={{
-            marginBottom: 8,
-        }} title="Add Move" type='outline' onPress={handleAddMove} />
-        <Button
-        style={{
-        }} title="Log Workout" onPress={addToWorkoutHistory} />
+    <View style={Styles.buttonContainer}>
+        <Button title="Add Move"buttonStyle={{backgroundColor: '#334195', borderRadius: 3, }}onPress={handleAddMove}/>
+        <Button title="Save Workout"buttonStyle={{backgroundColor: '#334195', borderRadius: 3, }}onPress={handleSaveWorkout}/>
+        <Button title="Clear fields"buttonStyle={{backgroundColor: '#334195', borderRadius: 3, }}onPress={clearInputs}/>
       </View>
     </View>
   );
@@ -176,7 +174,8 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     height:"90%",
-    backgroundColor: "#f9f9f9"
+    backgroundColor: "#191D32",
+
   }, 
   input: {
     height: 40,
