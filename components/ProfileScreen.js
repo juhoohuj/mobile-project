@@ -1,11 +1,13 @@
 import React from "react";
-import { Text, View, SafeAreaView, ScrollView } from "react-native";
+import { ImageBackground, Text, View, SafeAreaView, ScrollView } from "react-native";
 import styles from "../styles/Styles";
 import Card from "../components/Card";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState, useEffect } from "react";
 import { useIsFocused } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import backgroundImage from '../assets/background.jpg';
+
 
 
 
@@ -115,6 +117,7 @@ const ProfileScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={[styles.container, {paddingTop: insets.top}]}>
+          <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
           <ScrollView>
         <Text style={styles.headerStyle}>PROFILE</Text>
 
@@ -134,6 +137,7 @@ const ProfileScreen = ({ navigation }) => {
                 <Card navigation={navigation} cardText={"Add workout"} icon={"plus"}  destination={'AddScreen'}/>
               </View>
             </ScrollView>
+            </ImageBackground>
           </SafeAreaView>
     )
  }
