@@ -141,7 +141,7 @@ const WorkoutForm = () => {
       <View style={Styles.buttonContainer}>
         <Button title="Add Move"buttonStyle={{backgroundColor: '#334195', borderRadius: 3, }}onPress={handleAddMove}/>
         <Button title="Save Workout"buttonStyle={{backgroundColor: '#334195', borderRadius: 3, }}onPress={handleSaveWorkout}/>
-        <Button title="Clear fields"buttonStyle={{backgroundColor: '#334195', borderRadius: 3, }}onPress={handleAddMove}/>
+        <Button title="Clear fields"buttonStyle={{backgroundColor: '#334195', borderRadius: 3, }}onPress={clearInputs}/>
       </View>
     </ScrollView>
   );
