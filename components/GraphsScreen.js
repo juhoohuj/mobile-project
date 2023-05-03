@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, SafeAreaView} from "react-native";
 import ScrollGraphProps from "../components/ScrollGraphProps"
-import Styles from "../styles/Styles"
+import styles from "../styles/Styles"
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 
 const GraphsScreen = () => {
     const [data, setData] = useState(null);
+    const insets = useSafeAreaInsets();
 
     useEffect(() => {
         const getData = async () => {
@@ -21,13 +24,15 @@ const GraphsScreen = () => {
     const graphUnits = "Kg";
 
     return (
-        <ScrollView style={Styles.container}>
-            <ScrollGraphProps data={[{ graphName, graphUnits }]} graphIndex={0}/>
-            {data &&
-                data.map((graph, index) => (
-                <ScrollGraphProps key={index} data={data} graphIndex={index} />
-                ))}
-        </ScrollView>
+        <SafeAreaView style={[styles.container, {paddingTop: insets.top}]}>
+            <ScrollView style={styles.container}>
+                <ScrollGraphProps data={[{ graphName, graphUnits }]} graphIndex={0}/>
+                {data &&
+                    data.map((graph, index) => (
+                    <ScrollGraphProps key={index} data={data} graphIndex={index} />
+                    ))}
+            </ScrollView>
+        </SafeAreaView>
     );
 }
 
