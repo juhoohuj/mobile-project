@@ -94,6 +94,8 @@ const LogWorkoutForm = () => {
       <TextInput
         style={Styles.formInput}
         placeholder="Workout Name"
+        placeholderTextColor="gray" 
+
         value={name}
         onChangeText={text => setName(text)}
       />
@@ -104,7 +106,8 @@ const LogWorkoutForm = () => {
           <TextInput
             style={Styles.moveInput}
             placeholder="Move Name"
-            placeholderTextColor="#ffffff" 
+            placeholderTextColor="gray" 
+
 
             value={move.name}
             onChangeText={text => {
@@ -127,6 +130,8 @@ const LogWorkoutForm = () => {
               <TextInput
                 style={Styles.setInput}
                 placeholder="Weight"
+                placeholderTextColor="gray" 
+
                 keyboardType="numeric"
                 value={set.weight}
                 onChangeText={text => {
@@ -138,6 +143,8 @@ const LogWorkoutForm = () => {
               <TextInput
                 style={Styles.setInput}
                 placeholder="Reps"
+                placeholderTextColor="gray" 
+
                 keyboardType="numeric"
                 value={set.reps}
                 onChangeText={text => {
