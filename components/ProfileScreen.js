@@ -35,19 +35,24 @@ const ProfileScreen = ({ navigation }) => {
 
   function clearAll() {
     Alert.alert(
-      'Confirm',
+      'Clear all data',
       'Are you sure you want to clear all data?',
       [
-        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Cancel',
+          style: 'cancel'
+        },
         {
           text: 'OK',
           onPress: async () => {
             await AsyncStorage.clear();
-            // Add any additional logic to run after clearing data
-          },
-        },
-      ],
-      { cancelable: false }
+            Alert.alert(
+              'Data cleared',
+              'All data has been cleared successfully.'
+            );
+          }
+        }
+      ]
     );
   }
 
