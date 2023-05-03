@@ -13,10 +13,9 @@ const CreateGraphScreen = () => {
     const getData = async () => {
       try {
         const retrievedData = await AsyncStorage.getItem('@graphStructure');
-        console.log(retrievedData);
         setGraphs(JSON.parse(retrievedData));
-      } catch (error) {
-        console.log(error);
+      } catch (e) {
+        console.log(e);
       }
     };
     getData();
@@ -41,14 +40,10 @@ const CreateGraphScreen = () => {
             return;
           }
 
-          console.log("-------------------", newGraph)
-          console.log("++++++++----", graphData)
           graphData.push(newGraph);
-          console.log("++++++++", graphData)
           setGraphs(graphData)
   
           AsyncStorage.setItem('@graphStructure', JSON.stringify(graphData));
-          console.log('Graph saved successfully');
           Alert.alert('Graph saved successfully');
           setGraphName('');
           setUnits('')
