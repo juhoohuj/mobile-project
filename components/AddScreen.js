@@ -71,10 +71,10 @@ const AddScreenTheme = {
                     <Text style={Styles.AddScreenButton}>Create new template</Text>
                 </TouchableOpacity>
             </View>
-            <View>
+            <ScrollView>
                 <Text style={Styles.AddScreenText}>Templates</Text>
                 <WorkoutList />
-            </View>
+            </ScrollView>
         </SafeAreaView>
     )
 
