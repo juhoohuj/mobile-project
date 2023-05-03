@@ -14,58 +14,54 @@ const WorkoutCalendar = () => {
   // const workout = {key: 'workout', color: 'green'};
 
 
-  // useEffect(() => {
-  //   async function getWorkoutHistory() {
-  //     const workoutHistoryJSON = await AsyncStorage.getItem('@WorkoutHistory');
-  //     const workoutHistory = JSON.parse(workoutHistoryJSON);
-
-  //     const newMarkedDates = {};
-
-  //     workoutHistory.forEach((workout) => {
-  //       const date = new Date(workout.date).toISOString().split('T')[0];
-  //       newMarkedDates[date] = { marked: true };
-  //     });
-
-  //     setMarkedDates(newMarkedDates);
-  //   }
-
-  //   getWorkoutHistory();
-  // }, []);
-
   useEffect(() => {
     async function getWorkoutHistory() {
-      const workoutHistoryJSON = await AsyncStorage.getItem('@WorkoutHistory');
-      const workoutHistory = JSON.parse(workoutHistoryJSON);
-
-      const newMarkedDates = {};
-
-      workoutHistory.forEach((workout) => {
-        const date = new Date(workout.date).toISOString().split('T')[0];
-        newMarkedDates[date] = { marked: true };
-      });
-
-      setMarkedDates(newMarkedDates);
+      try {
+        const workoutHistoryJSON = await AsyncStorage.getItem('@WorkoutHistory');
+  
+        if (workoutHistoryJSON !== null) {
+          const workoutHistory = JSON.parse(workoutHistoryJSON);
+  
+          const newMarkedDates = {};
+  
+          workoutHistory.forEach((workout) => {
+            const date = new Date(workout.date).toISOString().split('T')[0];
+            newMarkedDates[date] = { marked: true };
+          });
+  
+          setMarkedDates(newMarkedDates);
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
-
+  
     getWorkoutHistory();
   }, []);
+
 
   const handleDayPress = (day) => {
     const selectedDay = day.dateString;
   
     async function getWorkoutsForSelectedDay() {
-      const workoutHistoryJSON = await AsyncStorage.getItem('@WorkoutHistory');
-      const workoutHistory = JSON.parse(workoutHistoryJSON);
+      try {
+        const workoutHistoryJSON = await AsyncStorage.getItem('@WorkoutHistory');
+        
+        if (workoutHistoryJSON !== null) {
+          const workoutHistory = JSON.parse(workoutHistoryJSON);
   
-      const workoutsForSelectedDay = workoutHistory.filter((workout) => {
-        const workoutDate = new Date(workout.date).toISOString().split('T')[0];
-        return workoutDate === selectedDay;
-      });
+          const workoutsForSelectedDay = workoutHistory.filter((workout) => {
+            const workoutDate = new Date(workout.date).toISOString().split('T')[0];
+            return workoutDate === selectedDay;
+          });
   
-      setSelectedDate(selectedDay);
-      setSelectedWorkout(workoutsForSelectedDay);
+          setSelectedDate(selectedDay);
+          setSelectedWorkout(workoutsForSelectedDay);
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
-  
     getWorkoutsForSelectedDay();
   };
 
