@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TextInput, Alert, StyleSheet, SafeAreaView, Text  } from 'react-native';
+import { View, TextInput, Alert, StyleSheet, SafeAreaView, ScrollView, Text  } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AntDesign } from '@expo/vector-icons';
 import { Button } from '@rneui/base';
@@ -67,7 +67,7 @@ const WorkoutForm = () => {
     }
   };
   return (
-    <SafeAreaView style={Styles.formContainer}>
+    <ScrollView style={Styles.formContainer}>
       <Text style={Styles.formText}>Workout Name</Text>
       <TextInput
         style={Styles.formInput}
@@ -135,20 +135,15 @@ const WorkoutForm = () => {
               />
             </View>
           ))}
-          <Button title="Add Set" type='clear' onPress={() => handleAddSet(moveIndex)} />
+          <Button title="Add Set" type='clear' titleStyle={{ color: '#ffffff' }} onPress={() => handleAddSet(moveIndex)} />
         </View>
       ))}
       <View style={Styles.buttonContainer}>
-        <Button title="Add Move" type='clear' onPress={handleAddMove} />
-        <Button title="Save Workout" type='clear' onPress={handleSaveWorkout} />
+        <Button title="Add Move" type='clear' titleStyle={{ color: '#ffffff' }} onPress={handleAddMove} />
+        <Button title="Save Workout" type='clear' titleStyle={{ color: '#ffffff' }} onPress={handleSaveWorkout} />
+        <Button title="Clear" type='clear' titleStyle={{ color: '#ffffff' }} onPress={clearInputs} />
       </View>
-
-      <View>
-        <Button title="Clear" onPress={clearInputs} />
-      <Button title="Templates" onPress={() => navigation.navigate("WorkoutTemplates")}/>
-      <Text></Text>
-      </View>
-    </SafeAreaView>
+    </ScrollView>
   );
 };
 

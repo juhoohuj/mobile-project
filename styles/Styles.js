@@ -247,7 +247,7 @@ export default StyleSheet.create({
     },
 
     AddScreenButton : {
-      fontSize: 18,
+      fontSize: 24,
       color: "#ffffff",
       textAlign: "center",
       backgroundColor: "#334195",
@@ -260,18 +260,21 @@ export default StyleSheet.create({
     
     AddScreenText : {
       color: "#ffffff",
-      fontSize: 30,
+      fontSize: 25,
       fontFamily: 'RobotoCondensed-Regular',
       textAlign: 'center',
       textShadowColor: 'rgba(0, 0, 0, 1)',
         textShadowOffset: {width: -1, height: 1},
         textShadowRadius: 10,
       padding: 10,
+      paddingVertical: 15,
     },
 
     formContainer: {
       flex: 1,
       backgroundColor: "#191D32",
+      padding: 16,
+      paddingTop: 32,
     },
     
     formInput: {
@@ -285,6 +288,7 @@ export default StyleSheet.create({
     moveContainer: {
       marginBottom: 16,
       borderBottomWidth: 1,
+      borderBottomColor: "#ffffff",
     },
     moveInput: {
       height: 40,
@@ -323,5 +327,15 @@ export default StyleSheet.create({
         textShadowRadius: 10,
       padding: 10,
     },
+
+    buttonContainer: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginBottom: 32,
+
+    },
+
 });
 

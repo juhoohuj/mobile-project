@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TextInput, Alert, StyleSheet, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { View, TextInput, Alert, StyleSheet, ScrollView, Text, TouchableOpacity, SafeAreaView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AntDesign } from '@expo/vector-icons';
 import { Button } from '@rneui/base';
@@ -80,7 +80,7 @@ const WorkoutList = () => {
   
 
   return (
-    <ScrollView style={styles.container}>
+    <SafeAreaView style={styles.container}>
     {workouts.map((workout, workoutIndex) => (
       <View key={workoutIndex} style={styles.workoutContainer}>
         <TouchableOpacity
@@ -112,7 +112,7 @@ const WorkoutList = () => {
         )}
       </View>
       ))}
-    </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -121,10 +121,12 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: "#191D32",
     color: '#ffffff',
+    margin: 16,
   },
   workoutContainer: {
     marginBottom: 16,
     borderBottomWidth: 1,
+    borderBottomColor: '#ffffff',
   },
   workoutHeader: {
     flexDirection: 'row',
