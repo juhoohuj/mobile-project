@@ -13,7 +13,7 @@ const HomeScreen = ({navigation}) => {
       <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
         <Text style={styles.headerStyle}>COLOSSUS</Text>
         
-        <View style={{marginRight: 20, marginLeft: 20, marginBottom: 10 }}>
+        <View style={{marginRight: 20, marginLeft: 20, marginBottom: 10, marginTop: 30 }}>
           <TouchableOpacity onPress={() => navigation.navigate('CalendarScreen')}>
             <ImageBackground style={{borderRadius: 20, overflow: "hidden"}} source={require('../assets/boxikuva1.jpg')}>
               <View style={{height: 180, alignItems: "center", justifyContent: "center"}}>
