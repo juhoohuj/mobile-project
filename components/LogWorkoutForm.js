@@ -154,10 +154,7 @@ const LogWorkoutForm = () => {
                   setMoves(newMoves);
                 }}
               />
-              <Button
-                icon={
-                  <AntDesign name="delete" size={24} color="white" />
-                }
+              <Button title="Delete" type='clear' titleStyle={{ color: '#ffffff' }}
                 onPress={() => handleDeleteSet(moveIndex, setIndex)}
                 type="clear"
               />
