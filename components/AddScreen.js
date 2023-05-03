@@ -62,13 +62,13 @@ const AddScreenTheme = {
         saveData(value);
         getData();  
     }
-    
+
 const insets = useSafeAreaInsets();
 
     return (
             <SafeAreaView style={[Styles.AddScreenContainer, {paddingTop: insets.top}]}>
             <View>
-                <Text style={Styles.AddScreenText}>Manage templates</Text>
+                <Text style={Styles.headerStyle}>Manage templates</Text>
             </View>
             <View>
                 <TouchableOpacity style={Styles.AddScreenButton} onPress={() => navigation.navigate("WorkoutForm")}>
