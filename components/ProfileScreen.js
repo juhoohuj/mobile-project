@@ -1,5 +1,5 @@
 import React from "react";
-import { ImageBackground, Text, View, SafeAreaView, ScrollView } from "react-native";
+import { ImageBackground, Text, View, SafeAreaView, ScrollView, Button, Alert } from "react-native";
 import styles from "../styles/Styles";
 import Card from "../components/Card";
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -32,18 +32,24 @@ const ProfileScreen = ({ navigation }) => {
     // example console.log result:
     // ['@MyApp_user', '@MyApp_key']
   }
-// getAllKeys()
 
-// clearAll = async () => {
-//   try {
-//     await AsyncStorage.clear()
-//   } catch(e) {
-//     // clear error
-//   }
-
-//   console.log('Done.')
-// }
-// clearAll()
+  function clearAll() {
+    Alert.alert(
+      'Confirm',
+      'Are you sure you want to clear all data?',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'OK',
+          onPress: async () => {
+            await AsyncStorage.clear();
+            // Add any additional logic to run after clearing data
+          },
+        },
+      ],
+      { cancelable: false }
+    );
+  }
 
   useEffect(() => {
     async function getData() {
@@ -151,6 +157,7 @@ const ProfileScreen = ({ navigation }) => {
                 <Card navigation={navigation} cardText={"Calendar"} icon={"calendar"}  destination={'CalendarScreen'}/>
                 <Card navigation={navigation} cardText={"Add workout"} icon={"plus"}  destination={'AddScreen'}/>
               </View>
+              <Button color={"red"} onPress={clearAll} title="Clear all data" />
             </ScrollView>
             </ImageBackground>
           </SafeAreaView>

@@ -154,9 +154,12 @@ const LogWorkoutForm = () => {
                   setMoves(newMoves);
                 }}
               />
-              <Button title="Add Set" type='clear' titleStyle={{ color: '#ffffff' }}
+              <Button
+                icon={
+                  <AntDesign name="delete" size={24} color="white" />
+                }
                 onPress={() => handleDeleteSet(moveIndex, setIndex)}
-           
+                type="clear"
               />
             </View>
           ))}
@@ -167,7 +170,7 @@ const LogWorkoutForm = () => {
     </ScrollView>
     <View style={Styles.buttonContainer}>
         <Button title="Add Move"buttonStyle={{backgroundColor: '#334195', borderRadius: 3, }}onPress={handleAddMove}/>
-        <Button title="Save Workout"buttonStyle={{backgroundColor: '#334195', borderRadius: 3, }}onPress={addToWorkoutHistory}/>
+        <Button title="Log workout"buttonStyle={{backgroundColor: '#334195', borderRadius: 3, }}onPress={addToWorkoutHistory}/>
         <Button title="Clear fields"buttonStyle={{backgroundColor: '#334195', borderRadius: 3, }}onPress={clearInputs}/>
       </View>
     </View>
