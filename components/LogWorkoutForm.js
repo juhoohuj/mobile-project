@@ -156,7 +156,6 @@ const LogWorkoutForm = () => {
               />
               <Button title="Delete" type='clear' titleStyle={{ color: '#ffffff' }}
                 onPress={() => handleDeleteSet(moveIndex, setIndex)}
-                type="clear"
               />
             </View>
           ))}
