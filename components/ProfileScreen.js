@@ -121,7 +121,22 @@ const ProfileScreen = ({ navigation }) => {
           <ScrollView>
         <Text style={styles.headerStyle}>PROFILE</Text>
 
-        <View style={{height: 250, backgroundColor: "#0d2863", margin: 10, borderRadius: 25, padding: 3, borderColor: "#334195", borderWidth: 2}}>
+        <View style={{height: 250,
+           backgroundColor: "#0d2863", 
+           margin: 10, 
+           borderRadius: 25, 
+           padding: 3, 
+           borderColor: "#334195", 
+           borderWidth: 2,
+           shadowColor: "#000",
+           shadowOffset: {
+             width: 0,
+             height: 2,
+           },
+           shadowOpacity: 0.25,
+           shadowRadius: 3.84,
+           elevation: 5,
+           }}>
               <Text style={styles.profileHeader}>Here are some stats for you!</Text>
 
           <ProfileInfoText label={"Latest weight:"} value={latestWeight} units={"kg"}/>
