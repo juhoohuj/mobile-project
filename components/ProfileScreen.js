@@ -117,7 +117,7 @@ const ProfileScreen = ({ navigation }) => {
       <SafeAreaView style={[styles.container, {paddingTop: insets.top}]}>
       <Text style={styles.headerStyle}>PROFILE</Text>
 
-      <View style={{height: 250, backgroundColor: "#0d2863", margin: 10, borderRadius: 25, padding: 3, borderColor: "#19D32", borderWidth: 2}}>
+      <View style={{height: 250, backgroundColor: "#0d2863", margin: 10, borderRadius: 25, padding: 3, borderColor: "#334195", borderWidth: 2}}>
             <Text style={styles.profileHeader}>Here are some stats for you!</Text>
 
         <ProfileInfoText label={"Latest weight:"} value={latestWeight} units={"kg"}/>

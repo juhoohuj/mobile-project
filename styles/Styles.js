@@ -40,17 +40,6 @@ export default StyleSheet.create({
       flexDirection:'row',
       flexWrap: "wrap",
     },
-    square: {
-      flex: 2,
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderWidth: 2,
-      borderRadius: 5,
-      borderColor: '#334195',
-      backgroundColor: '#0d2863',
-      margin: 10,
-      height: 100,
-    },
     headerStyle: {
       fontSize: 50,
       textAlign: 'center',
