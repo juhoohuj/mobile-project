@@ -117,8 +117,7 @@ const ProfileScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={[styles.container, {paddingTop: insets.top}]}>
-                <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
-
+          <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
           <ScrollView>
         <Text style={styles.headerStyle}>PROFILE</Text>
 
@@ -139,7 +138,6 @@ const ProfileScreen = ({ navigation }) => {
               </View>
             </ScrollView>
             </ImageBackground>
-
           </SafeAreaView>
     )
  }
