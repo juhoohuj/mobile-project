@@ -135,7 +135,6 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     flex: 1,
     justifyContent : "flex-start",
-    paddingHorizontal: 10,
   },
   moveContainer: {
     marginBottom: 8,
