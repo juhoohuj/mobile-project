@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView, SafeAreaView} from "react-native";
+import { ScrollView, SafeAreaView, Text} from "react-native";
 import ScrollGraphProps from "../components/ScrollGraphProps"
 import styles from "../styles/Styles"
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -25,6 +25,7 @@ const GraphsScreen = () => {
 
     return (
         <SafeAreaView style={[styles.container, {paddingTop: insets.top}]}>
+            <Text style={styles.headerStyle}>GRAPHS</Text>
             <ScrollView style={styles.container}>
                 <ScrollGraphProps data={[{ graphName, graphUnits }]} graphIndex={0}/>
                 {data &&

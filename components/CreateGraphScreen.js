@@ -82,6 +82,8 @@ const CreateGraphScreen = () => {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.headerStyle}>ADD GRAPH</Text>
+      <View>
       <Text style={styles.label}>Graph name:</Text>
       <TextInput
         style={styles.input}
@@ -103,6 +105,7 @@ const CreateGraphScreen = () => {
         title="Create Graph"
         onPress={createGraph}
       />
+      
             {graphs && graphs.map((graph) => {
         return (
           <View style={styles.graphContainer} key={graph.graphName+graph.graphUnits}>
@@ -117,7 +120,7 @@ const CreateGraphScreen = () => {
             />
           </View>
         );
-      })}
+      })}</View>
     </View>
   );
 }
@@ -161,6 +164,17 @@ const styles = StyleSheet.create({
   },
   deleteButton: {
     marginTop: 5,
+  },
+  headerStyle: {
+    fontSize: 50,
+    textAlign: 'center',
+    fontWeight: '100',
+    // marginBottom: 24,
+    color: "#ffff",
+    fontFamily: 'RobotoCondensed-Light',
+    textShadowColor: 'rgba(0, 0, 0, 1)',
+       textShadowOffset: {width: -1, height: 1},
+       textShadowRadius: 10
   },
 });
 

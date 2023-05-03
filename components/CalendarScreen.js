@@ -6,6 +6,7 @@ import WorkoutCalendar from "./Calendar";
 const CalendarScreen = ({ navigation }) => {
     return (
       <View style={styles.container}>
+        <Text style={styles.headerStyle}>CALENDAR</Text>
         <WorkoutCalendar />
         {/* <Text>asdadsads</Text> */}
       </View>
