@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, Dimensions, TextInput, Pressable } from "react-native";
+import { Text, View, Dimensions, TextInput, Pressable, Alert } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -8,14 +8,10 @@ import styles from "../styles/Styles";
 
 
 export default function ScrollGraphProps({ data, graphIndex }){
-
-  console.log("Whole data:", graphIndex, data)
-  
   if (!data) {
     return null;
   }
 
-console.log(graphIndex)
 
 const graphName = data[graphIndex].graphName
 const graphUnits = data[graphIndex].graphUnits
@@ -76,23 +72,38 @@ useEffect(() => {
 }, [DataPointDate, mainDataPoint]);
 
 
-// Delete data from local storage
+
 const deleteData = async () => {
-  try {
-    await AsyncStorage.removeItem('@dataPointDate')
-    await AsyncStorage.removeItem('@mainDataPoint')
-    setDataPointDate([])
-    setMainDataPoint([])
-    setCurrentIndex(0)
-    setInputWeight(70)
-  } catch(e) {
-    // remove error
-  }
+  Alert.alert(
+    'Delete Data',
+    `Are you sure you want to delete saved data from "${graphName}" graph?`,
+    [
+      {
+        text: 'Cancel',
+        style: 'cancel'
+      },
+      {
+        text: 'Delete',
+        onPress: async () => {
+          try {
+            await AsyncStorage.removeItem('@dataPointDate')
+            await AsyncStorage.removeItem('@mainDataPoint')
+            setDataPointDate([])
+            setMainDataPoint([])
+            setCurrentIndex(0)
+            setInputWeight(70)
+            alert('Data has been deleted.')
+          } catch(e) {
+            // remove error
+          }
 
-  console.log('Done.')
+          console.log('Done.')
+        },
+        style: 'destructive'
+      }
+    ]
+  )
 }
-// deleteData()
-
 
 
 
@@ -186,14 +197,6 @@ function handleInputButtonChange(inputValue) {
                 <Text style={styles.graphInfoText}>{SelctedDataPointDate}</Text>
             </View>
            <View>
-            {/* // style={styles.graphScrollContainer}
-            // horizontal={true}
-            // // The graph will be scrolled to the end on load
-            // contentOffset={{ x: mainDataPoint.length * 200, y: 0 }}
-            // showsHorizontalScrollIndicator={false}
-            // // Auto scroll to end when new measurement is added
-            // ref={ref => {this.scrollView = ref}}
-            // onContentSizeChange={() => this.scrollView.scrollToEnd({animated: true})} */}
                   <LineChart
                     data={{
                     labels: displayedItems2,
@@ -227,14 +230,9 @@ function handleInputButtonChange(inputValue) {
                         borderRadius: 16,
                     },
                     propsForVerticalLabels:{
-                      // fontSize: "100",
                       rotation: 25,
                       // Add space between graph and labels
-                      dy: "5",
-
-                      // alignmentBaseline: "ideographic"
-                      // disabled: "true"
-
+                      dy: "5"
                     },
                     propsForDots: {
                         r: "6",
@@ -250,10 +248,8 @@ function handleInputButtonChange(inputValue) {
                     
                     onDataPointClick={({value, index}) => {
                     setSelectedDataPoint(value + graphUnits)
-                    console.log(displayedItems2)
                     setSelctedDataPointDate(displayedItems2[index])
                     }}
-                    
                     />
                 </View>
                 <View style={{flexDirection: "row", width: Dimensions.get("window").width - 30, justifyContent: "space-between", alignItems: "flex-start"}}>
@@ -301,7 +297,7 @@ function handleInputButtonChange(inputValue) {
                 </Pressable>
               </View>
 
-            <Pressable style={{marginBottom: 20}} onPress={handleAddWeight}>
+            <Pressable style={{marginBottom: 0}} onPress={handleAddWeight}>
               <Ionicons name="add-circle-sharp" size={54} color="white" />
             </Pressable>
 
