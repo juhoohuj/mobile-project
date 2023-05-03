@@ -6,6 +6,7 @@ import WorkoutForm from "./WorkoutForm";
 import { useNavigation } from "@react-navigation/native";
 import WorkoutTemplates, { WorkoutList } from "./WorkoutTemplates";
 import Styles from "../styles/Styles";
+import React from "react";
 
 const AddScreenTheme = {
     //color:'#ffffff',

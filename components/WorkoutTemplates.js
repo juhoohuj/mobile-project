@@ -80,6 +80,7 @@ const WorkoutList = () => {
   
 
   return (
+    <SafeAreaView >
     <ScrollView style={styles.container}>
     {workouts.map((workout, workoutIndex) => (
       <View key={workoutIndex} style={styles.workoutContainer}>
@@ -114,6 +115,7 @@ const WorkoutList = () => {
       </View>
       ))}
       </ScrollView>
+      </SafeAreaView>
   );
 };
 

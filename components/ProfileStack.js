@@ -12,8 +12,10 @@ function ProfileStack() {
     return (
         <Stack.Navigator>
             <Stack.Screen name="MainProfileScreen" component={ProfileScreen} options={{headerShown: false}}/>
-            <Stack.Screen name="Graphs" component={GraphsScreen} />
-            <Stack.Screen name="CreateGraphs" component={CreateGraphScreen} options={{ headerTitle: 'My Graphs'}} />
+            <Stack.Screen name="Graphs" component={GraphsScreen} 
+            options={{headerShown: false}}/>
+            <Stack.Screen name="CreateGraphs" component={CreateGraphScreen} options={{headerShown: false}}
+             />
             <Stack.Screen name="AddScreen" component={AddScreen} options={{headerShown: false}}/>
         </Stack.Navigator>
     );
