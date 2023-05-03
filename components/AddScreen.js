@@ -7,11 +7,14 @@ import { useNavigation } from "@react-navigation/native";
 import WorkoutTemplates, { WorkoutList } from "./WorkoutTemplates";
 import Styles from "../styles/Styles";
 import React from "react";
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
 
 const AddScreenTheme = {
     //color:'#ffffff',
     //borderColor:"#ffffff"
 };
+
 
 
  const AddScreen = () => {
@@ -59,10 +62,11 @@ const AddScreenTheme = {
         saveData(value);
         getData();  
     }
-
+    
+const insets = useSafeAreaInsets();
 
     return (
-        <SafeAreaView style={Styles.AddScreenContainer}>
+            <SafeAreaView style={[Styles.AddScreenContainer, {paddingTop: insets.top}]}>
             <View>
                 <Text style={Styles.AddScreenText}>Manage templates</Text>
             </View>
