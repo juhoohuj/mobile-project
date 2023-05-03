@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, TextInput, Alert, StyleSheet, ScrollView, Text  } from 'react-native';
+import { View, TextInput, Alert, StyleSheet, SafeAreaView, ScrollView, Text  } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AntDesign } from '@expo/vector-icons';
 import { Button } from '@rneui/base';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import Styles from '../styles/Styles';
+
 
 //Workoutin lisäämisen komponenttti
 const WorkoutForm = () => {
@@ -65,21 +67,23 @@ const WorkoutForm = () => {
     }
   };
   return (
-    <ScrollView style={styles.container}>
-      <Text>Workout Name</Text>
+    <ScrollView style={Styles.formContainer}>
+      <Text style={Styles.formText}>Workout Name</Text>
       <TextInput
-        style={styles.input}
+        style={Styles.formInput}
         placeholder="Workout Name"
+        placeholderTextColor="#ffffff" 
         value={name}
         onChangeText={text => setName(text)}
       />
-      <Text>Moves</Text>
+      <Text style={Styles.formText}>Moves</Text>
       {moves.map((move, moveIndex) => (
-        <View key={moveIndex} style={styles.moveContainer}>
-          <View style={styles.inputContainer}>
+        <View key={moveIndex} style={Styles.moveContainer}>
+          <View style={Styles.inputContainer}>
           <TextInput
-            style={styles.moveInput}
+            style={Styles.moveInput}
             placeholder="Move Name"
+            placeholderTextColor="#ffffff" 
             value={move.name}
             onChangeText={text => {
               const newMoves = [...moves];
@@ -91,16 +95,17 @@ const WorkoutForm = () => {
               onPress={() => handleDeleteMove(moveIndex)}
               type="clear"
               icon={
-                <AntDesign name="minuscircleo" size={24} color="black" />
+                <AntDesign name="minuscircleo" size={24} color="red" />
               }
             />
           </View>
           {move.sets.map((set, setIndex) => (
-            <View key={setIndex} style={styles.setContainer}>
-              <Text style={{alignSelf:'center', justifyContent:'space-between', marginHorizontal:10,}}>Set {setIndex + 1}</Text>
+            <View key={setIndex} style={Styles.setContainer}>
+              <Text style={{alignSelf:'center', justifyContent:'space-between', marginHorizontal:10, color:"#ffffff"}}>Set {setIndex + 1}</Text>
               <TextInput
-                style={styles.setInput}
+                style={Styles.setInput}
                 placeholder="Weight"
+                placeholderTextColor="#ffffff" 
                 keyboardType="numeric"
                 value={set.weight}
                 onChangeText={text => {
@@ -110,8 +115,9 @@ const WorkoutForm = () => {
                 }}
               />
               <TextInput
-                style={styles.setInput}
+                style={Styles.setInput}
                 placeholder="Reps"
+                placeholderTextColor="#ffffff" 
                 keyboardType="numeric"
                 value={set.reps}
                 onChangeText={text => {
@@ -122,68 +128,23 @@ const WorkoutForm = () => {
               />
               <Button
                 icon={
-                  <AntDesign name="delete" size={24} color="black" />
+                  <AntDesign name="delete" size={24} color="white" />
                 }
                 onPress={() => handleDeleteSet(moveIndex, setIndex)}
                 type="clear"
               />
             </View>
           ))}
-          <Button title="Add Set" type='clear' onPress={() => handleAddSet(moveIndex)} />
+          <Button title="Add Set" type='clear' titleStyle={{ color: '#ffffff' }} onPress={() => handleAddSet(moveIndex)} />
         </View>
       ))}
-      <View style={styles.buttonContainer}>
-        <Button title="Add Move" type='clear' onPress={handleAddMove} />
-        <Button title="Save Workout" type='clear' onPress={handleSaveWorkout} />
-      </View>
-
-      <View>
-        <Button title="Clear" onPress={clearInputs} />
-      <Button title="Templates" onPress={() => navigation.navigate("WorkoutTemplates")}/>
-      <Text></Text>
+      <View style={Styles.buttonContainer}>
+        <Button title="Add Move" type='clear' titleStyle={{ color: '#ffffff' }} onPress={handleAddMove} />
+        <Button title="Save Workout" type='clear' titleStyle={{ color: '#ffffff' }} onPress={handleSaveWorkout} />
+        <Button title="Clear" type='clear' titleStyle={{ color: '#ffffff' }} onPress={clearInputs} />
       </View>
     </ScrollView>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    padding: 16,
-  },
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 16,
-    paddingHorizontal: 8,
-  },
-  moveContainer: {
-    marginBottom: 16,
-    borderBottomWidth: 1,
-  },
-  moveInput: {
-    height: 40,
-    borderColor: 'gray',
-    borderBottomWidth: 1,
-    marginBottom: 8,
-    paddingHorizontal: 8,
-  },
-  setInput: {
-    height: 40,
-    width: 100,
-    borderColor: 'gray',
-    borderWidth: 1,
-    padding:8,
-    marginRight: 8,
-    marginBottom: 8,
-  },
-  setContainer: {
-    flexDirection: 'row', 
-  },
-  inputContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-});
+
 export {WorkoutForm};

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, TextInput, Alert, StyleSheet, ScrollView, Text, TouchableOpacity } from 'react-native';
+import { View, TextInput, Alert, StyleSheet, ScrollView, Text, TouchableOpacity, SafeAreaView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AntDesign } from '@expo/vector-icons';
 import { Button } from '@rneui/base';
@@ -23,12 +23,19 @@ const WorkoutList = () => {
     };
 
     loadWorkouts();
-  }, []);
+  }, [{workouts}]);
 
   //Navigoi WorkoutFormiin ja lähettää valitun templaten mukana
-  const handleWorkoutPress = (workout) => {
+  const handleWorkoutPress = (workoutIndex) => {
+    if (selectedWorkout === workoutIndex) {
+      setSelectedWorkout(null);
+    } else {
+      setSelectedWorkout(workoutIndex);
+    }
+  };
+
+  const handleContinuePress = (workout) => {
     navigation.navigate('WorkoutForm', { workout });
-    console.log(workout)
   };
 
   const handleBackPress = () => {
@@ -37,15 +44,31 @@ const WorkoutList = () => {
 
   //Poistaa templaten AsyncStoragestä
   const handleDeleteWorkout = async (workoutIndex) => {
-    try {
-      const newWorkouts = [...workouts];
-      newWorkouts.splice(workoutIndex, 1);
-      await AsyncStorage.setItem('workouts', JSON.stringify(newWorkouts));
-      setWorkouts(newWorkouts);
-    } catch (error) {
-      console.error(error);
-      Alert.alert('An error occurred while deleting the workout.');
-    }
+    Alert.alert(
+      'Delete Workout',
+      'Are you sure you want to delete this workout?',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel'
+        },
+        {
+          text: 'Delete',
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              const newWorkouts = [...workouts];
+              newWorkouts.splice(workoutIndex, 1);
+              await AsyncStorage.setItem('workouts', JSON.stringify(newWorkouts));
+              setWorkouts(newWorkouts);
+            } catch (error) {
+              console.error(error);
+              Alert.alert('An error occurred while deleting the workout.');
+            }
+          }
+        }
+      ]
+    );
   };
 
   if (selectedWorkout) {
@@ -54,36 +77,42 @@ const WorkoutList = () => {
     );
   }
 
+  
+
   return (
-    <ScrollView style={styles.container}>
-      {workouts.map((workout, workoutIndex) => (
+    <SafeAreaView style={styles.container}>
+    {workouts.map((workout, workoutIndex) => (
+      <View key={workoutIndex} style={styles.workoutContainer}>
         <TouchableOpacity
-          key={workoutIndex}
-          style={styles.workoutContainer}
-          onPress={() => handleWorkoutPress(workout)}
+          style={styles.workoutHeader}
+          onPress={() => handleWorkoutPress(workoutIndex)}
         >
-          <View style={styles.workoutHeader}>
-            <Text style={styles.workoutName}>{workout.name}</Text>
-            <Button
+          <Text style={styles.workoutName}>{workout.name}</Text>
+          <AntDesign name={selectedWorkout === workoutIndex ? "caretup" : "caretdown"} size={24} color="white" />
+          <Button
               icon={<AntDesign name="delete" size={24} color="#ffffff" />}
               onPress={() => handleDeleteWorkout(workoutIndex)}
               type="clear"
             />
-          </View>
-          {workout.moves.map((move, moveIndex) => (
-            <View key={moveIndex} style={styles.moveContainer}>
-              <Text style={styles.moveName}>{move.name}</Text>
-              {move.sets.map((set, setIndex) => (
-                <View key={setIndex} style={styles.setContainer}>
-                  <Text style={styles.setDetails}>{`Set ${setIndex + 1}: ${set.weight} kg, ${set.reps} reps`}</Text>
-                </View>
-              ))}
-            </View>
-          ))}
         </TouchableOpacity>
+        {selectedWorkout === workoutIndex && (
+          <View>
+            {workout.moves.map((move, moveIndex) => (
+              <View key={moveIndex} style={styles.moveContainer}>
+                <Text style={styles.moveName}>{move.name}</Text>
+                {move.sets.map((set, setIndex) => (
+                  <View key={setIndex} style={styles.setContainer}>
+                    <Text style={styles.setDetails}>{`Set ${setIndex + 1}: ${set.weight} kg, ${set.reps} reps`}</Text>
+                  </View>
+                ))}
+              </View>
+            ))}
+            <Button type='clear' titleStyle={{color:"white"}} title="Use this template" onPress={() => handleContinuePress(workout)} />
+          </View>
+        )}
+      </View>
       ))}
-      <Button title="Create New Template" onPress={() => navigation.navigate("WorkoutForm")} />
-    </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -92,10 +121,12 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: "#191D32",
     color: '#ffffff',
+    margin: 16,
   },
   workoutContainer: {
     marginBottom: 16,
     borderBottomWidth: 1,
+    borderBottomColor: '#ffffff',
   },
   workoutHeader: {
     flexDirection: 'row',
