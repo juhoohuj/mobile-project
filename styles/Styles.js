@@ -47,12 +47,12 @@ export default StyleSheet.create({
       borderWidth: 2,
       borderRadius: 5,
       borderColor: '#334195',
-      backgroundColor: '#191D32',
+      backgroundColor: '#0d2863',
       margin: 10,
       height: 100,
     },
     headerStyle: {
-      fontSize: 36,
+      fontSize: 50,
       textAlign: 'center',
       fontWeight: '100',
       // marginBottom: 24,
@@ -103,14 +103,26 @@ export default StyleSheet.create({
       color:'#FFFFFF'
     },
     profileText:{
+      marginBottom: 10,
       color:'#FFFFFF',
-      fontSize: 20,
+      fontSize: 25,
       fontFamily: 'RobotoCondensed-Regular',
       textAlign: 'center',
       textShadowColor: 'rgba(0, 0, 0, 1)',
         textShadowOffset: {width: -1, height: 1},
         textShadowRadius: 10
 
+    },
+    profileHeader:{
+      paddingBottom: 30,
+      fontSize: 30,
+      marginBottom: 5,
+      color:'#FFFFFF',
+      fontFamily: 'RobotoCondensed-Regular',
+      textAlign: 'center',
+      textShadowColor: 'rgba(0, 0, 0, 1)',
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius: 10
     },
     graphContainer: {
       backgroundColor: "#191D32",
