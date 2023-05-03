@@ -47,12 +47,12 @@ export default StyleSheet.create({
       borderWidth: 2,
       borderRadius: 5,
       borderColor: '#334195',
-      backgroundColor: '#191D32',
+      backgroundColor: '#0d2863',
       margin: 10,
       height: 100,
     },
     headerStyle: {
-      fontSize: 36,
+      fontSize: 50,
       textAlign: 'center',
       fontWeight: '100',
       // marginBottom: 24,
@@ -103,14 +103,26 @@ export default StyleSheet.create({
       color:'#FFFFFF'
     },
     profileText:{
+      marginBottom: 10,
       color:'#FFFFFF',
-      fontSize: 20,
+      fontSize: 25,
       fontFamily: 'RobotoCondensed-Regular',
       textAlign: 'center',
       textShadowColor: 'rgba(0, 0, 0, 1)',
         textShadowOffset: {width: -1, height: 1},
         textShadowRadius: 10
 
+    },
+    profileHeader:{
+      paddingBottom: 30,
+      fontSize: 30,
+      marginBottom: 5,
+      color:'#FFFFFF',
+      fontFamily: 'RobotoCondensed-Regular',
+      textAlign: 'center',
+      textShadowColor: 'rgba(0, 0, 0, 1)',
+        textShadowOffset: {width: -1, height: 1},
+        textShadowRadius: 10
     },
     graphContainer: {
       backgroundColor: "#191D32",
@@ -279,7 +291,7 @@ export default StyleSheet.create({
     
     formInput: {
       height: 40,
-      borderColor: 'gray',
+      borderColor: '#ffffff',
       borderWidth: 1,
       marginBottom: 16,
       paddingHorizontal: 8,
@@ -292,7 +304,7 @@ export default StyleSheet.create({
     },
     moveInput: {
       height: 40,
-      borderColor: 'gray',
+      borderColor: '#ffffff',
       borderBottomWidth: 1,
       marginBottom: 8,
       paddingHorizontal: 8,
@@ -301,7 +313,7 @@ export default StyleSheet.create({
     setInput: {
       height: 40,
       width: 100,
-      borderColor: 'gray',
+      borderColor: '#ffffff',
       borderWidth: 1,
       padding:8,
       marginRight: 8,
@@ -331,10 +343,22 @@ export default StyleSheet.create({
     buttonContainer: {
       display: 'flex',
       flexDirection: 'row',
-      justifyContent: 'space-between',
+      justifyContent: 'space-evenly',
       alignItems: 'center',
       marginBottom: 32,
 
+    },
+
+    formButton: {
+      fontSize: 20,
+      color: "#ffffff",
+      textAlign: "center",
+      backgroundColor: "#334195",
+      padding: 6,
+      borderRadius: 10,
+      minWidth: 50,
+      margin: 10,
+      fontFamily: 'RobotoCondensed-Regular',
     },
 
 });
