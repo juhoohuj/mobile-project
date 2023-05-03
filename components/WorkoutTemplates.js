@@ -25,7 +25,6 @@ const WorkoutList = () => {
     loadWorkouts();
   }, [{workouts}]);
 
-  //Navigoi WorkoutFormiin ja lähettää valitun templaten mukana
   const handleWorkoutPress = (workoutIndex) => {
     if (selectedWorkout === workoutIndex) {
       setSelectedWorkout(null);
@@ -71,11 +70,7 @@ const WorkoutList = () => {
     );
   };
 
-  if (selectedWorkout) {
-    return (
-      <WorkoutForm workout={selectedWorkout} onBackPress={handleBackPress} />
-    );
-  }
+
 
   
 
@@ -93,6 +88,7 @@ const WorkoutList = () => {
               icon={<AntDesign name="delete" size={24} color="#ffffff" />}
               onPress={() => handleDeleteWorkout(workoutIndex)}
               type="clear"
+              style={{paddingHorizontal: 10,}}
             />
         </TouchableOpacity>
         {selectedWorkout === workoutIndex && (
@@ -107,7 +103,7 @@ const WorkoutList = () => {
                 ))}
               </View>
             ))}
-            <Button type='clear' titleStyle={{color:"white"}} title="Use this template" onPress={() => handleContinuePress(workout)} />
+            <Button buttonStyle={{backgroundColor: '#334195', borderRadius: 3, marginBottom:5 }} titleStyle={{color:"white"}} title="Use this template" onPress={() => handleContinuePress(workout)} />
           </View>
         )}
       </View>
@@ -130,13 +126,16 @@ const styles = StyleSheet.create({
   },
   workoutHeader: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     marginBottom: 8,
   },
   workoutName: {
     fontSize: 20,
     color: '#ffffff',
+    flex: 1,
+    justifyContent : "flex-start",
+    paddingHorizontal: 10,
   },
   moveContainer: {
     marginBottom: 8,
