@@ -27,7 +27,7 @@ const Nav = () => {
         }
       }}>
         <Tab.Screen name="Home" component={HomeStack} options={{tabBarIcon: ()=> <AntDesign name="home" size={24} color="#f3f3f3" />}} />
-        <Tab.Screen name="Add" component={AddStack} options={{tabBarIcon: ()=> <AntDesign name="plus" size={24} color="#f3f3f3" />}} />
+        <Tab.Screen name="Templates" component={AddStack} options={{tabBarIcon: ()=> <AntDesign name="plus" size={24} color="#f3f3f3" />}} />
         <Tab.Screen name="Profile" component={ProfileStack} options={{tabBarIcon: ()=> <AntDesign name="areachart" size={24} color="#f3f3f3" />}}  />
       </Tab.Navigator>
     </NavigationContainer>

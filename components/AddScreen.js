@@ -63,11 +63,11 @@ const AddScreenTheme = {
     return (
         <SafeAreaView style={Styles.AddScreenContainer}>
             <View>
-                <Text style={Styles.AddScreenText}>Manage workouts</Text>
+                <Text style={Styles.AddScreenText}>Manage templates</Text>
             </View>
             <View>
                 <TouchableOpacity style={Styles.AddScreenButton} onPress={() => navigation.navigate("WorkoutForm")}>
-                    <Text style={Styles.AddScreenButton}>Create new workout</Text>
+                    <Text style={Styles.AddScreenButton}>Create new template</Text>
                 </TouchableOpacity>
             </View>
             <View>
