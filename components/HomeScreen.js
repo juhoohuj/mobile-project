@@ -4,6 +4,7 @@ import styles from '../styles/Styles';
 import backgroundImage from '../assets/background.jpg';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+
 const HomeScreen = ({navigation}) => {
 
   const insets = useSafeAreaInsets();
@@ -34,7 +35,7 @@ const HomeScreen = ({navigation}) => {
         </View>
 
         <View style={{marginRight: 20, marginLeft: 20, marginTop: 5}}>
-        <TouchableOpacity onPress={() => navigation.navigate('ProfileScreen')}>           
+        <TouchableOpacity onPress={() => navigation.navigate('Profile', { screen: 'ProfileScreen' }) }>           
          <ImageBackground style={{borderRadius: 20, overflow: "hidden"}} source={require('../assets/boxikuva3.jpg')}>
               <View style={{height: 180, alignItems: "center", justifyContent: "center"}}>
                 <Text style={styles.imageText}>Profile</Text>
