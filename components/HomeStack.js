@@ -12,9 +12,11 @@ function HomeStack() {
     return (
         <Stack.Navigator>
             <Stack.Screen name="HomeScreen" component={HomeScreen} options={{headerShown: false}}/>
-            <Stack.Screen name="LogWorkoutForm" component={LogWorkoutForm} />
-            <Stack.Screen name="LogWorkoutScreen" component={LogWorkoutScreen} />
-            <Stack.Screen name="CalendarScreen" component={CalendarScreen} />
+            <Stack.Screen name="LogWorkoutForm" component={LogWorkoutForm}
+            options={{headerShown: false}} />
+            <Stack.Screen name="LogWorkoutScreen" component={LogWorkoutScreen} 
+             options={{headerShown: false}}/>
+            <Stack.Screen name="CalendarScreen" component={CalendarScreen } />
         </Stack.Navigator>
     );
   }

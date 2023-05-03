@@ -6,6 +6,7 @@ import { Button } from '@rneui/base';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import Styles from '../styles/Styles';
 
+
 //Workoutin lisäämisen komponenttti
 const LogWorkoutForm = () => {
   const navigation = useNavigation();
