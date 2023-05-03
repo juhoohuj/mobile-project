@@ -16,7 +16,8 @@ function HomeStack() {
             options={{headerShown: false}} />
             <Stack.Screen name="LogWorkoutScreen" component={LogWorkoutScreen} 
              options={{headerShown: false}}/>
-            <Stack.Screen name="CalendarScreen" component={CalendarScreen } />
+            <Stack.Screen name="CalendarScreen" component={CalendarScreen } 
+             options={{headerShown: false}} />
         </Stack.Navigator>
     );
   }
